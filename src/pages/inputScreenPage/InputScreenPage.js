@@ -1,9 +1,9 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import colors from "../data/сonstants/Colors";
+import colors from "../../data/сonstants/Colors";
 import InputScreenListItem from "./InputScreenListItem";
 import ColorSelectItem from "./ColorSelectItem";
-import mock from "../mock/mockData";
+import mock from "../../data/mock/mockData";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -97,7 +97,7 @@ const InputScreenPage = () => {
 
       <div className={classes.content}>
         <div className={classes.list}>
-          {mock.map((val, index) => (
+          {mock.reportPage.map((val, index) => (
             <InputScreenListItem
               key={val.title + " " + index}
               text={val.text}

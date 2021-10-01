@@ -1,5 +1,6 @@
 const FrontendRoutes = {
- EASY_REPORT_PAGE: "/"
+ EDIT_REPORTS: "/edit-reports",
+ EVENTS_LIST_PAGE: "/"
 };
 
 export default FrontendRoutes;
