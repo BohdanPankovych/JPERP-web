@@ -1,8 +1,8 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import colors from "../../data/сonstants/Colors";
-import InputScreenListItem from "./InputScreenListItem";
-import ColorSelectItem from "./ColorSelectItem";
+import colors from "../../data/constants/Colors";
+import InputScreenListItem from "./inputScreenComponents/InputScreenListItem";
+import ColorSelectItem from "./inputScreenComponents/ColorSelectItem";
 import mock from "../../data/mock/mockData";
 
 const useStyles = makeStyles((theme) => ({
