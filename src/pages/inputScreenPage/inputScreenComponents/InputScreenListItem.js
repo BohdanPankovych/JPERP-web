@@ -1,22 +1,24 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import TextareaAutosize from "@material-ui/core/TextareaAutosize";
+import { TextField } from "@material-ui/core";
+import TextInput from "../../../reusableComponents/textInput/TextInput";
+import { required, notLong } from "../../../data/helpers/validators";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
-    margin: "20px",
+    margin: "10px",
   },
   img: {
-    margin: "30px 20px 0",
+    margin: "20px 10px 0",
     display: "block",
     width: "auto",
-    height: "15vh",
+    height: "10vh",
   },
   text: {
     resize: "none",
     padding: "10px",
-    width: "50vw",
+    width: "45vw",
     fontSize: "12px",
   },
   title: {
@@ -26,15 +28,21 @@ const useStyles = makeStyles((theme) => ({
 
 const InputScreenListItem = ({ text, title, img }) => {
   const classes = useStyles();
+
+  const [textValue, setTextValue] = React.useState(text);
+
   return (
     <div className={classes.root}>
       <img className={classes.img} alt="img" src={img} />
       <div>
-        <p className={classes.title}>{title}</p>
-        <TextareaAutosize
+        <TextInput
+          multiline
+          variant="outlined"
           className={classes.text}
-          defaultValue={text}
-        ></TextareaAutosize>
+          value={textValue}
+          onValueChange={setTextValue}
+          validators={[required, notLong]}
+        ></TextInput>
       </div>
     </div>
   );
