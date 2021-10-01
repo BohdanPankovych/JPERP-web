@@ -36,7 +36,7 @@ const ColorSelectItem = ({ color }) => {
   return (
     <>
       <input className={classes.input} type="radio" name="color" id={color} />
-      <label className={classes.label} for={color}>
+      <label className={classes.label} htmlFor={color}>
         <span style={{ backgroundColor: color }}></span>
       </label>
     </>

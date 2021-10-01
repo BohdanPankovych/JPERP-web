@@ -1,9 +1,11 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import { TextField, MenuItem, Button } from "@material-ui/core";
 import colors from "../../data/constants/Colors";
 import InputScreenListItem from "./inputScreenComponents/InputScreenListItem";
 import ColorSelectItem from "./inputScreenComponents/ColorSelectItem";
 import mock from "../../data/mock/mockData";
+import TextInput from "../../reusableComponents/textInput/TextInput";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,22 +20,26 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "10px",
   },
   input: {
+    "& .MuiOutlinedInput-input": {
+      padding: "5px",
+    },
     height: "100%",
   },
   selectInput: {
+    "& .MuiOutlinedInput-input": {
+      padding: "5px",
+    },
     width: "150px",
   },
   content: {
     display: "flex",
   },
-  commentTitle: {
-    marginBottom: "5px",
+  commentContent: {
+    paddingTop: "25px",
   },
   commentText: {
     resize: "none",
-    padding: "10px",
-    width: "35vw",
-    height: "87%",
+    width: "40vw",
   },
   header: {
     display: "flex",
@@ -41,57 +47,102 @@ const useStyles = makeStyles((theme) => ({
   },
   headerButton: {
     display: "flex",
-    alignItems: "center",
+    alignItems: "flex-start",
+    marginTop: "70px",
   },
   button: {
     marginRight: "80px",
     backgroundColor: "#00AE00",
-    border: "1px solid #00AE00",
-    borderRadius: "5px",
     padding: "5px 15px",
     color: "white",
     "&:hover": {
       backgroundColor: "#1db51d",
-      cursor: "pointer",
     },
+  },
+  list: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-end",
+    padding: "5px 0",
   },
 }));
 
+const selectValue = [
+  {
+    label: "橋本凛",
+    value: "橋本凛",
+  },
+  {
+    label: "春野サクラ",
+    value: "春野サクラ",
+  },
+  {
+    label: "カヌー優子",
+    value: "カヌー優子",
+  },
+];
+
 const InputScreenPage = () => {
   const classes = useStyles();
+  const [selectedValue, setSelectedValue] = React.useState("橋本凛");
+
+  const handleChange = (event) => {
+    setSelectedValue(event.target.value);
+  };
+
+  const onButtonClick = () => {};
 
   return (
     <div className={classes.root}>
       <div className={classes.header}>
         <div className={classes.headerOptions}>
           <p>簡単レポート</p>
+
           <div className={classes.titleWrapper}>
             <p className={classes.optionText}>タイトル：</p>
-            <input className={classes.input} value="今日のうさぎ組"></input>
+            <TextField
+              variant="outlined"
+              className={classes.input}
+              value="今日のうさぎ組"
+            />
           </div>
+
           <div className={classes.titleWrapper}>
             <p className={classes.optionText}>レポート表示日：</p>
-            <input className={classes.input} value="2021年8月13日"></input>
+            <input className={classes.input} value="2021年8月13日" />
           </div>
+
           <div className={classes.titleWrapper}>
             <p className={classes.optionText}>作成：</p>
-            <select className={classes.selectInput} value="橋本凛">
-              <option value="value1">橋本凛</option>
-              <option value="value2">橋本凛</option>
-              <option value="value3">橋本凛</option>
-            </select>
+            <TextField
+              select
+              className={classes.selectInput}
+              variant="outlined"
+              value={selectedValue}
+              onChange={handleChange}
+            >
+              {selectValue.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
           </div>
-          <p>レポートの背景色を選択：</p>
 
+          <p>レポートの背景色を選択：</p>
           {colors.map((val) => (
             <ColorSelectItem key={val} color={val}></ColorSelectItem>
           ))}
         </div>
 
         <div className={classes.headerButton}>
-          <button className={classes.button} onClick={() => alert("test")}>
+          <Button
+            className={classes.button}
+            variant="contained"
+            onClick={onButtonClick}
+          >
             プレビューを確認
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -106,13 +157,13 @@ const InputScreenPage = () => {
             />
           ))}
         </div>
+
         <div className={classes.commentContent}>
-          <p className={classes.commentTitle}>
-            先生のコメント（200文字まで入力可能）
-          </p>
-          <textarea
+          <TextInput
             className={classes.commentText}
-            value="テキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入ります"
+            multiline
+            variant="outlined"
+            defaultValue="ますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入ります"
           />
         </div>
       </div>
