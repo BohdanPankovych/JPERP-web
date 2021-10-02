@@ -1,6 +1,5 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { TextField } from "@material-ui/core";
 import TextInput from "../../../reusableComponents/textInput/TextInput";
 import { required, notLong } from "../../../data/helpers/validators";
 
@@ -16,7 +15,6 @@ const useStyles = makeStyles((theme) => ({
     height: "10vh",
   },
   text: {
-    resize: "none",
     padding: "10px",
     width: "45vw",
     fontSize: "12px",

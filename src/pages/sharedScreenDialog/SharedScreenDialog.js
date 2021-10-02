@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import CloseIcon from "@material-ui/icons/Close";
 import SaveIcon from "@material-ui/icons/Save";
@@ -13,10 +13,12 @@ import {
   Typography,
   DialogContent,
   Button,
-  TextareaAutosize,
   Switch,
 } from "@material-ui/core";
 import SharedScreenList from "./sharedScreenComponents/SharedScreenList";
+import TextInput from "../../reusableComponents/textInput/TextInput";
+
+import { required } from "../../data/helpers/validators";
 import mockData from "../../data/mock/mockData";
 
 const useStyles = makeStyles((theme) => ({
@@ -54,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "5px",
     width: "100%",
     minHeight: "25vh",
-    marginBottom: "5px",
+    marginBottom: "15px",
   },
   confirm: {
     padding: 0,
@@ -66,16 +68,16 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   textAreaText: {
-    margin: "5px 0",
-    border: "1px solid #bdbdbd",
+    margin: "15px 0",
     borderRadius: "5px",
     fontSize: "16px",
-    width: "99%",
-    resize: "none",
+    width: "100%",
+    backgroundColor: "white",
   },
   button: {
-    backgroundColor: "#00AF10",
-    color: "white",
+    "&:hover": {
+      backgroundColor: "#1db51d",
+    },
   },
   rightSide: {
     backgroundColor: "white",
@@ -127,11 +129,22 @@ const SharedScreenDialog = ({ open, handleClose }) => {
       <DialogContent className={classes.content}>
         <Box className={classes.leftSide}>
           <Container className={classes.previewContainer}></Container>
-          <Button className={classes.button}>Some Button</Button>
-          <TextareaAutosize
+          <Button
+            className={classes.button}
+            variant="contained"
+            color="primary"
+          >
+            Some Button
+          </Button>
+
+          <TextInput
             className={classes.textAreaText}
-            minRows={5}
-          ></TextareaAutosize>
+            multiline
+            variant="outlined"
+            rows={5}
+            validators={[required]}
+          />
+
           <Container className={classes.confirm}>
             <Switch />
             <Typography>some text</Typography>
@@ -148,4 +161,4 @@ const SharedScreenDialog = ({ open, handleClose }) => {
   );
 };
 
-export default SharedScreenDialog;
+export default memo(SharedScreenDialog);

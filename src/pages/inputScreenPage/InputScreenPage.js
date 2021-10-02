@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { TextField, MenuItem, Button } from "@material-ui/core";
 import colors from "../../data/constants/Colors";
@@ -13,6 +13,10 @@ const useStyles = makeStyles((theme) => ({
   },
   optionText: {
     margin: 0,
+    fontSize: "12px",
+  },
+  title: {
+    fontSize: "18px",
   },
   titleWrapper: {
     display: "flex",
@@ -29,10 +33,14 @@ const useStyles = makeStyles((theme) => ({
     "& .MuiOutlinedInput-input": {
       padding: "5px",
     },
-    width: "150px",
+    width: "165px",
+    marginLeft: "60px",
   },
   content: {
     display: "flex",
+  },
+  commentTitle: {
+    marginTop: 0,
   },
   commentContent: {
     paddingTop: "25px",
@@ -52,9 +60,7 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     marginRight: "80px",
-    backgroundColor: "#00AE00",
     padding: "5px 15px",
-    color: "white",
     "&:hover": {
       backgroundColor: "#1db51d",
     },
@@ -99,7 +105,7 @@ const InputScreenPage = () => {
           <p>簡単レポート</p>
 
           <div className={classes.titleWrapper}>
-            <p className={classes.optionText}>タイトル：</p>
+            <p className={classes.title}>タイトル：</p>
             <TextField
               variant="outlined"
               className={classes.input}
@@ -109,7 +115,11 @@ const InputScreenPage = () => {
 
           <div className={classes.titleWrapper}>
             <p className={classes.optionText}>レポート表示日：</p>
-            <input className={classes.input} value="2021年8月13日" />
+            <TextField
+              type="date"
+              className={classes.input}
+              //value="2021年8月13日"
+            />
           </div>
 
           <div className={classes.titleWrapper}>
@@ -139,6 +149,7 @@ const InputScreenPage = () => {
           <Button
             className={classes.button}
             variant="contained"
+            color="primary"
             onClick={onButtonClick}
           >
             プレビューを確認
@@ -159,6 +170,7 @@ const InputScreenPage = () => {
         </div>
 
         <div className={classes.commentContent}>
+          <p className={classes.commentTitle}>先生のコメント</p>
           <TextInput
             className={classes.commentText}
             multiline
@@ -171,4 +183,4 @@ const InputScreenPage = () => {
   );
 };
 
-export default InputScreenPage;
+export default memo(InputScreenPage);

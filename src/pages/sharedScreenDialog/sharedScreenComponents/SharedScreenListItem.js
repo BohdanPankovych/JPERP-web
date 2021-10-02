@@ -8,6 +8,7 @@ import {
 } from "@material-ui/core";
 import { ExpandMore, ExpandLess } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
+import SelectButton from "../../../reusableComponents/button/SelectButton";
 
 const useStyles = makeStyles((theme) => ({
   tagsList: {
@@ -33,9 +34,7 @@ const SharedScreenListItem = ({ title, tags }) => {
       <Collapse in={open} timeout="auto" unmountOnExit>
         <Box className={classes.tagsList}>
           {tags.map((val, index) => (
-            <Button key={val + "_" + index} variant="outlined">
-              {val}
-            </Button>
+            <SelectButton key={val + "_" + index}>{val}</SelectButton>
           ))}
         </Box>
       </Collapse>
