@@ -1,15 +1,15 @@
 import React, {memo} from "react"
 import {Route, Switch} from "react-router-dom";
 import FrontendRoutes from "../../data/constants/FrontendRoutes";
-import EventsListPage from "../eventsListPage/EventsListPage";
 import InputScreenPage from "../inputScreenPage/InputScreenPage";
+import EventsListPageContainer from "../eventsListPage/containers/EventsListPageContainer";
 import PreviewScreenPage from '../previewScreenPage/PreviewScreenPage';
 
 const Root = () => {
   return <>
           <Switch>
               <Route exact path={FrontendRoutes.EVENTS_LIST_PAGE}>
-                  <EventsListPage />
+                  <EventsListPageContainer />
               </Route>
               <Route exact path={FrontendRoutes.EDIT_REPORTS}>
                   <InputScreenPage />

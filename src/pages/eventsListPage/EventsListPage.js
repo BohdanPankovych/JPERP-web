@@ -1,7 +1,10 @@
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import React, {memo} from "react";
+import React, {memo, useEffect} from "react";
 import EasyReportPageTitles from "./eventsListPageTitles/EventsListPageTitles";
 import EasyReportPageSelect from "../../reusableComponents/eventsListPageSelects/EventsListPageSelects";
+import {setEventsListData} from "../../data/redux/eventsList/eventsListActions";
+import mock from "../../data/mock/mockData";
+import Event from "./event/Event";
 
 const useStyles = makeStyles((theme) => ({
     underHeaderBlock: {
@@ -15,8 +18,8 @@ const useStyles = makeStyles((theme) => ({
         color: '#FF0000',
         fontSize: '12px',
         position: 'absolute',
-        top: -34,
-        left: 50,
+        top: 20,
+        left: 18,
     },
     flex: {
         display: 'flex',
@@ -45,43 +48,17 @@ const useStyles = makeStyles((theme) => ({
         position: 'relative',
         marginTop: '25px',
     },
-    event: {
-        marginTop: 62,
-        marginLeft: 67,
-        display: 'flex',
-        position: 'relative',
-    },
-    image: {
-        width: 87,
-        height: 87,
-        background: '#C4C4C4'
-    },
-    imgDescriptionBlock: {
-        marginTop: '-20px',
-        marginLeft: '37px',
-    },
-    imgTitle: {
-        fontSize: 14,
-    },
-    imgDescr: {
-        fontSize: 12,
-    },
-    checkbox: {
-        position: 'absolute',
-        top: 27,
-        right: 125
-    },
-    line: {
-        width: '93vw',
-        border: '1px solid #E2E2E2',
-        marginLeft: '60px',
-        marginTop: '22px',
-    }
+
 }));
 
-const EventsListPage = ({}) => {
+const EventsListPage = ({eventsList, setEventsListData}) => {
     const classes = useStyles();
 
+    useEffect(() => {
+        setEventsListData(mock.eventsList)
+    }, []);
+
+    // console.log('eventsList', eventsList)
     return (
         <>
             <div className={classes.underHeaderBlock}>
@@ -94,26 +71,17 @@ const EventsListPage = ({}) => {
                         <EasyReportPageSelect title={'日'}/>
                     </div>
                     <div className={classes.reportBlock}>
-                        <p className={classes.fourReports}>※一度に選べるレポートは4点までです。</p>
+                        {/*<p className={classes.fourReports}>※一度に選べるレポートは4点までです。</p>*/}
                         <div className={classes.btns}>
-                            <button className={classes.deleteBtn}>削除する</button>
                             <button className={classes.editReportBtn}>簡単レポートを編集</button>
                         </div>
 
                     </div>
                 </div>
             </div>
-            <div className={classes.event}>
-                <div className={classes.image}></div>
-                <div className={classes.imgDescriptionBlock}>
-                    <p className={classes.imgTitle}>橋本凛</p>
-                    <p className={classes.imgDescr}>テキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入ります</p>
-                </div>
-                <div className={classes.checkbox}>
-                    <input type="checkbox" id="scales" name="scales"/>
-                </div>
-            </div>
-            <div className={classes.line}></div>
+            {eventsList.map((e) => (
+                <Event key={e.id} event={e}/>
+            ))}
         </>
     );
 }
