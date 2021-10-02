@@ -6,6 +6,7 @@ import InputScreenListItem from "./inputScreenComponents/InputScreenListItem";
 import ColorSelectItem from "./inputScreenComponents/ColorSelectItem";
 import mock from "../../data/mock/mockData";
 import TextInput from "../../reusableComponents/textInput/TextInput";
+import LocalisedDatePicker from "./inputScreenComponents/LocalisedDatePicker";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
       padding: "5px",
     },
     height: "100%",
+    marginLeft: "6px",
   },
   selectInput: {
     "& .MuiOutlinedInput-input": {
@@ -47,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   },
   commentText: {
     resize: "none",
-    width: "40vw",
+    width: "46vw",
   },
   header: {
     display: "flex",
@@ -91,6 +93,7 @@ const selectValue = [
 const InputScreenPage = () => {
   const classes = useStyles();
   const [selectedValue, setSelectedValue] = React.useState("橋本凛");
+  const [selectedDate, handleDateChange] = React.useState(new Date());
 
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
@@ -115,10 +118,9 @@ const InputScreenPage = () => {
 
           <div className={classes.titleWrapper}>
             <p className={classes.optionText}>レポート表示日：</p>
-            <TextField
-              type="date"
-              className={classes.input}
-              //value="2021年8月13日"
+            <LocalisedDatePicker
+              value={selectedDate}
+              onChange={handleDateChange}
             />
           </div>
 
@@ -174,6 +176,7 @@ const InputScreenPage = () => {
           <TextInput
             className={classes.commentText}
             multiline
+            rows="4"
             variant="outlined"
             defaultValue="ますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入ります"
           />

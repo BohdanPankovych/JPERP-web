@@ -35,6 +35,7 @@ const InputScreenListItem = ({ text, title, img }) => {
       <div>
         <TextInput
           multiline
+          rows="4"
           variant="outlined"
           className={classes.text}
           value={textValue}
