@@ -1,12 +1,15 @@
-import React, { memo } from "react";
+import React, {memo, useEffect} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { TextField, MenuItem, Button } from "@material-ui/core";
 import colors from "../../data/constants/Colors";
-import InputScreenListItem from "./inputScreenComponents/InputScreenListItem";
-import ColorSelectItem from "./inputScreenComponents/ColorSelectItem";
+import EditScreenPageListItem from "./editScreenPageComponents/EditScreenPageListItem";
+import ColorSelectItem from "./editScreenPageComponents/ColorSelectItem";
 import mock from "../../data/mock/mockData";
 import TextInput from "../../reusableComponents/textInput/TextInput";
-import LocalisedDatePicker from "./inputScreenComponents/LocalisedDatePicker";
+import LocalisedDatePicker from "./editScreenPageComponents/LocalisedDatePicker";
+import {dateToYMD} from "../../data/helpers/timeHelper";
+import {setTimeFilter} from "../../data/redux/common/commonActions";
+import {setEditReportsData} from "../../data/redux/editReports/editReportActions";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -90,10 +93,17 @@ const selectValue = [
   },
 ];
 
-const InputScreenPage = () => {
+const EditScreenPage = ({reportsList, timeFilter, setTimeFilter, setEditReportsData}) => {
   const classes = useStyles();
   const [selectedValue, setSelectedValue] = React.useState("橋本凛");
   const [selectedDate, handleDateChange] = React.useState(new Date());
+
+
+  useEffect(() => {
+    setEditReportsData(mock.reportPage)
+  },[])
+
+  console.log('reports', reportsList)
 
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
@@ -162,7 +172,7 @@ const InputScreenPage = () => {
       <div className={classes.content}>
         <div className={classes.list}>
           {mock.reportPage.map((val, index) => (
-            <InputScreenListItem
+            <EditScreenPageListItem
               key={val.title + " " + index}
               text={val.text}
               title={val.title}
@@ -186,4 +196,4 @@ const InputScreenPage = () => {
   );
 };
 
-export default memo(InputScreenPage);
+export default memo(EditScreenPage);

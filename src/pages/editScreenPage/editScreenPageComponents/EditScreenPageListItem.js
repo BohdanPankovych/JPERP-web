@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const InputScreenListItem = ({ text, title, img }) => {
+const EditScreenPageListItem = ({ text, title, img }) => {
   const classes = useStyles();
 
   const [textValue, setTextValue] = React.useState(text);
@@ -47,4 +47,4 @@ const InputScreenListItem = ({ text, title, img }) => {
   );
 };
 
-export default InputScreenListItem;
+export default EditScreenPageListItem;
