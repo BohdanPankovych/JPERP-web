@@ -1,5 +1,6 @@
-import React, {memo, useEffect} from "react";
+import React, { memo, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import {required, notLong} from '../../data/helpers/validators'
 import { TextField, MenuItem, Button } from "@material-ui/core";
 import colors from "../../data/constants/Colors";
 import EditScreenPageListItem from "./editScreenPageComponents/EditScreenPageListItem";
@@ -7,9 +8,6 @@ import ColorSelectItem from "./editScreenPageComponents/ColorSelectItem";
 import mock from "../../data/mock/mockData";
 import TextInput from "../../reusableComponents/textInput/TextInput";
 import LocalisedDatePicker from "./editScreenPageComponents/LocalisedDatePicker";
-import {dateToYMD} from "../../data/helpers/timeHelper";
-import {setTimeFilter} from "../../data/redux/common/commonActions";
-import {setEditReportsData} from "../../data/redux/editReports/editReportActions";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,14 +30,14 @@ const useStyles = makeStyles((theme) => ({
       padding: "5px",
     },
     height: "100%",
-    marginLeft: "6px",
+    marginLeft: "7px"
   },
   selectInput: {
     "& .MuiOutlinedInput-input": {
       padding: "5px",
     },
     width: "165px",
-    marginLeft: "60px",
+    marginLeft: "50px",
   },
   content: {
     display: "flex",
@@ -52,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
   },
   commentText: {
     resize: "none",
-    width: "46vw",
+    width: "45vw",
   },
   header: {
     display: "flex",
@@ -78,38 +76,43 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const selectValue = [
-  {
-    label: "橋本凛",
-    value: "橋本凛",
-  },
-  {
-    label: "春野サクラ",
-    value: "春野サクラ",
-  },
-  {
-    label: "カヌー優子",
-    value: "カヌー優子",
-  },
-];
-
-const EditScreenPage = ({reportsList, timeFilter, setTimeFilter, setEditReportsData}) => {
+const EditScreenPage = ({
+  reportsList,
+  timeFilter,
+  title,
+  creators,
+  color,
+  description,
+  setTimeFilter,
+  setEditReportsCreators,
+  setEditReportsData,
+  setEditReportsTitle,
+  setEditReportsColor,
+  setEditReportsDescription,
+  setSelectCreator,
+}) => {
   const classes = useStyles();
-  const [selectedValue, setSelectedValue] = React.useState("橋本凛");
-  const [selectedDate, handleDateChange] = React.useState(new Date());
-
+  const [showError, setShowError] = React.useState(false);
+  const [selectedValue, setSelectedValue] = React.useState("");
 
   useEffect(() => {
-    setEditReportsData(mock.reportPage)
-  },[])
+    setEditReportsColor(colors[0]);
+    setEditReportsData(mock.reportPage);
+    setEditReportsCreators(mock.creators);
+  }, []);
 
-  console.log('reports', reportsList)
-
-  const handleChange = (event) => {
-    setSelectedValue(event.target.value);
+  const handleChange = (value) => {
+    setSelectCreator(value);
+    setSelectedValue(value);
   };
 
-  const onButtonClick = () => {};
+  const onButtonClick = () => {
+    if(title && description && description.length <= 200){
+      setShowError(false);
+    } else {
+      setShowError(true);
+    }
+  };
 
   return (
     <div className={classes.root}>
@@ -118,42 +121,47 @@ const EditScreenPage = ({reportsList, timeFilter, setTimeFilter, setEditReportsD
           <p>簡単レポート</p>
 
           <div className={classes.titleWrapper}>
-            <p className={classes.title}>タイトル：</p>
-            <TextField
+            <p className={classes.title}>タイトル:</p>
+            <TextInput
               variant="outlined"
               className={classes.input}
-              value="今日のうさぎ組"
+              onValueChange={setEditReportsTitle}
+              value={title}
+              showError={showError}
+              validators={[required]}
             />
           </div>
 
           <div className={classes.titleWrapper}>
             <p className={classes.optionText}>レポート表示日：</p>
             <LocalisedDatePicker
-              value={selectedDate}
-              onChange={handleDateChange}
+              value={timeFilter.day}
+              onChange={setTimeFilter}
             />
           </div>
 
           <div className={classes.titleWrapper}>
             <p className={classes.optionText}>作成：</p>
-            <TextField
+            <TextInput
               select
               className={classes.selectInput}
               variant="outlined"
               value={selectedValue}
-              onChange={handleChange}
+              onValueChange={handleChange}
+              showError={showError}
+              validators={[required]}
             >
-              {selectValue.map((option) => (
+              {creators.map((option) => (
                 <MenuItem key={option.value} value={option.value}>
                   {option.label}
                 </MenuItem>
               ))}
-            </TextField>
+            </TextInput>
           </div>
 
           <p>レポートの背景色を選択：</p>
           {colors.map((val) => (
-            <ColorSelectItem key={val} color={val}></ColorSelectItem>
+            <ColorSelectItem key={val} color={val} selectedColor={color} setColor={setEditReportsColor}></ColorSelectItem>
           ))}
         </div>
 
@@ -171,12 +179,13 @@ const EditScreenPage = ({reportsList, timeFilter, setTimeFilter, setEditReportsD
 
       <div className={classes.content}>
         <div className={classes.list}>
-          {mock.reportPage.map((val, index) => (
+          {reportsList.map((val, index) => (
             <EditScreenPageListItem
               key={val.title + " " + index}
               text={val.text}
               title={val.title}
               img={val.img}
+              showError={showError}
             />
           ))}
         </div>
@@ -187,9 +196,12 @@ const EditScreenPage = ({reportsList, timeFilter, setTimeFilter, setEditReportsD
             className={classes.commentText}
             multiline
             rows="4"
+            showError={showError}
             variant="outlined"
-            defaultValue="ますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入ります"
-          />
+            value={description}
+            onValueChange={setEditReportsDescription}
+            validators={[required, notLong]}
+            />
         </div>
       </div>
     </div>
