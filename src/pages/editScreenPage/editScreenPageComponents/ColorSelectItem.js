@@ -31,11 +31,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ColorSelectItem = ({ color }) => {
+const ColorSelectItem = ({ color, selectedColor, setColor }) => {
   const classes = useStyles();
   return (
     <>
-      <input className={classes.input} type="radio" name="color" id={color} />
+      <input className={classes.input} onChange={()=>setColor(color)} checked={color === selectedColor} type="radio" name="color" id={color} />
       <label className={classes.label} htmlFor={color}>
         <span style={{ backgroundColor: color }}></span>
       </label>

@@ -1,7 +1,7 @@
 import { combineReducers, createStore } from "redux";
 import eventsListReducer from "./eventsList/eventsListReducer";
 import commonReducer from "./common/commonReducer";
-import editReportsReducer from "./editReports/editReportsreducer";
+import editReportsReducer from "./editReports/editReportsReducer";
 
 const rootReducer = combineReducers({
     common: commonReducer,

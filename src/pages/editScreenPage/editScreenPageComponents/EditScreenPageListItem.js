@@ -17,14 +17,13 @@ const useStyles = makeStyles((theme) => ({
   text: {
     padding: "10px",
     width: "45vw",
-    fontSize: "12px",
   },
   title: {
     margin: 0,
   },
 }));
 
-const EditScreenPageListItem = ({ text, title, img }) => {
+const EditScreenPageListItem = ({ text, img, showError }) => {
   const classes = useStyles();
 
   const [textValue, setTextValue] = React.useState(text);
@@ -40,8 +39,9 @@ const EditScreenPageListItem = ({ text, title, img }) => {
           className={classes.text}
           value={textValue}
           onValueChange={setTextValue}
+          showError={showError}
           validators={[required, notLong]}
-        ></TextInput>
+        />
       </div>
     </div>
   );
