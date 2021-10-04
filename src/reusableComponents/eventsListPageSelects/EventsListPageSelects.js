@@ -1,5 +1,6 @@
-import React, {memo} from "react";
+import React, {memo, useCallback, useState} from "react";
 import makeStyles from "@material-ui/core/styles/makeStyles";
+import {MenuItem, TextField} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
     select: {
@@ -10,20 +11,44 @@ const useStyles = makeStyles((theme) => ({
         fontSize: 12,
         marginLeft: 10,
         marginRight: 20,
-    }
+    },
+    selectInput: {
+        "& .MuiOutlinedInput-root": {
+          height: '23px'
+        },
+        "& .MuiOutlinedInput-input": {
+            padding: "5px",
+        },
+        width: "116px",
+    },
 }));
-const EventsListPageSelects = ({title, setValue}) => {
+const EventsListPageSelects = ({title, value, setValue, options}) => {
     const classes = useStyles();
+    // const [val, setSelectedValue] = useState("");
 
-    function handleChange(e) {
+    const handleChange = useCallback((e) => {
         setValue(e.target.value)
-    }
+    },[])
 
     return <>
-        <select className={classes.select} name="年">
-            <option value=""></option>
-
-        </select>
+        <TextField
+            select
+            className={classes.selectInput}
+            variant="outlined"
+            value={value}
+            onChange={handleChange}
+        >
+            {options?.map((option) => (
+                <MenuItem key={option} value={option}>
+                    {option}
+                </MenuItem>
+            ))}
+        </TextField>
+        {/*<select className={classes.select} name="年">*/}
+        {/*    {options?.map(o => (*/}
+        {/*        <option value={o}>{o}</option>*/}
+        {/*    ))}*/}
+        {/*</select>*/}
         <span className={classes.selectTitle}>{title}</span>
     </>
 }

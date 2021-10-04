@@ -154,6 +154,7 @@ const EditScreenPage = ({
           <div className={classes.titleWrapper}>
             <p className={classes.optionText}>レポート表示日：</p>
             <LocalisedDatePicker
+                format={'yyyy/MM/dd'}
               value={timeFilter.day}
               onChange={setTimeFilter}
             />

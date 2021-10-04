@@ -15,9 +15,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const LocalisedDatePicker = ({ value, onChange }) => {
+const LocalisedDatePicker = ({ format, value, onChange }) => {
   const classes = useStyles();
-
+  // console.log('date value', value)
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils} locale={jaLocale}>
       <DatePicker
@@ -27,7 +27,7 @@ const LocalisedDatePicker = ({ value, onChange }) => {
         variant="inline"
         inputVariant="outlined"
         value={value}
-        format="yyyy/MM/dd"
+        format={format}
         onChange={onChange}
       />
     </MuiPickersUtilsProvider>
