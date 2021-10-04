@@ -1,5 +1,5 @@
 import React, { memo, useRef } from "react";
-import SharedScreenDialog from "../sharedScreenDialog/SharedScreenDialog";
+import SharedScreenDialogContainer from "../sharedScreenDialog/containers/SharedScreenDialogContainer";
 import { Button, Container, Box, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import CanvasPostcard from "../../reusableComponents/canvasPostcard/CanvasPostcard";
@@ -109,7 +109,7 @@ const PreviewScreenPage = () => {
           </Button>
         </Box>
       </Container>
-      <SharedScreenDialog open={open} handleClose={handleClose} />
+      <SharedScreenDialogContainer open={open} handleClose={handleClose} />
     </>
   );
 };

@@ -37,29 +37,42 @@ const mock = {
       value: "カヌー優子",
     },
   ],
+  sharedPageChildren: {
+    title: "Kids",
+    classes: [
+      {
+        class: "Class1",
+        kids: ["kid1","kid2","kid3","kid4",]
+      },
+      {
+        class: "Class2",
+        kids: ["kid11","kid22","kid33","kid44",]
+      },
+      {
+        class: "Class3",
+        kids: ["kid12","kid22","kid32","kid42",]
+      },
+    ],
+  },
+  sharedPageClass: {
+    title: "Class",
+    tags: ["Class1", "Class2", "Class3", "Class4"],
+  },
   sharedPage: [
     {
-      title: "SomeTitle",
+      title: "Place",
       tags: ["tag", "tag", "tag", "tag", "tag", "tag"],
     },
     {
-      title: "SomeTitle",
+      title: "3 Views",
       tags: ["tag", "tag", "tag", "tag", "tag", "tag"],
     },
     {
-      title: "SomeTitle",
+      title: "5 segments",
       tags: ["tag", "tag", "tag", "tag", "tag", "tag"],
     },
     {
-      title: "SomeTitle",
-      tags: ["tag", "tag", "tag", "tag", "tag", "tag"],
-    },
-    {
-      title: "SomeTitle",
-      tags: ["tag", "tag", "tag", "tag", "tag", "tag"],
-    },
-    {
-      title: "SomeTitle",
+      title: "10 Appearance",
       tags: ["tag", "tag", "tag", "tag", "tag", "tag"],
     },
   ],

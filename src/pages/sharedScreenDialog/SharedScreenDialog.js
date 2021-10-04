@@ -15,16 +15,18 @@ import {
   Button,
   Switch,
 } from "@material-ui/core";
-import SharedScreenList from "./sharedScreenComponents/SharedScreenList";
+import SharedScreenListContainer from "./containers/SharedScreenListContainer";
 import TextInput from "../../reusableComponents/textInput/TextInput";
 
 import { required } from "../../data/helpers/validators";
-import mockData from "../../data/mock/mockData";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
     position: "relative",
     backgroundColor: "#F6F6F6",
+  },
+  input: {
+    display: "none",
   },
   toolBar: {
     display: "flex",
@@ -69,12 +71,12 @@ const useStyles = makeStyles((theme) => ({
   },
   textAreaText: {
     margin: "15px 0",
-    borderRadius: "5px",
+    borderRadius: "1px",
     fontSize: "16px",
-    width: "100%",
     backgroundColor: "white",
   },
   button: {
+    width: "100%",
     "&:hover": {
       backgroundColor: "#1db51d",
     },
@@ -103,8 +105,31 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const SharedScreenDialog = ({ open, handleClose }) => {
+const SharedScreenDialog = ({ 
+  open,
+  handleClose,
+  setShareReportsApprove,
+  approve,
+  description,
+  setShareReportsDescription,
+  image,
+  setShareReportsImage }) => {
   const classes = useStyles();
+
+  const [showError, setShowError] = React.useState(false);
+
+  const onUploadClick = (event) => {
+    let img = event.target.files[0];
+    setShareReportsImage(URL.createObjectURL(img));
+  }
+
+  const onSave = () => {
+    if(description){
+      setShowError(false);
+    }else{
+      setShowError(true);
+    }
+  }
 
   return (
     <Dialog
@@ -126,35 +151,46 @@ const SharedScreenDialog = ({ open, handleClose }) => {
           </IconButton>
         </Toolbar>
       </AppBar>
+      
       <DialogContent className={classes.content}>
         <Box className={classes.leftSide}>
           <Container className={classes.previewContainer}></Container>
-          <Button
-            className={classes.button}
-            variant="contained"
-            color="primary"
-          >
-            Some Button
-          </Button>
+            <input
+              className={classes.input}
+              onChange={onUploadClick}
+              id="contained-button-file"
+              type="file"
+            />
+            <label htmlFor="contained-button-file">
+              <Button className={classes.button} variant="outlined" color="primary"variant="contained" component="span">
+                Select a file
+              </Button>
+            </label>
 
           <TextInput
             className={classes.textAreaText}
             multiline
             variant="outlined"
             rows={5}
+            value={description}
+            onValueChange={setShareReportsDescription}
+            showError={showError}
             validators={[required]}
           />
 
           <Container className={classes.confirm}>
-            <Switch />
+            <Switch value={approve} onChange={(e)=>setShareReportsApprove(e.target.checked)} />
             <Typography>some text</Typography>
           </Container>
         </Box>
+
         <Box className={classes.rightSide}>
-          <SharedScreenList items={mockData.sharedPage} />
+          <SharedScreenListContainer/>
         </Box>
+
       </DialogContent>
-      <IconButton className={classes.saveButton} aria-label="save">
+
+      <IconButton className={classes.saveButton} onClick={onSave} aria-label="save">
         <SaveIcon />
       </IconButton>
     </Dialog>

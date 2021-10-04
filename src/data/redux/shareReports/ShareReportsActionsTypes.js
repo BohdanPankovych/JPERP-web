@@ -1,0 +1,14 @@
+const ShareReportsActionTypes = {
+    SET_IMAGE: 'SET_IMAGE',
+    SET_DESCRIPRTION: 'SET_DESCRIPRTION',
+    SET_APPROVE: 'SET_APPROVE',
+    SET_TAG: 'SET_TAG',
+
+    SET_DESTINATION: 'SET_DESTINATION',
+    SET_CLASSROOMS: 'SET_CLASSROOMS',
+    SET_KIDS: 'SET_KIDS',
+    SET_DYNAMIC_TAGS: 'SET_DYNAMIC_TAGS',
+
+}
+
+export default ShareReportsActionTypes
