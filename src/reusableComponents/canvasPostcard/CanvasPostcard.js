@@ -2,7 +2,7 @@ import React from "react";
 import CanvasEventItem from './canvasItems/CanvasEventItem';
 import { Stage, Layer, Rect, Text, Circle } from 'react-konva';
 
-const CanvasPostcard = ({ backgroundColor, width, height, description, title, date, firstEvent, secondEvent, thirdEvent, fourthEvent, reference}) => {
+const CanvasPostcard = ({ backgroundColor, selectedEvents, events, width, height, description, title, date, firstEvent, secondEvent, thirdEvent, fourthEvent, reference}) => {
 
   return (
     <Stage width={width} height={height} ref={reference}>
@@ -30,10 +30,14 @@ const CanvasPostcard = ({ backgroundColor, width, height, description, title, da
         <Circle x={150} y={530} radius={60} fill="white" />
         <Circle x={350} y={200} radius={60} fill="white" />
 
-        <CanvasEventItem x={70} y={90} img={firstEvent.img} text={firstEvent.text} /> 
-        <CanvasEventItem x={70} y={360} img={secondEvent.img} text={secondEvent.text} /> 
-        <CanvasEventItem x={290} y={90} img={thirdEvent.img} text={thirdEvent.text} /> 
-        <CanvasEventItem x={290} y={360} img={fourthEvent.img} text={fourthEvent.text} /> 
+        {/*{events.map(e => (*/}
+        {/*    <CanvasEventItem img={e.img} text={e.description}/>*/}
+        {/*))}*/}
+
+        <CanvasEventItem x={70} y={90} img={selectedEvents[0].img} text={selectedEvents[0].description} />
+        <CanvasEventItem x={70} y={360} img={selectedEvents[1].img} text={selectedEvents[1].description} />
+        <CanvasEventItem x={290} y={90} img={selectedEvents[2].img} text={selectedEvents[2].description} />
+        <CanvasEventItem x={290} y={360} img={selectedEvents[3].img} text={selectedEvents[3].description} />
 
         <Rect
           x={35}

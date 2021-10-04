@@ -85,7 +85,10 @@ const Event = ({eventsList, monthSelect, yearSelect, handleChange, selectedCheck
                         </div>
                         <div className={classes.checkbox}>
                             <input onChange={() => handleChange(e)}
-                                   selected={selectedCheckbox.includes(e.id)} type="checkbox" disabled={disable ? true: false}/>
+                                   selected={selectedCheckbox?.includes(e.id)} type="checkbox"
+                                   disabled={disable ? true: false}
+                                   // disabled={selectedCheckbox.includes(e.id) && disable ? true: false}
+                            />
                             <img className={classes.delete} src={deleteIcon} alt=""/>
                         </div>
                     </div>

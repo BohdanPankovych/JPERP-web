@@ -10,6 +10,9 @@ import month from "../../data/constants/Month";
 import LocalisedDatePicker from "../editScreenPage/editScreenPageComponents/LocalisedDatePicker";
 import deleteIcon from "../../data/assets/icons/deleteBtnIcon.jpg";
 import Button from "@material-ui/core/Button";
+import {setSelectedEvents} from "../../data/redux/selectedEvents/selectedEventsActions";
+import {Link} from "react-router-dom";
+import FrontendRoutes from "../../data/constants/FrontendRoutes";
 
 const useStyles = makeStyles((theme) => ({
     underHeaderBlock: {
@@ -70,14 +73,11 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const EventsListPage = ({eventsList, setEventsListData}) => {
+const EventsListPage = ({selectedEvents, setSelectedEvents, eventsList, setEventsListData}) => {
     const classes = useStyles();
     const [monthSelect, setMonthSelect] = useState('');
     const [yearSelect, setYearSelect] = useState('');
     const [selectedDate, handleDateChange] = useState(null);
-    const [selectedCheckbox, setSelectedCheckbox] = useState([]);
-    const [isChecked, setIsChecked] = useState();
-    const [formData, setFormData] = useState(eventsList);
     const [disable, setDisable] = useState(false)
 
     useEffect(() => {
@@ -85,23 +85,24 @@ const EventsListPage = ({eventsList, setEventsListData}) => {
     }, []);
 
     const handleChange = (id) => {
-        const findIdx = selectedCheckbox.indexOf(id);
+        const findIdx = selectedEvents?.indexOf(id);
 
         if (findIdx > -1) {
-            selectedCheckbox.splice(findIdx, 1);
+            selectedEvents?.splice(findIdx, 1);
         } else {
-            selectedCheckbox.push(id);
+            selectedEvents?.push(id);
         }
 
-        if (selectedCheckbox.length === 4) {
+        if (selectedEvents?.length === 4) {
             setDisable(true)
         } else{
             setDisable(false)
         }
-        setSelectedCheckbox(selectedCheckbox);
-        console.log('selectedCheckbox', selectedCheckbox);
-        console.log(disable)
+        setSelectedEvents(selectedEvents);
+        // console.log('selectedCheckbox', selectedEvents);
+        // console.log(disable)
     };
+
 
 
     return (
@@ -125,17 +126,17 @@ const EventsListPage = ({eventsList, setEventsListData}) => {
                         {/*<p className={classes.fourReports}>※一度に選べるレポートは4点までです。</p>*/}
 
                         <div className={classes.btns}>
-                            <Button className={classes.editReportBtn} disabled={disable ? false : true} variant="contained" color="primary">
+                            <Button component={Link} to={FrontendRoutes.EDIT_REPORTS} className={classes.editReportBtn} disabled={disable ? false : true} variant="contained" color="primary">
                                 簡単レポートを編集
                             </Button>
-                            {/*<button className={classes.editReportBtn}>簡単レポートを編集</button>*/}
+
                         </div>
 
                     </div>
                 </div>
             </div>
 
-            <Event eventsList={eventsList} monthSelect={monthSelect} yearSelect={yearSelect} handleChange={handleChange} selectedCheckbox={selectedCheckbox} disable={disable} setDisable={setDisable}/>
+            <Event eventsList={eventsList} monthSelect={monthSelect} yearSelect={yearSelect} handleChange={handleChange} selectedCheckbox={selectedEvents} disable={disable} setDisable={setDisable}/>
         </>
     );
 }

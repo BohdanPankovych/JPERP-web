@@ -5,6 +5,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import CanvasPostcard from "../../reusableComponents/canvasPostcard/CanvasPostcard";
 import mockData from '../../data/mock/mockData'
 import { jsPDF } from 'jspdf';
+import {Link} from "react-router-dom";
+import FrontendRoutes from "../../data/constants/FrontendRoutes";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "gray",
   },
 }));
-const PreviewScreenPage = () => {
+const PreviewScreenPage = ({selectCreator, timeFilter, title, color, description, selectedEvents}) => {
   const stageRef = useRef(null);
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
@@ -58,7 +60,7 @@ const PreviewScreenPage = () => {
     );
     pdf.save('canvas.pdf');
   }
-
+  console.log('selectedEvents',selectedEvents)
   return (
     <>
       <Typography className={classes.title}>Easy report</Typography>
@@ -66,6 +68,8 @@ const PreviewScreenPage = () => {
         className={classes.returnButton}
         variant="contained"
         color="primary"
+        component={Link}
+        to={FrontendRoutes.EDIT_REPORTS}
       >
         Continue editing
       </Button>
@@ -76,14 +80,11 @@ const PreviewScreenPage = () => {
           className={classes.canvas}
           width={530}
           height={750}
-          backgroundColor="#FBE5D6"
-          title="今日のうさぎ組"
-          date="2021年8月13日"
-          firstEvent={mockData.reportPage[0]}
-          secondEvent={mockData.reportPage[1]}
-          thirdEvent={mockData.reportPage[2]}
-          fourthEvent={mockData.reportPage[3]}
-          description={mockData.reportPage[1].text}
+          backgroundColor={color}
+          title={title}
+          date={timeFilter?.day}
+          description={description}
+          selectedEvents={selectedEvents}
         />
       </Container>
 
