@@ -7,6 +7,10 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     margin: "10px",
+    [theme.breakpoints.down('sm')]: {
+      flexDirection: "column",
+      alignItems: "center",
+     },
   },
   img: {
     margin: "20px 10px 0",
@@ -15,8 +19,14 @@ const useStyles = makeStyles((theme) => ({
     height: "10vh",
   },
   text: {
+    [theme.breakpoints.down('sm')]: {
+      fontSize: "10px"
+     },
     padding: "10px",
     width: "45vw",
+    [theme.breakpoints.down('sm')]: {
+      width: "80vw",
+     },
   },
   title: {
     margin: 0,

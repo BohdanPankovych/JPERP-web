@@ -19,6 +19,9 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     fontSize: "18px",
+    [theme.breakpoints.down('sm')]: {
+      fontSize: "12px"
+     },
   },
   titleWrapper: {
     display: "flex",
@@ -30,7 +33,10 @@ const useStyles = makeStyles((theme) => ({
       padding: "5px",
     },
     height: "100%",
-    marginLeft: "7px"
+    marginLeft: "7px",
+    [theme.breakpoints.down('sm')]: {
+      width: "150px"
+     },
   },
   selectInput: {
     "& .MuiOutlinedInput-input": {
@@ -41,6 +47,10 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     display: "flex",
+    [theme.breakpoints.down('sm')]: {
+     flexDirection: "column",
+     alignItems: "center",
+    },
   },
   commentTitle: {
     marginTop: 0,
@@ -49,8 +59,10 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "25px",
   },
   commentText: {
-    resize: "none",
     width: "45vw",
+    [theme.breakpoints.down('sm')]: {
+      width: "80vw"
+     },
   },
   header: {
     display: "flex",
@@ -67,12 +79,19 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       backgroundColor: "#1db51d",
     },
+    [theme.breakpoints.down('sm')]: {
+      marginRight: "20px",
+      fontSize: 8
+     },
   },
   list: {
     display: "flex",
     flexDirection: "column",
     alignItems: "flex-end",
     padding: "5px 0",
+    [theme.breakpoints.down('sm')]: {
+      alignItems: "center",
+     },
   },
 }));
 
