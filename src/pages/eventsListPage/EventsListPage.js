@@ -1,10 +1,15 @@
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import React, {memo, useEffect} from "react";
+import React, {memo, useEffect, useState} from "react";
 import EasyReportPageTitles from "./eventsListPageTitles/EventsListPageTitles";
 import EasyReportPageSelect from "../../reusableComponents/eventsListPageSelects/EventsListPageSelects";
 import {setEventsListData} from "../../data/redux/eventsList/eventsListActions";
 import mock from "../../data/mock/mockData";
 import Event from "./event/Event";
+import year from "../../data/constants/Year";
+import month from "../../data/constants/Month";
+import LocalisedDatePicker from "../editScreenPage/editScreenPageComponents/LocalisedDatePicker";
+import deleteIcon from "../../data/assets/icons/deleteBtnIcon.jpg";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
     underHeaderBlock: {
@@ -13,6 +18,10 @@ const useStyles = makeStyles((theme) => ({
     },
     selects: {
         marginTop: 20,
+        "& .MuiOutlinedInput-root": {
+            height: '23px',
+            width: '116px',
+        }
     },
     fourReports: {
         color: '#FF0000',
@@ -35,53 +44,98 @@ const useStyles = makeStyles((theme) => ({
         fontSize: '12px',
     },
     editReportBtn: {
-        width: '130px',
+        width: '146',
         height: '30px',
-        background: '#00AE00',
-        color: 'white',
-        border: '1px solid #00AE00',
-        borderRadius: '5px',
-        fontSize: '12px',
-        marginLeft: '15px',
+        // background: '#00AE00',
+        // color: 'white',
+        // border: '1px solid #00AE00',
+        // borderRadius: '5px',
+        // fontSize: '12px',
+        // marginLeft: '15px',
+        // cursor: "pointer",
+        // "&:hover": {
+        //     backgroundColor: "#1db51d",
+        //     cursor: "pointer",
+        // },
     },
     reportBlock: {
         position: 'relative',
         marginTop: '25px',
+    },
+    selectTitle: {
+        fontSize: 12,
+        marginLeft: 10,
+        marginRight: 20,
     },
 
 }));
 
 const EventsListPage = ({eventsList, setEventsListData}) => {
     const classes = useStyles();
+    const [monthSelect, setMonthSelect] = useState('');
+    const [yearSelect, setYearSelect] = useState('');
+    const [selectedDate, handleDateChange] = useState(null);
+    const [selectedCheckbox, setSelectedCheckbox] = useState([]);
+    const [isChecked, setIsChecked] = useState();
+    const [formData, setFormData] = useState(eventsList);
+    const [disable, setDisable] = useState(false)
 
     useEffect(() => {
         setEventsListData(mock.eventsList)
     }, []);
 
-    // console.log('eventsList', eventsList)
+    const handleChange = (id) => {
+        const findIdx = selectedCheckbox.indexOf(id);
+
+        if (findIdx > -1) {
+            selectedCheckbox.splice(findIdx, 1);
+        } else {
+            selectedCheckbox.push(id);
+        }
+
+        if (selectedCheckbox.length === 4) {
+            setDisable(true)
+        } else{
+            setDisable(false)
+        }
+        setSelectedCheckbox(selectedCheckbox);
+        console.log('selectedCheckbox', selectedCheckbox);
+        console.log(disable)
+    };
+
+
     return (
         <>
             <div className={classes.underHeaderBlock}>
                 <EasyReportPageTitles/>
                 <div className={classes.flex}>
                     <div className={classes.selects}>
-                        <EasyReportPageSelect title={'組'}/>
-                        <EasyReportPageSelect title={'年'}/>
-                        <EasyReportPageSelect title={'月'}/>
-                        <EasyReportPageSelect title={'日'}/>
+                        <EasyReportPageSelect title={'組'} />
+                        <EasyReportPageSelect title={'年'} options={year} value={yearSelect} setValue={setYearSelect}/>
+                        <EasyReportPageSelect title={'月'} options={month} value={monthSelect} setValue={setMonthSelect}/>
+                        <LocalisedDatePicker
+                            format={'dd'}
+                            value={selectedDate}
+                            onChange={handleDateChange}
+                        />
+                        <span className={classes.selectTitle}>日</span>
+                        {/*<EasyReportPageSelect title={'日'}/>*/}
                     </div>
                     <div className={classes.reportBlock}>
                         {/*<p className={classes.fourReports}>※一度に選べるレポートは4点までです。</p>*/}
+
                         <div className={classes.btns}>
-                            <button className={classes.editReportBtn}>簡単レポートを編集</button>
+                            <Button className={classes.editReportBtn} disabled={disable ? false : true} variant="contained" color="primary">
+                                簡単レポートを編集
+                            </Button>
+                            {/*<button className={classes.editReportBtn}>簡単レポートを編集</button>*/}
                         </div>
 
                     </div>
                 </div>
             </div>
-            {eventsList.map((e) => (
-                <Event key={e.id} event={e}/>
-            ))}
+
+            <Event eventsList={eventsList} monthSelect={monthSelect} yearSelect={yearSelect} handleChange={handleChange} selectedCheckbox={selectedCheckbox} disable={disable} setDisable={setDisable}/>
         </>
     );
 }
