@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const EditScreenPageListItem = ({ data, showError, editSelectedEvents }) => {
+const EditScreenPageListItem = ({ errorText, data, showError, editSelectedEvents }) => {
   const classes = useStyles();
 
   const [textValue, setTextValue] = React.useState(data?.description);
@@ -51,7 +51,7 @@ const EditScreenPageListItem = ({ data, showError, editSelectedEvents }) => {
   const onChange = (value) => {
     editSelectedEvents( data.id, value);
   }
-  
+
   return (
     <div className={classes.root}>
       <div className={classes.imgContainer}>

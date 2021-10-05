@@ -81,7 +81,7 @@ const mock = {
       id: 1,
       img: vert,
       title: '橋本凛',
-      tagList: ['text','texttexttexttext','text'],
+      tagList: ['2018','いくつかのテキスト','文章'],
       description: 'ますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入ります',
       date: '2018',
       month: ''
@@ -90,7 +90,7 @@ const mock = {
       id: 2,
       img: casinoBL,
       title: '',
-      tagList: ['text','text','text'],
+      tagList: ['2017','一月','文章'],
       description: 'テキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入ります',
       date: '2017',
       month: 'January'
@@ -99,7 +99,7 @@ const mock = {
       id: 3,
       img: eventImg,
       title: '',
-      tagList: ['2020','April','text'],
+      tagList: ['2020','四月','文章'],
       description: 'テキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入ります',
       date: '2020',
       month: 'April'
@@ -108,7 +108,7 @@ const mock = {
       id: 4,
       img: mockImg2,
       title: '',
-      tagList: ['text','text','text'],
+      tagList: ['三月','2019','文章', '文章'],
       description: 'テキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入ります',
       date: '2019',
       month: 'March'
@@ -117,7 +117,7 @@ const mock = {
       id: 5,
       img: eventImg,
       title: '',
-      tagList: ['text','text','text'],
+      tagList: ['一月','2019','文章'],
       description: 'テキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入ります',
       date: '2019',
       month: 'January'
