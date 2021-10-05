@@ -129,7 +129,8 @@ const SharedScreenDialog = ({
   image,
   setShareReportsImage,
   setSelectedEvents,
-  addEvent
+  addEvent,
+  setDestination
  }) => {
   const classes = useStyles();
   const history = useHistory();
@@ -154,6 +155,7 @@ const SharedScreenDialog = ({
           date: dateToYMD(new Date()),
           });
           setSelectedEvents([]);
+          setDestination(null);
           history.push(FrontendRoutes.EVENTS_LIST_PAGE);
       }else{
         setOpenModalDialog(true);
