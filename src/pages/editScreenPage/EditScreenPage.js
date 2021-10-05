@@ -130,13 +130,13 @@ const EditScreenPage = ({
     const history = useHistory()
 
     useEffect(() => {
-        if (title && description) {
+        if (title && description && selectCreator) {
             setDisable(false)
         } else {
             setDisable(true)
         }
 
-    }, [title, description])
+    }, [title, description, selectCreator])
 
     // console.log('selectedEvents', selectedEvents[0])
     useEffect(() => {
