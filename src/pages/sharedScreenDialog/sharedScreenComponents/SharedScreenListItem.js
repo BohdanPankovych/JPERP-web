@@ -4,11 +4,10 @@ import {
   ListItemText,
   Collapse,
   Box,
-  Button,
 } from "@material-ui/core";
 import { ExpandMore, ExpandLess } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
-import SelectButton from "../../../reusableComponents/button/SelectButton";
+import SelectTagButton from "../../../reusableComponents/button/SelectTagButton";
 
 const useStyles = makeStyles((theme) => ({
   tagsList: {
@@ -17,9 +16,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SharedScreenListItem = ({ title, tags }) => {
+const SharedScreenListItem = ({ title, tags, ...props }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const [selected, setSelected] = React.useState([]);
 
   const handleClick = () => {
     setOpen(!open);
@@ -33,8 +33,8 @@ const SharedScreenListItem = ({ title, tags }) => {
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <Box className={classes.tagsList}>
-          {tags.map((val, index) => (
-            <SelectButton key={val + "_" + index}>{val}</SelectButton>
+          {tags && tags.map((val, index) => (
+            <SelectTagButton key={val + "_" + index} {...props} setSelected={setSelected} selected={selected}>{val}</SelectTagButton>
           ))}
         </Box>
       </Collapse>

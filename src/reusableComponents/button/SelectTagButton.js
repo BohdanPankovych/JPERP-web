@@ -9,18 +9,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SelectButton = ({ children, onClick, className, ...props }) => {
+const SelectTagButton = ({ children, onClick, className, setTag, selected, setSelected, ...props }) => {
   const classes = useStyles();
   const [select, setSelect] = React.useState(false);
 
   const onButtonClick = () => {
-    setSelect(!select);
+    setTag(children);
+    !selected.includes(children) && setSelected(prev => [...prev, children]);
+    selected.includes(children) && setSelected(prev => prev.filter((val) => val !== children));
+    // setSelect(!select);
   };
 
   return (
     <Button
       className={classes.root + " " + className}
-      variant={select ? "contained" : "outlined"}
+      variant={selected.includes(children) ? "contained" : "outlined"}
       onClick={onButtonClick}
       color="primary"
       {...props}
@@ -30,4 +33,4 @@ const SelectButton = ({ children, onClick, className, ...props }) => {
   );
 };
 
-export default SelectButton;
+export default SelectTagButton;
