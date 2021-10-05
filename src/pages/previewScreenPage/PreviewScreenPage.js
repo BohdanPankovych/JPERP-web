@@ -115,7 +115,7 @@ const PreviewScreenPage = ({selectCreator, timeFilter, title, color, description
             一時保存
           </Button>
           <Button className={classes.button} onClick={onSave} variant="outlined" color="primary">
-          PDFで保存
+            PDFで保存
           </Button>
           <Button
             className={classes.button}

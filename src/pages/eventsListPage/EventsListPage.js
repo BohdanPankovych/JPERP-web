@@ -14,6 +14,9 @@ import {setSelectedEvents} from "../../data/redux/selectedEvents/selectedEventsA
 import {Link} from "react-router-dom";
 import FrontendRoutes from "../../data/constants/FrontendRoutes";
 import {dateToD} from "../../data/helpers/timeHelper";
+import jpMonths from "../../data/constants/JpMonths";
+import {MenuItem, TextField} from "@material-ui/core";
+import MonthSelect from "./monthSelect/MonthSelect";
 
 const useStyles = makeStyles((theme) => ({
     underHeaderBlock: {
@@ -82,6 +85,7 @@ const EventsListPage = ({selectedEvents, setSelectedEvents, eventsList, setEvent
     const [selectedDate, handleDateChange] = useState(null);
     const [disable, setDisable] = useState(false);
     const [disableBtn, setDisableBtn] = useState(true)
+    const [disableDay, setDisableDay] = useState(true)
 
 
     useEffect(() => {
@@ -106,22 +110,25 @@ const EventsListPage = ({selectedEvents, setSelectedEvents, eventsList, setEvent
             selectedEvents?.push(obj);
         }
 
-        // console.log("select", selectedEvents);
-
         if (selectedEvents.length > 0 && selectedEvents.length < 4) {
             setDisable(false)
             setDisableBtn(false)
         } else {
             setDisable(true)
-            // setDisableBtn(true)
         }
         setSelectedEvents(selectedEvents);
-        // console.log('selectedCheckbox', selectedEvents);
-        // console.log(disableBtn)
     };
 
+    useEffect(() => {
+        if (yearSelect && monthSelect) {
+            setDisableDay(false)
+        } else {
+            setDisableDay(true)
+        }
+    }, [yearSelect, monthSelect])
 
-    console.log('selectedEvents', selectedEvents)
+
+    // console.log('selectedEvents', selectedEvents)
     return (
         <>
             <div className={classes.underHeaderBlock}>
@@ -130,9 +137,13 @@ const EventsListPage = ({selectedEvents, setSelectedEvents, eventsList, setEvent
                     <div className={classes.selects}>
                         <EasyReportPageSelect title={'組'}/>
                         <EasyReportPageSelect title={'年'} options={year} value={yearSelect} setValue={setYearSelect}/>
-                        <EasyReportPageSelect title={'月'} options={month} value={monthSelect}
-                                              setValue={setMonthSelect}/>
+                        {/*<EasyReportPageSelect title={'月'} options={month} value={monthSelect}*/}
+                        {/*                      setValue={setMonthSelect}/>*/}
+                        <MonthSelect title={'月'} setValue={setMonthSelect}
+                                     value={monthSelect}/>
+
                         <LocalisedDatePicker
+                            disable={disableDay}
                             format={'dd'}
                             value={daySelect ? daySelect : monthSelect && yearSelect ? `${yearSelect}/${monthSelect}` : null}
                             onChange={setDaySelect}

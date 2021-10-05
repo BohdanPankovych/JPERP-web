@@ -1,4 +1,4 @@
-import React, {memo, useEffect} from "react";
+import React, {memo, useEffect, useState} from "react";
 import {makeStyles} from "@material-ui/core/styles";
 import {required, notLong} from '../../data/helpers/validators'
 import {MenuItem, Button} from "@material-ui/core";
@@ -125,8 +125,19 @@ const EditScreenPage = ({
                         }) => {
     const classes = useStyles();
     const [showError, setShowError] = React.useState(false);
+    const [disable, setDisable] = useState(true)
 
     const history = useHistory()
+
+    useEffect(() => {
+        if (title && description) {
+            setDisable(false)
+        } else {
+            setDisable(true)
+        }
+
+    }, [title, description])
+
     // console.log('selectedEvents', selectedEvents[0])
     useEffect(() => {
         setEditReportsData(mock.reportPage);
@@ -202,6 +213,7 @@ const EditScreenPage = ({
 
                 <div className={classes.headerButton}>
                     <Button
+                        disabled={disable}
                         className={classes.button}
                         variant="contained"
                         color="primary"
