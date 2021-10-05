@@ -21,6 +21,8 @@ import {dateToYMD} from '../../data/helpers/timeHelper'
 import { useHistory } from 'react-router-dom'
 import FrontendRoutes from '../../data/constants/FrontendRoutes'
 import { required } from "../../data/helpers/validators";
+import ModalDialog from './sharedScreenComponents/ModalDialog'
+
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -117,6 +119,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const SharedScreenDialog = ({
   open,
+  destination,
   handleClose,
   setShareReportsApprove,
   approve,
@@ -131,6 +134,7 @@ const SharedScreenDialog = ({
   const classes = useStyles();
   const history = useHistory();
   const [showError, setShowError] = React.useState(false);
+  const [openModalDialog, setOpenModalDialog] = React.useState(false);
 
   const onUploadClick = (event) => {
     let img = event.target.files[0];
@@ -139,17 +143,21 @@ const SharedScreenDialog = ({
 
   const onSave = () => {
     if(description){
-      setShowError(false);
-      addEvent({
-        id: 284478378,
-        img: image,
-        title: "title",
-        tagList: tags,
-        description: description,
-        date: dateToYMD(new Date()),
-        });
-        setSelectedEvents([]);
-        history.push(FrontendRoutes.EVENTS_LIST_PAGE);
+      if(destination){
+        setShowError(false);
+        addEvent({
+          id: 284478378,
+          img: image,
+          title: "title",
+          tagList: tags,
+          description: description,
+          date: dateToYMD(new Date()),
+          });
+          setSelectedEvents([]);
+          history.push(FrontendRoutes.EVENTS_LIST_PAGE);
+      }else{
+        setOpenModalDialog(true);
+      }
     }else{
       setShowError(true);
     }
@@ -220,6 +228,7 @@ const SharedScreenDialog = ({
       <IconButton className={classes.saveButton} onClick={onSave} aria-label="save">
         <SaveIcon />
       </IconButton>
+      <ModalDialog open={openModalDialog} onClose={setOpenModalDialog} title="" text="宛先が選択されていません"/>
     </Dialog>
   );
 };

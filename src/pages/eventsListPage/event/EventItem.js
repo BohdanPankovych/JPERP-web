@@ -72,9 +72,7 @@ const EventItem = ({item, disable, handleChange, selectedCheckbox}) => {
 
     const deleteModal = useCallback((e) => {
         setOpen(true);
-    })
-
-    let checked = false;
+    },[])
 
     const isChecked = (id) => {
         let check = false;
@@ -118,4 +116,4 @@ const EventItem = ({item, disable, handleChange, selectedCheckbox}) => {
     </>
 }
 
-export default EventItem;
+export default memo(EventItem);
