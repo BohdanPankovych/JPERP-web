@@ -2,7 +2,7 @@ import React from "react";
 import CanvasEventItem from './canvasItems/CanvasEventItem';
 import { Stage, Layer, Rect, Text, Circle } from 'react-konva';
 
-const CanvasPostcard = ({ backgroundColor, selectedEvents, events, width, height, description, title, date, firstEvent, secondEvent, thirdEvent, fourthEvent, reference}) => {
+const CanvasPostcard = ({ backgroundColor, selectedEvents, events, width, height, description, title, date, selectCreator, schoolName, reference}) => {
 
   return (
     <Stage width={width} height={height} ref={reference}>
@@ -25,6 +25,8 @@ const CanvasPostcard = ({ backgroundColor, selectedEvents, events, width, height
 
         <Text x={50}  y={45} text={title} fontSize={24} fill="white" fontStyle="bold"/>
         <Text x={width-150}  y={15} text={date} fontSize={15} />
+        <Text x={width-130}  y={60} text={selectCreator} fontSize={12} />
+        <Text x={50}  y={15} text={schoolName} fontSize={16}/>
 
         <Circle x={150} y={230} radius={60} fill="white" />
         <Circle x={150} y={530} radius={60} fill="white" />

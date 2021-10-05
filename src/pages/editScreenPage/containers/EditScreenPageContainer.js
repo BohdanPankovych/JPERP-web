@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import EditScreenPage from "../EditScreenPage";
 import {setTimeFilter} from "../../../data/redux/common/commonActions";
 import {editReportsActions} from "../../../data/redux/editReports/editReportActions";
-import {setSelectedEvents} from "../../../data/redux/selectedEvents/selectedEventsActions";
+import {setSelectedEvents, editSelectedEvents} from "../../../data/redux/selectedEvents/selectedEventsActions";
 
 const mapStateToProps = state => ({
     reportsList: state.reportsList.get("reports")?.toJS(),
@@ -20,6 +20,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
     setTimeFilter,
     setSelectedEvents,
+    editSelectedEvents,
     ...editReportsActions,
 };
 

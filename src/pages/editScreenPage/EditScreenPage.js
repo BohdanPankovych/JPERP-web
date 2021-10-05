@@ -78,6 +78,7 @@ const useStyles = makeStyles((theme) => ({
         alignItems: "flex-start",
         marginTop: "70px",
         [theme.breakpoints.down('sm')]: {
+            marginTop: "20px",
             width: "100%",
             justifyContent: "center",
          },
@@ -120,6 +121,7 @@ const EditScreenPage = ({
                             setEditReportsColor,
                             setEditReportsDescription,
                             setSelectCreator,
+                            editSelectedEvents,
                         }) => {
     const classes = useStyles();
     const [showError, setShowError] = React.useState(false);
@@ -127,7 +129,6 @@ const EditScreenPage = ({
     const history = useHistory()
     // console.log('selectedEvents', selectedEvents[0])
     useEffect(() => {
-        setEditReportsColor(colors[0]);
         setEditReportsData(mock.reportPage);
         setEditReportsCreators(mock.creators);
     }, []);
@@ -213,11 +214,12 @@ const EditScreenPage = ({
 
             <div className={classes.content}>
                 <div className={classes.list}>
-                    {selectedEvents.map((val, index) => (
+                    {selectedEvents && selectedEvents.map((val, index) => (
                         <EditScreenPageListItem
-                            key={val.id}
+                            key={val.id + "_" + index}
                             data={val}
                             showError={showError}
+                            editSelectedEvents={editSelectedEvents}
                         />
                     ))}
                 </div>
@@ -227,7 +229,7 @@ const EditScreenPage = ({
                     <TextInput
                         className={classes.commentText}
                         multiline
-                        rows="4"
+                        minRows="4"
                         showError={showError}
                         variant="outlined"
                         value={description}

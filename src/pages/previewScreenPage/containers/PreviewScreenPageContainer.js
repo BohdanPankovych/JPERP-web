@@ -11,6 +11,7 @@ const mapStateToProps = state => ({
     title: state.reportsList.get('title'),
     color: state.reportsList.get('color'),
     description: state.reportsList.get('description'),
+    selectCreator: state.reportsList.get('selectCreator'),
     selectedEvents: state.selectedEvents.get('selects')?.toJS(),
 });
 

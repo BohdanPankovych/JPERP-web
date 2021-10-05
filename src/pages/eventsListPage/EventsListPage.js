@@ -84,14 +84,23 @@ const EventsListPage = ({selectedEvents, setSelectedEvents, eventsList, setEvent
         setEventsListData(mock.eventsList)
     }, []);
 
-    const handleChange = (id) => {
-        const findIdx = selectedEvents?.indexOf(id);
-
-        if (findIdx > -1) {
-            selectedEvents?.splice(findIdx, 1);
+    const handleChange = (obj) => {
+        let exist = false;
+        let index;
+        for(let i=0; i<selectedEvents.length;i++){
+            if(selectedEvents[i].id === obj.id){
+                exist = true;
+                index = i;
+                break;
+            }
+        }       
+        if (exist) {
+            selectedEvents?.splice(index, 1);
         } else {
-            selectedEvents?.push(id);
+            selectedEvents?.push(obj);
         }
+        
+        console.log("select", selectedEvents);
 
         if (selectedEvents?.length === 4) {
             setDisable(true)

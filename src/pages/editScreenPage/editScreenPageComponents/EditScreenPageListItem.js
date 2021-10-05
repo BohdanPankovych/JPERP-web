@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextInput from "../../../reusableComponents/textInput/TextInput";
 import { required, notLong } from "../../../data/helpers/validators";
+import { ResizeImg } from '../../../data/helpers/resizeImg'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -12,11 +13,18 @@ const useStyles = makeStyles((theme) => ({
       alignItems: "center",
      },
   },
+  imgContainer:{
+    width: "5vw",
+    display: "flex",
+    justifyContent: "center"
+  },
   img: {
     margin: "20px 10px 0",
     display: "block",
     width: "auto",
-    height: "10vh",
+    height: "auto",
+    maxWidth: "100px",
+    maxHeight: "100px",
   },
   text: {
     [theme.breakpoints.down('sm')]: {
@@ -33,22 +41,30 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const EditScreenPageListItem = ({ data, showError }) => {
+const EditScreenPageListItem = ({ data, showError, editSelectedEvents }) => {
   const classes = useStyles();
 
   const [textValue, setTextValue] = React.useState(data?.description);
   // console.log('edit page', data)
+  // console.log("img", data.img?.naturalWidth)
+
+  const onChange = (value) => {
+    editSelectedEvents( data.id, value);
+  }
+  
   return (
     <div className={classes.root}>
-      <img className={classes.img} alt="img" src={data.img} />
+      <div className={classes.imgContainer}>
+        <img className={classes.img} width="auto" height="100" alt="img" src={data.img} />
+      </div>
       <div>
         <TextInput
           multiline
-          rows="4"
+          minRows="4"
           variant="outlined"
           className={classes.text}
-          value={textValue}
-          onValueChange={setTextValue}
+          value={data?.description}
+          onValueChange={onChange}
           showError={showError}
           validators={[required, notLong]}
         />

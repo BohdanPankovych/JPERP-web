@@ -1,7 +1,7 @@
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import React, {memo, useEffect, useState} from "react";
 import deleteIcon from "../../../data/assets/icons/deleteBtnIcon.jpg"
-
+import EventItem from './EventItem'
 
 const useStyles = makeStyles((theme) => ({
 
@@ -58,6 +58,10 @@ const useStyles = makeStyles((theme) => ({
 const Event = ({eventsList, monthSelect, yearSelect, handleChange, selectedCheckbox, disable}) => {
     const classes = useStyles();
 
+    
+
+    
+
     return (
         <>
             {eventsList.sort((a, b) => a - b).filter(f => {
@@ -71,29 +75,7 @@ const Event = ({eventsList, monthSelect, yearSelect, handleChange, selectedCheck
                 }
                 return y
             }).map((e) => (
-                <>
-                    <div className={classes.event}>
-                        <div className={classes.image}>
-                            <img src={e.img} alt=""/>
-                        </div>
-                        <div className={classes.imgDescriptionBlock}>
-                            {/*<p className={classes.imgTitle}>{event.title}</p>*/}
-                            <div className={classes.tagList}>{e.tagList.map(t => (
-                                <div className={classes.tag}>{t}</div>))}</div>
-
-                            <p className={classes.imgDescr}>{e.description}</p>
-                        </div>
-                        <div className={classes.checkbox}>
-                            <input onChange={() => handleChange(e)}
-                                   selected={selectedCheckbox?.includes(e.id)} type="checkbox"
-                                   disabled={disable ? true: false}
-                                   // disabled={selectedCheckbox.includes(e.id) && disable ? true: false}
-                            />
-                            <img className={classes.delete} src={deleteIcon} alt=""/>
-                        </div>
-                    </div>
-                    <div className={classes.line}></div>
-                </>
+                <EventItem item={e} disable={disable} handleChange={handleChange} selectedCheckbox={selectedCheckbox}/>
             ))}
         </>
 

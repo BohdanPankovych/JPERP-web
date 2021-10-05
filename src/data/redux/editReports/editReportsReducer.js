@@ -1,5 +1,6 @@
 import Immutable from "immutable";
 import EditReportsActionTypes from "./editReportsActionTypes";
+import colors from '../../constants/Colors'
 
 const defaultState = new Immutable.OrderedMap({
   reports: new Immutable.List(),
@@ -7,7 +8,7 @@ const defaultState = new Immutable.OrderedMap({
   selectCreator: "",
   title: "",
   description: "",
-  color: "",
+  color: colors[0],
 });
 
 const editReportsReducer = (state = defaultState, action) => {

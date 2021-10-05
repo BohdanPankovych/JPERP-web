@@ -1,5 +1,9 @@
 import Immutable from "immutable";
 import SelectedEventsActionTypes from "./selectedEventsActionTypes";
+import EventDTO from '../../immutableEntities/EventDTO'
+
+const toImmList = (model) => (arr) =>
+  new Immutable.List(arr.map((e) => new model(e)));
 
 const defaultState = new Immutable.OrderedMap({
     selects: new Immutable.List()
@@ -8,7 +12,16 @@ const defaultState = new Immutable.OrderedMap({
 const selectedEventsReducer = (state = defaultState, action) => {
     switch (action.type) {
         case SelectedEventsActionTypes.SET_SELECTED:
-            return state.set("selects", new Immutable.List(action.payload.selects));
+            return state.set("selects", toImmList(EventDTO)(action.payload.selects));
+        case SelectedEventsActionTypes.EDIT_EVENT:
+            
+            return state.update("selects", selects => selects.map(val => {
+                if(val.id === action.payload.eventId){
+                    return val.set("description", action.payload.eventDescription);
+                }else{
+                    return val;
+                }
+            }));
 
         default:
             return state;

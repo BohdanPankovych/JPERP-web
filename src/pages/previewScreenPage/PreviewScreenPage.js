@@ -89,7 +89,9 @@ const PreviewScreenPage = ({selectCreator, timeFilter, title, color, description
           title={title}
           date={timeFilter?.day}
           description={description}
+          selectCreator={selectCreator}
           selectedEvents={selectedEvents}
+          schoolName="school"
         />
       </Container>
 

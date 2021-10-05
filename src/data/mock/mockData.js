@@ -79,7 +79,7 @@ const mock = {
   eventsList: [
     {
       id: 1,
-      img: eventImg,
+      img: mockImg,
       title: '橋本凛',
       tagList: ['text','texttexttexttext','text'],
       description: 'テキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入ります',
@@ -88,7 +88,7 @@ const mock = {
     },
     {
       id: 2,
-      img: eventImg,
+      img: mockImg2,
       title: '',
       tagList: ['text','text','text'],
       description: 'テキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入ります',
@@ -97,7 +97,7 @@ const mock = {
     },
     {
       id: 3,
-      img: eventImg,
+      img: casinoBL,
       title: '',
       tagList: ['2020','April','text'],
       description: 'テキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入ります',
@@ -106,7 +106,7 @@ const mock = {
     },
     {
       id: 4,
-      img: eventImg,
+      img: vert,
       title: '',
       tagList: ['text','text','text'],
       description: 'テキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入ります',
@@ -115,7 +115,7 @@ const mock = {
     },
     {
       id: 5,
-      img: eventImg,
+      img: mockImg,
       title: '',
       tagList: ['text','text','text'],
       description: 'テキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入ります',
