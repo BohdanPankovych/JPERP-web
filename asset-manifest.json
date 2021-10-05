@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.js": "/JPERP-web/static/js/main.8188b84a.chunk.js",
+    "main.js.map": "/JPERP-web/static/js/main.8188b84a.chunk.js.map",
+    "runtime-main.js": "/JPERP-web/static/js/runtime-main.1a36b175.js",
+    "runtime-main.js.map": "/JPERP-web/static/js/runtime-main.1a36b175.js.map",
+    "static/js/2.5b78c30d.chunk.js": "/JPERP-web/static/js/2.5b78c30d.chunk.js",
+    "static/js/2.5b78c30d.chunk.js.map": "/JPERP-web/static/js/2.5b78c30d.chunk.js.map",
+    "static/js/3.bb36d7fd.chunk.js": "/JPERP-web/static/js/3.bb36d7fd.chunk.js",
+    "static/js/3.bb36d7fd.chunk.js.map": "/JPERP-web/static/js/3.bb36d7fd.chunk.js.map",
+    "static/js/4.a711b132.chunk.js": "/JPERP-web/static/js/4.a711b132.chunk.js",
+    "static/js/4.a711b132.chunk.js.map": "/JPERP-web/static/js/4.a711b132.chunk.js.map",
+    "static/js/5.89f31b51.chunk.js": "/JPERP-web/static/js/5.89f31b51.chunk.js",
+    "static/js/5.89f31b51.chunk.js.map": "/JPERP-web/static/js/5.89f31b51.chunk.js.map",
+    "index.html": "/JPERP-web/index.html",
+    "static/js/2.5b78c30d.chunk.js.LICENSE.txt": "/JPERP-web/static/js/2.5b78c30d.chunk.js.LICENSE.txt",
+    "static/js/3.bb36d7fd.chunk.js.LICENSE.txt": "/JPERP-web/static/js/3.bb36d7fd.chunk.js.LICENSE.txt",
+    "static/js/4.a711b132.chunk.js.LICENSE.txt": "/JPERP-web/static/js/4.a711b132.chunk.js.LICENSE.txt",
+    "static/js/5.89f31b51.chunk.js.LICENSE.txt": "/JPERP-web/static/js/5.89f31b51.chunk.js.LICENSE.txt",
+    "static/media/casinoBL.2c52b586.jpg": "/JPERP-web/static/media/casinoBL.2c52b586.jpg",
+    "static/media/mockImg.5ae9b1d4.jpg": "/JPERP-web/static/media/mockImg.5ae9b1d4.jpg",
+    "static/media/mockImg2.c19d1454.jpg": "/JPERP-web/static/media/mockImg2.c19d1454.jpg",
+    "static/media/vert.74ef76fe.jpg": "/JPERP-web/static/media/vert.74ef76fe.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1a36b175.js",
+    "static/js/2.5b78c30d.chunk.js",
+    "static/js/main.8188b84a.chunk.js"
+  ]
+}
