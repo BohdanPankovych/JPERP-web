@@ -113,7 +113,7 @@ const EventsListPage = ({selectedEvents, setSelectedEvents, eventsList, setEvent
             setDisableBtn(false)
         } else {
             setDisable(true)
-            setDisableBtn(true)
+            // setDisableBtn(true)
         }
         setSelectedEvents(selectedEvents);
         // console.log('selectedCheckbox', selectedEvents);

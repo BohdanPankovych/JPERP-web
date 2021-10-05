@@ -38,29 +38,29 @@ const mock = {
     },
   ],
   sharedPageChildren: {
-    title: "Kids",
+    title: "Child",
     classes: [
       {
         class: "Class1",
-        kids: ["kid1","kid2","kid3","kid4",]
+        kids: ["佐藤","鈴木","高橋","田中",]
       },
       {
         class: "Class2",
-        kids: ["kid11","kid12","kid13","kid14",]
+        kids: ["伊藤","山本","中村","小林",]
       },
       {
         class: "Class3",
-        kids: ["kid12","kid22","kid32","kid42",]
+        kids: ["加藤","吉田","山田","佐々木",]
       },
     ],
   },
   sharedPageClass: {
-    title: "Class",
-    tags: ["Class1", "Class2", "Class3", "Class4"],
+    title: "クラス",
+    tags: ["Class1", "Class2", "Class3"],
   },
   sharedPage: [
     {
-      title: "Place",
+      title: "場所",
       tags: ["tag", "tag", "tag", "tag", "tag", "tag"],
     },
     {
@@ -68,7 +68,7 @@ const mock = {
       tags: ["tag", "tag", "tag", "tag", "tag", "tag"],
     },
     {
-      title: "5 segments",
+      title: "5 領域",
       tags: ["tag", "tag", "tag", "tag", "tag", "tag"],
     },
     {

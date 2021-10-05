@@ -1,4 +1,4 @@
-import React, { memo, useRef } from "react";
+import React, { memo } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import CloseIcon from "@material-ui/icons/Close";
 import SaveIcon from "@material-ui/icons/Save";
@@ -17,7 +17,9 @@ import {
 } from "@material-ui/core";
 import SharedScreenListContainer from "./containers/SharedScreenListContainer";
 import TextInput from "../../reusableComponents/textInput/TextInput";
-
+import {dateToYMD} from '../../data/helpers/timeHelper'
+import { useHistory } from 'react-router-dom'
+import FrontendRoutes from '../../data/constants/FrontendRoutes'
 import { required } from "../../data/helpers/validators";
 
 const useStyles = makeStyles((theme) => ({
@@ -52,6 +54,11 @@ const useStyles = makeStyles((theme) => ({
     width: "30vw",
     padding: "15px",
   },
+  imgPreview:{
+    width: "auto",
+    height: "auto",
+    maxHeight: "20vh"
+  },
   previewContainer: {
     backgroundColor: "white",
     border: "1px solid #bdbdbd",
@@ -59,6 +66,9 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     minHeight: "25vh",
     marginBottom: "15px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
   confirm: {
     padding: 0,
@@ -112,19 +122,32 @@ const SharedScreenDialog = ({
   approve,
   description,
   setShareReportsDescription,
+  tags,
   image,
-  setShareReportsImage }) => {
+  setShareReportsImage,
+  addEvent
+ }) => {
   const classes = useStyles();
-  const canvasRef = useRef(null);
+  const history = useHistory();
   const [showError, setShowError] = React.useState(false);
 
   const onUploadClick = (event) => {
-    let file = event.target.files[0];
+    let img = event.target.files[0];
+    setShareReportsImage(URL.createObjectURL(img));
 }
 
   const onSave = () => {
     if(description){
       setShowError(false);
+      addEvent({
+        id: 284478378,
+        img: image,
+        title: "title",
+        tagList: tags,
+        description: description,
+        date: dateToYMD(new Date()),
+        });
+        history.push(FrontendRoutes.EVENTS_LIST_PAGE);
     }else{
       setShowError(true);
     }
@@ -153,7 +176,10 @@ const SharedScreenDialog = ({
       
       <DialogContent className={classes.content}>
         <Box className={classes.leftSide}>
-          <Container className={classes.previewContainer}><canvas ref={canvasRef} /></Container>
+          <Container className={classes.previewContainer}>
+             {image != null ? <img className={classes.imgPreview} src={image} alt="preview"/>:<Typography>No Image</Typography>}
+
+            </Container>
             <input
               className={classes.input}
               onChange={onUploadClick}

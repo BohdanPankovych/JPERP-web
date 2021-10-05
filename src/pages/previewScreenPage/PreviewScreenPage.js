@@ -38,13 +38,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const PreviewScreenPage = ({selectCreator, timeFilter, title, color, description, selectedEvents}) => {
+const PreviewScreenPage = ({selectCreator, timeFilter, title, color, description, selectedEvents, addEvent, setShareReportsImage}) => {
   const stageRef = useRef(null);
   const history = useHistory();
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
+    setShareReportsImage(stageRef.current.toDataURL({ pixelRatio: 1.5 }));
     setOpen(true);
   };
 
@@ -63,12 +64,20 @@ const PreviewScreenPage = ({selectCreator, timeFilter, title, color, description
   }
 
   const onTempSave = () => {
+    addEvent({
+    id: 284478378,
+    img: null,
+    title: title,
+    tagList: [],
+    description: description,
+    date: timeFilter,
+    })
     history.push(FrontendRoutes.EVENTS_LIST_PAGE)
   }
 
   return (
     <>
-      <Typography className={classes.title}>Easy report</Typography>
+      <Typography className={classes.title}>簡単レポート</Typography>
       <Button
         className={classes.returnButton}
         variant="contained"
@@ -76,7 +85,7 @@ const PreviewScreenPage = ({selectCreator, timeFilter, title, color, description
         component={Link}
         to={FrontendRoutes.EDIT_REPORTS}
       >
-        Continue editing
+        編集画面へ戻る
       </Button>
 
       <Container className={classes.content}>
@@ -101,12 +110,12 @@ const PreviewScreenPage = ({selectCreator, timeFilter, title, color, description
             className={classes.button}
             variant="outlined"
             color="primary"
-            onClick={onTempSave}
+            onClick={handleClickOpen}
           >
-            Temporarily saved
+            一時保存
           </Button>
           <Button className={classes.button} onClick={onSave} variant="outlined" color="primary">
-            Save as PDF
+          PDFで保存
           </Button>
           <Button
             className={classes.button}
@@ -114,7 +123,7 @@ const PreviewScreenPage = ({selectCreator, timeFilter, title, color, description
             color="primary"
             onClick={handleClickOpen}
           >
-            Share with parents
+            保護者と共有
           </Button>
         </Box>
       </Container>

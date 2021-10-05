@@ -40,6 +40,11 @@ export const setDynamicTags = tags => ({
     payload: { tags }
 })
 
+export const addTag = tag => ({
+    type: ShareReportsActionsTypes.ADD_TAG,
+    payload: { tag },
+})
+
 
 export const shareReportsActions = {
     setShareReportsImage,
@@ -50,4 +55,5 @@ export const shareReportsActions = {
     setShareReportsClassroom,
     setShareReportsKids,
     setDynamicTags,
+    addTag,
 }
