@@ -4,7 +4,7 @@ import EditReportsActionTypes from "./editReportsActionTypes";
 const defaultState = new Immutable.OrderedMap({
   reports: new Immutable.List(),
   creators: new Immutable.List(),
-  selectCreators: "",
+  selectCreator: "",
   title: "",
   description: "",
   color: "",
@@ -23,7 +23,7 @@ const editReportsReducer = (state = defaultState, action) => {
 
     case EditReportsActionTypes.SET_CREATORS:
       return state.set("creators", new Immutable.List(action.payload.creators));
-    
+
     case EditReportsActionTypes.SELECT_CREATOR:
       return state.set("selectCreators", action.payload.creator);
 

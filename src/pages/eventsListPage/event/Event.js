@@ -1,5 +1,6 @@
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import React, {memo, useEffect} from "react";
+import React, {memo, useEffect, useState} from "react";
+import deleteIcon from "../../../data/assets/icons/deleteBtnIcon.jpg"
 
 
 const useStyles = makeStyles((theme) => ({
@@ -16,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
         // background: '#C4C4C4'
     },
     imgDescriptionBlock: {
-        marginTop: '-20px',
         marginLeft: '37px',
     },
     imgTitle: {
@@ -27,37 +27,74 @@ const useStyles = makeStyles((theme) => ({
         marginTop: 20,
     },
     checkbox: {
+        width: '60px',
         position: 'absolute',
         top: 27,
-        right: 125
+        right: 125,
+        display: 'flex',
+        justifyContent: 'space-between',
     },
     line: {
         width: '93vw',
         border: '1px solid #E2E2E2',
         marginLeft: '60px',
         marginTop: '22px',
+    },
+    delete: {
+        cursor: 'pointer'
+    },
+    tagList: {
+        display: 'flex',
+    },
+    tag: {
+        marginRight: 10,
+        color: '#00AE00',
+        border: '1px solid #00AE00',
+        borderRadius: '24px',
+        padding: '4px 10px'
     }
 }));
 
-const Event = ({event}) => {
+const Event = ({eventsList, monthSelect, yearSelect, handleChange, selectedCheckbox, disable}) => {
     const classes = useStyles();
 
-    console.log('event', event)
     return (
         <>
-            <div className={classes.event}>
-                <div className={classes.image}>
-                    <img src={event.img} alt=""/>
-                </div>
-                <div className={classes.imgDescriptionBlock}>
-                    <p className={classes.imgTitle}>{event.title}</p>
-                    <p className={classes.imgDescr}>{event.description}</p>
-                </div>
-                <div className={classes.checkbox}>
-                    <input type="checkbox" id="scales" name="scales"/>
-                </div>
-            </div>
-            <div className={classes.line}></div>
+            {eventsList.sort((a, b) => a - b).filter(f => {
+                if (monthSelect) {
+                    return f.month.toLowerCase().includes(monthSelect.toLowerCase())
+                }
+                return f
+            }).filter(y => {
+                if (yearSelect) {
+                    return y.date.includes(yearSelect)
+                }
+                return y
+            }).map((e) => (
+                <>
+                    <div className={classes.event}>
+                        <div className={classes.image}>
+                            <img src={e.img} alt=""/>
+                        </div>
+                        <div className={classes.imgDescriptionBlock}>
+                            {/*<p className={classes.imgTitle}>{event.title}</p>*/}
+                            <div className={classes.tagList}>{e.tagList.map(t => (
+                                <div className={classes.tag}>{t}</div>))}</div>
+
+                            <p className={classes.imgDescr}>{e.description}</p>
+                        </div>
+                        <div className={classes.checkbox}>
+                            <input onChange={() => handleChange(e)}
+                                   selected={selectedCheckbox?.includes(e.id)} type="checkbox"
+                                   disabled={disable ? true: false}
+                                   // disabled={selectedCheckbox.includes(e.id) && disable ? true: false}
+                            />
+                            <img className={classes.delete} src={deleteIcon} alt=""/>
+                        </div>
+                    </div>
+                    <div className={classes.line}></div>
+                </>
+            ))}
         </>
 
     );

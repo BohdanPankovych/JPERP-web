@@ -81,9 +81,10 @@ const mock = {
       id: 1,
       img: eventImg,
       title: '橋本凛',
-      tagList: ['text','text','text'],
+      tagList: ['text','texttexttexttext','text'],
       description: 'テキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入ります',
-      date: '',
+      date: '2018',
+      month: ''
     },
     {
       id: 2,
@@ -91,15 +92,17 @@ const mock = {
       title: '',
       tagList: ['text','text','text'],
       description: 'テキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入ります',
-      date: '',
+      date: '2017',
+      month: 'January'
     },
     {
       id: 3,
       img: eventImg,
       title: '',
-      tagList: ['text','text','text'],
+      tagList: ['2020','April','text'],
       description: 'テキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入ります',
-      date: '',
+      date: '2020',
+      month: 'April'
     },
     {
       id: 4,
@@ -107,7 +110,8 @@ const mock = {
       title: '',
       tagList: ['text','text','text'],
       description: 'テキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入ります',
-      date: '',
+      date: '2019',
+      month: 'March'
     },
     {
       id: 5,
@@ -115,8 +119,8 @@ const mock = {
       title: '',
       tagList: ['text','text','text'],
       description: 'テキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入ります',
-      date: '',
-
+      date: '2019',
+      month: 'January'
     }
   ]
 };

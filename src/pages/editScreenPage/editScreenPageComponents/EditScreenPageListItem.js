@@ -33,14 +33,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const EditScreenPageListItem = ({ text, img, showError }) => {
+const EditScreenPageListItem = ({ data, showError }) => {
   const classes = useStyles();
 
-  const [textValue, setTextValue] = React.useState(text);
-
+  const [textValue, setTextValue] = React.useState(data?.description);
+  // console.log('edit page', data)
   return (
     <div className={classes.root}>
-      <img className={classes.img} alt="img" src={img} />
+      <img className={classes.img} alt="img" src={data.img} />
       <div>
         <TextInput
           multiline
