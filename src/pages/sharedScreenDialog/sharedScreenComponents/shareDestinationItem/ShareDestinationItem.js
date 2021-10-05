@@ -16,23 +16,23 @@ const useStyles = makeStyles((theme) => ({
       margin: "5px 0",
     },
   }));
-  
+
 
 const tags = [
     {
-        text: "Share internally",
+        text: "内部で共有する",
         type: TypeButton.SHARE,
     },
     {
-        text: "Share with parents",
+        text: "両親と共有する",
         type: TypeButton.SHARE,
     },
     {
-        text: "Emergency contact (internal)",
+        text: "緊急連絡先（内部）",
         type: TypeButton.EMERGENCY,
     },
     {
-        text: "Emergency contact (parent)",
+        text: "緊急連絡先（親）",
         type: TypeButton.EMERGENCY,
     },
 ];
@@ -50,16 +50,16 @@ const ShareDestinationItem = ({ setDestination }) => {
     return (
         <>
           <ListItem button onClick={handleClick}>
-            <ListItemText primary="Share destination" />
+            <ListItemText primary="宛先を共有する" />
             {open ? <ExpandLess /> : <ExpandMore />}
           </ListItem>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box className={classes.tagsList}>
               {tags.map((val, index) => (
-                <SelectDestinationButton 
-                key={val + "_" + index} 
-                onButtonClick={setSelect} 
-                select={select} 
+                <SelectDestinationButton
+                key={val + "_" + index}
+                onButtonClick={setSelect}
+                select={select}
                 color={TypeButton.SHARE === val.type? "primary": "secondary"}
                 setDestination={setDestination}
                 >

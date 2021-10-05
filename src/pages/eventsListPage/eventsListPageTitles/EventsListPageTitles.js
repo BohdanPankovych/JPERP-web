@@ -27,7 +27,6 @@ const EventsListPageTitles = () => {
 
 
     return <>
-        <div>header</div>
         <p className={classes.title}>簡単レポート</p>
         <span className={classes.conditions}>作成条件 </span>
         <span className={classes.select}> (作成するクラスや日にちを選択) </span>
