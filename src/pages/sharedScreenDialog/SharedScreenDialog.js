@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useRef } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import CloseIcon from "@material-ui/icons/Close";
 import SaveIcon from "@material-ui/icons/Save";
@@ -115,13 +115,12 @@ const SharedScreenDialog = ({
   image,
   setShareReportsImage }) => {
   const classes = useStyles();
-
+  const canvasRef = useRef(null);
   const [showError, setShowError] = React.useState(false);
 
   const onUploadClick = (event) => {
-    let img = event.target.files[0];
-    setShareReportsImage(URL.createObjectURL(img));
-  }
+    let file = event.target.files[0];
+}
 
   const onSave = () => {
     if(description){
@@ -154,7 +153,7 @@ const SharedScreenDialog = ({
       
       <DialogContent className={classes.content}>
         <Box className={classes.leftSide}>
-          <Container className={classes.previewContainer}></Container>
+          <Container className={classes.previewContainer}><canvas ref={canvasRef} /></Container>
             <input
               className={classes.input}
               onChange={onUploadClick}

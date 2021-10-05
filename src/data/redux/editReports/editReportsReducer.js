@@ -25,7 +25,7 @@ const editReportsReducer = (state = defaultState, action) => {
       return state.set("creators", new Immutable.List(action.payload.creators));
 
     case EditReportsActionTypes.SELECT_CREATOR:
-      return state.set("selectCreators", action.payload.creator);
+      return state.set("selectCreator", action.payload.creator);
 
     default:
       return state;

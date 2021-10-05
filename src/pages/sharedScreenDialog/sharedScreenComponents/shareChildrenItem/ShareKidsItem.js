@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import {
     ListItem,
     ListItemText,
@@ -58,4 +58,4 @@ const ShareKidsItem = ({ tags, setTag }) => {
       );
 }
 
-export default ShareKidsItem;
+export default memo(ShareKidsItem);

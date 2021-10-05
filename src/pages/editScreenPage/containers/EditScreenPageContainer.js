@@ -7,6 +7,7 @@ import {setSelectedEvents} from "../../../data/redux/selectedEvents/selectedEven
 
 const mapStateToProps = state => ({
     reportsList: state.reportsList.get("reports")?.toJS(),
+    selectCreator: state.reportsList.get("selectCreator"),
     creators: state.reportsList.get("creators")?.toJS(),
     timeFilter: state.common.get('timeFilter').toJS(),
     title: state.reportsList.get('title'),

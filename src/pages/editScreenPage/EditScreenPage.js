@@ -1,7 +1,7 @@
 import React, {memo, useEffect} from "react";
 import {makeStyles} from "@material-ui/core/styles";
 import {required, notLong} from '../../data/helpers/validators'
-import {TextField, MenuItem, Button} from "@material-ui/core";
+import {MenuItem, Button} from "@material-ui/core";
 import colors from "../../data/constants/Colors";
 import EditScreenPageListItem from "./editScreenPageComponents/EditScreenPageListItem";
 import ColorSelectItem from "./editScreenPageComponents/ColorSelectItem";
@@ -68,12 +68,19 @@ const useStyles = makeStyles((theme) => ({
     },
     header: {
         display: "flex",
+        [theme.breakpoints.down('sm')]: {
+           flexDirection: "column"
+        },
         justifyContent: "space-between",
     },
     headerButton: {
         display: "flex",
         alignItems: "flex-start",
         marginTop: "70px",
+        [theme.breakpoints.down('sm')]: {
+            width: "100%",
+            justifyContent: "center",
+         },
     },
     button: {
         marginRight: "80px",
@@ -83,7 +90,8 @@ const useStyles = makeStyles((theme) => ({
         },
         [theme.breakpoints.down('sm')]: {
             marginRight: "20px",
-            fontSize: 8
+            fontSize: 8,
+            width: "60vw",
         },
     },
     list: {
@@ -98,11 +106,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const EditScreenPage = ({
-                            reportsList,
                             timeFilter,
                             selectedEvents,
                             title,
                             creators,
+                            selectCreator,
                             color,
                             description,
                             setTimeFilter,
@@ -115,7 +123,6 @@ const EditScreenPage = ({
                         }) => {
     const classes = useStyles();
     const [showError, setShowError] = React.useState(false);
-    const [selectedValue, setSelectedValue] = React.useState("");
 
     const history = useHistory()
     // console.log('selectedEvents', selectedEvents[0])
@@ -127,7 +134,6 @@ const EditScreenPage = ({
 
     const handleChange = (value) => {
         setSelectCreator(value);
-        setSelectedValue(value);
     };
 
     const onButtonClick = () => {
@@ -173,7 +179,7 @@ const EditScreenPage = ({
                             select
                             className={classes.selectInput}
                             variant="outlined"
-                            value={selectedValue}
+                            value={selectCreator}
                             onValueChange={handleChange}
                             showError={showError}
                             validators={[required]}

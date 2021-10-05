@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { List } from "@material-ui/core";
 import SharedScreenListItem from "./SharedScreenListItem";
 import ShareDestinationItem from './shareDestinationItem/ShareDestinationItem';
@@ -33,4 +33,4 @@ const SharedScreenList = ({
   );
 };
 
-export default SharedScreenList;
+export default memo(SharedScreenList);

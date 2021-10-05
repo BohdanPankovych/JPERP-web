@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { TypeButton } from './ButtonTypeColor'
 import {
     ListItem,
@@ -72,4 +72,4 @@ const ShareDestinationItem = ({ setDestination }) => {
       );
 }
 
-export default ShareDestinationItem;
+export default memo(ShareDestinationItem);

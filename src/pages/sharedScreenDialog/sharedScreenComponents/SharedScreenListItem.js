@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import {
   ListItem,
   ListItemText,
@@ -42,4 +42,4 @@ const SharedScreenListItem = ({ title, tags, ...props }) => {
   );
 };
 
-export default SharedScreenListItem;
+export default memo(SharedScreenListItem);

@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -30,4 +31,4 @@ const SelectDestinationButton = ({select, onButtonClick, children, className, se
     );
 }
 
-export default SelectDestinationButton;
+export default memo(SelectDestinationButton);

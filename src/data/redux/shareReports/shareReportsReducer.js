@@ -31,7 +31,13 @@ const eventsListReducer = (state = defaultState, action) => {
             return state.set("dynamicTags", new Immutable.List(action.payload.tags));
         
         case ShareReportsActionsTypes.SET_TAG:
-            return state.update("tags", tags => tags.push(action.payload.tag));
+            return state.update("tags", tags => {
+                if(tags.includes(action.payload.tag)){
+                    return tags.filter(val => val !== action.payload.tag);
+                }else{
+                    return tags.push(action.payload.tag);
+                }  
+            });
         default:
             return state;
     }

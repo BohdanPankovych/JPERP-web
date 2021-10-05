@@ -46,7 +46,7 @@ const mock = {
       },
       {
         class: "Class2",
-        kids: ["kid11","kid22","kid33","kid44",]
+        kids: ["kid11","kid12","kid13","kid14",]
       },
       {
         class: "Class3",

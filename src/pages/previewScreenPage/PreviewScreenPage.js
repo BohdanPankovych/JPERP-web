@@ -3,9 +3,8 @@ import SharedScreenDialogContainer from "../sharedScreenDialog/containers/Shared
 import { Button, Container, Box, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import CanvasPostcard from "../../reusableComponents/canvasPostcard/CanvasPostcard";
-import mockData from '../../data/mock/mockData'
 import { jsPDF } from 'jspdf';
-import {Link} from "react-router-dom";
+import {Link, useHistory } from "react-router-dom";
 import FrontendRoutes from "../../data/constants/FrontendRoutes";
 
 const useStyles = makeStyles((theme) => ({
@@ -38,8 +37,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "gray",
   },
 }));
+
 const PreviewScreenPage = ({selectCreator, timeFilter, title, color, description, selectedEvents}) => {
   const stageRef = useRef(null);
+  const history = useHistory();
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -58,9 +59,13 @@ const PreviewScreenPage = ({selectCreator, timeFilter, title, color, description
       0,
       0,
     );
-    pdf.save('canvas.pdf');
+    pdf.save('report.pdf');
   }
-  console.log('selectedEvents',selectedEvents)
+
+  const onTempSave = () => {
+    history.push(FrontendRoutes.EVENTS_LIST_PAGE)
+  }
+
   return (
     <>
       <Typography className={classes.title}>Easy report</Typography>
@@ -94,6 +99,7 @@ const PreviewScreenPage = ({selectCreator, timeFilter, title, color, description
             className={classes.button}
             variant="outlined"
             color="primary"
+            onClick={onTempSave}
           >
             Temporarily saved
           </Button>
