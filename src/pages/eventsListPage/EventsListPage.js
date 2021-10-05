@@ -88,9 +88,9 @@ const EventsListPage = ({selectedEvents, setSelectedEvents, eventsList, setEvent
     const [disableDay, setDisableDay] = useState(true)
 
 
-    useEffect(() => {
-        setEventsListData(mock.eventsList)
-    }, []);
+    // useEffect(() => {
+    //     setEventsListData(mock.eventsList)
+    // }, []);
 
 
     const handleChange = (obj) => {

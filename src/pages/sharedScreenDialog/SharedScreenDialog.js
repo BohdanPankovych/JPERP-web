@@ -125,6 +125,7 @@ const SharedScreenDialog = ({
   tags,
   image,
   setShareReportsImage,
+  setSelectedEvents,
   addEvent
  }) => {
   const classes = useStyles();
@@ -147,6 +148,7 @@ const SharedScreenDialog = ({
         description: description,
         date: dateToYMD(new Date()),
         });
+        setSelectedEvents([]);
         history.push(FrontendRoutes.EVENTS_LIST_PAGE);
     }else{
       setShowError(true);
