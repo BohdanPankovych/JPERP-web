@@ -1,8 +1,14 @@
 import mockImg from "./mockImg.jpg";
-import eventImg from "./eventImg.jpg"
-import mockImg2 from './mockImg2.jpg'
-import vert from './vert.jpg'
-import casinoBL from './casinoBL.jpg'
+import eventImg from "./eventImg.jpg";
+import mockImg2 from './mockImg2.jpg';
+import vert from './vert.jpg';
+import casinoBL from './casinoBL.jpg';
+import img1 from './img1.png';
+import img2 from './img2.png';
+import img3 from './img3.png';
+import img4 from './img4.png';
+import img5 from './img5.png';
+
 
 const mock = {
   reportPage: [
@@ -41,54 +47,54 @@ const mock = {
     title: "子供",
     classes: [
       {
-        class: "クラス1",
-        kids: ["子供1","子供2","子供3","子供4",]
+        class: "ひよこ (0)",
+        kids: ["佐藤","鈴木","高橋","田中	",]
       },
       {
-        class: "クラス2",
-        kids: ["子供11","子供12","子供13","子供14",]
+        class: "あひる (1)",
+        kids: ["伊藤","山本","中村","小林",]
       },
       {
-        class: "クラス3",
-        kids: ["子供12","子供22","子供32","子供42",]
+        class: "ひばり (2)",
+        kids: ["加藤","吉田","山田","佐々木",]
       },
     ],
   },
   sharedPageClass: {
     title: "クラス",
-    tags: ["クラス1", "クラス2", "クラス3", "クラス4"],
+    tags: ["ひよこ (0)", "あひる (1)", "ひばり (2)"],
   },
   sharedPage: [
     {
       title: "場所",
+      tags: ["保育室", "遊戯室", "給食室"],
+    },
+    {
+      title: "3 つの視点",
+      tags: ["健康", "人間・言葉", "環境・表現"],
+    },
+    {
+      title: "5 領域",
       tags: ["鬼ごっこ1", "鬼ごっこ2", "鬼ごっこ3", "鬼ごっこ4", "鬼ごっこ5", "鬼ごっこ6"],
     },
     {
-      title: "3 意見",
-      tags: ["鬼ごっこ1", "鬼ごっこ2", "鬼ごっこ3", "鬼ごっこ4", "鬼ごっこ5", "鬼ごっこ6"],
-    },
-    {
-      title: "5 セグメント",
-      tags: ["鬼ごっこ1", "鬼ごっこ2", "鬼ごっこ3", "鬼ごっこ4", "鬼ごっこ5", "鬼ごっこ6"],
-    },
-    {
-      title: "10 外観",
+      title: "10 の姿",
       tags: ["鬼ごっこ1", "鬼ごっこ2", "鬼ごっこ3", "鬼ごっこ4", "鬼ごっこ5", "鬼ごっこ6"],
     },
   ],
   eventsList: [
     {
       id: 1,
-      img: vert,
+      img: img1,
       title: '橋本凛',
       tagList: ['2018','いくつかのテキスト','文章'],
       description: 'ますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入ります',
       date: '2018',
-      month: ''
+      month: 'January'
     },
     {
       id: 2,
-      img: casinoBL,
+      img: img2,
       title: '',
       tagList: ['2017','一月','文章'],
       description: 'テキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入ります',
@@ -97,7 +103,7 @@ const mock = {
     },
     {
       id: 3,
-      img: eventImg,
+      img: img3,
       title: '',
       tagList: ['2020','四月','文章'],
       description: 'テキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入ります',
@@ -106,7 +112,7 @@ const mock = {
     },
     {
       id: 4,
-      img: mockImg2,
+      img: img4,
       title: '',
       tagList: ['三月','2019','文章', '文章'],
       description: 'テキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入ります',
@@ -115,7 +121,7 @@ const mock = {
     },
     {
       id: 5,
-      img: eventImg,
+      img: img5,
       title: '',
       tagList: ['一月','2019','文章'],
       description: 'テキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入ります',

@@ -8,6 +8,7 @@ const mapStateToProps = state => ({
     kids: state.shareReports.get("kids"),
     dynamicTags: state.shareReports.get("dynamicTags"),
     textTags: state.shareReports.get("textTags"),
+    destination: state.shareReports.get("destination"),
 });
 
 const mapDispatchToProps = {

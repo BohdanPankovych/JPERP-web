@@ -14,17 +14,19 @@ const useStyles = makeStyles((theme) => ({
      },
   },
   imgContainer:{
-    width: "5vw",
+    maxWidth: 100,
+    maxHeight: 100,
     display: "flex",
     justifyContent: "center"
   },
   img: {
     margin: "20px 10px 0",
-    display: "block",
+    
     width: "auto",
     height: "auto",
     maxWidth: "100px",
     maxHeight: "100px",
+    display: "block",
   },
   text: {
     [theme.breakpoints.down('sm')]: {
@@ -41,10 +43,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const EditScreenPageListItem = ({ errorText, data, showError, editSelectedEvents }) => {
+const EditScreenPageListItem = ({ data, showError, editSelectedEvents }) => {
   const classes = useStyles();
 
-  const [textValue, setTextValue] = React.useState(data?.description);
   // console.log('edit page', data)
   // console.log("img", data.img?.naturalWidth)
 
