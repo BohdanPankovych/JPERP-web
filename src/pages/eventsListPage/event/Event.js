@@ -67,15 +67,10 @@ const useStyles = makeStyles((theme) => ({
 
 const Event = ({ eventsList, monthSelect, yearSelect, handleChange, selectedCheckbox, disable}) => {
     const classes = useStyles();
-    const [open, setOpen] = useState(false);
 
-    const deleteModal = useCallback((e) => {
-        setOpen(true);
-    })
 
     return (
         <>
-            <ModalDelete open={open} setOpen={setOpen}/>
             {eventsList.sort((a, b) => a - b).filter(f => {
                 if (monthSelect) {
                     return f.month.toLowerCase().includes(monthSelect.toLowerCase())

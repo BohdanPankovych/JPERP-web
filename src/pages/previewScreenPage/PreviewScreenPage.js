@@ -76,7 +76,7 @@ const PreviewScreenPage = ({selectCreator, timeFilter, title, color, description
         component={Link}
         to={FrontendRoutes.EDIT_REPORTS}
       >
-        Continue editing
+        編集画面へ戻る
       </Button>
 
       <Container className={classes.content}>
@@ -103,10 +103,10 @@ const PreviewScreenPage = ({selectCreator, timeFilter, title, color, description
             color="primary"
             onClick={onTempSave}
           >
-            Temporarily saved
+            一時保存
           </Button>
           <Button className={classes.button} onClick={onSave} variant="outlined" color="primary">
-            Save as PDF
+            PDFで保存
           </Button>
           <Button
             className={classes.button}
@@ -114,7 +114,7 @@ const PreviewScreenPage = ({selectCreator, timeFilter, title, color, description
             color="primary"
             onClick={handleClickOpen}
           >
-            Share with parents
+            保護者と共有
           </Button>
         </Box>
       </Container>
