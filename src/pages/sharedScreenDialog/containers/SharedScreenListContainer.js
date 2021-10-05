@@ -7,6 +7,7 @@ const mapStateToProps = state => ({
     classrooms: state.shareReports.get("classrooms"),
     kids: state.shareReports.get("kids"),
     dynamicTags: state.shareReports.get("dynamicTags"),
+    textTags: state.shareReports.get("textTags"),
 });
 
 const mapDispatchToProps = {

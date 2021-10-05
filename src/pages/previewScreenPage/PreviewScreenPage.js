@@ -38,13 +38,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const PreviewScreenPage = ({selectCreator, timeFilter, title, color, description, selectedEvents}) => {
+const PreviewScreenPage = ({selectCreator, timeFilter, title, color, description, selectedEvents, addEvent, setShareReportsImage}) => {
   const stageRef = useRef(null);
   const history = useHistory();
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
+    setShareReportsImage(stageRef.current.toDataURL({ pixelRatio: 1.5 }));
     setOpen(true);
   };
 
@@ -63,12 +64,20 @@ const PreviewScreenPage = ({selectCreator, timeFilter, title, color, description
   }
 
   const onTempSave = () => {
+    addEvent({
+    id: 284478378,
+    img: null,
+    title: title,
+    tagList: [],
+    description: description,
+    date: timeFilter,
+    })
     history.push(FrontendRoutes.EVENTS_LIST_PAGE)
   }
 
   return (
     <>
-      <Typography className={classes.title}>Easy report</Typography>
+      <Typography className={classes.title}>簡単レポート</Typography>
       <Button
         className={classes.returnButton}
         variant="contained"
@@ -101,7 +110,7 @@ const PreviewScreenPage = ({selectCreator, timeFilter, title, color, description
             className={classes.button}
             variant="outlined"
             color="primary"
-            onClick={onTempSave}
+            onClick={handleClickOpen}
           >
             一時保存
           </Button>

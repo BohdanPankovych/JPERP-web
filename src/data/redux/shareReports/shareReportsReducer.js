@@ -10,6 +10,7 @@ const defaultState = new Immutable.OrderedMap({
     kids: null,
     dynamicTags: null,
     tags: new Immutable.List([]),
+    textTags: new Immutable.List([]),
 });
 
 const eventsListReducer = (state = defaultState, action) => {
@@ -30,6 +31,9 @@ const eventsListReducer = (state = defaultState, action) => {
         case ShareReportsActionsTypes.SET_DYNAMIC_TAGS:
             return state.set("dynamicTags", new Immutable.List(action.payload.tags));
         
+        case ShareReportsActionsTypes.ADD_TAG:
+            return state.update("textTags", textTags => textTags.push(action.payload.tag));
+
         case ShareReportsActionsTypes.SET_TAG:
             return state.update("tags", tags => {
                 if(tags.includes(action.payload.tag)){
