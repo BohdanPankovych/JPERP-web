@@ -1,7 +1,9 @@
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import React, {memo, useEffect, useState} from "react";
+import React, {memo, useCallback, useEffect, useState} from "react";
 import deleteIcon from "../../../data/assets/icons/deleteBtnIcon.jpg"
 import EventItem from './EventItem'
+import ModalDelete from "../modalDelete/ModalDelete";
+
 
 const useStyles = makeStyles((theme) => ({
 
@@ -12,9 +14,16 @@ const useStyles = makeStyles((theme) => ({
         position: 'relative',
     },
     image: {
-        width: 87,
-        height: 87,
+        maxWidth: 87,
+        maxHeight: 87,
         // background: '#C4C4C4'
+    },
+    imgMain: {
+        width: 'auto',
+        height: 'auto',
+        maxWidth: '100px',
+        maxHeight: '100px',
+        display: 'block',
     },
     imgDescriptionBlock: {
         marginLeft: '37px',
@@ -25,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
     imgDescr: {
         fontSize: 12,
         marginTop: 20,
+        width: '67vw',
     },
     checkbox: {
         width: '60px',
@@ -55,15 +65,17 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const Event = ({eventsList, monthSelect, yearSelect, handleChange, selectedCheckbox, disable}) => {
+const Event = ({ eventsList, monthSelect, yearSelect, handleChange, selectedCheckbox, disable}) => {
     const classes = useStyles();
+    const [open, setOpen] = useState(false);
 
-    
-
-    
+    const deleteModal = useCallback((e) => {
+        setOpen(true);
+    })
 
     return (
         <>
+            <ModalDelete open={open} setOpen={setOpen}/>
             {eventsList.sort((a, b) => a - b).filter(f => {
                 if (monthSelect) {
                     return f.month.toLowerCase().includes(monthSelect.toLowerCase())

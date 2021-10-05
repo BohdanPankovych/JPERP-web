@@ -13,6 +13,7 @@ import Button from "@material-ui/core/Button";
 import {setSelectedEvents} from "../../data/redux/selectedEvents/selectedEventsActions";
 import {Link} from "react-router-dom";
 import FrontendRoutes from "../../data/constants/FrontendRoutes";
+import {dateToD} from "../../data/helpers/timeHelper";
 
 const useStyles = makeStyles((theme) => ({
     underHeaderBlock: {
@@ -77,56 +78,64 @@ const EventsListPage = ({selectedEvents, setSelectedEvents, eventsList, setEvent
     const classes = useStyles();
     const [monthSelect, setMonthSelect] = useState('');
     const [yearSelect, setYearSelect] = useState('');
+    const [daySelect, setDaySelect] = useState('')
     const [selectedDate, handleDateChange] = useState(null);
-    const [disable, setDisable] = useState(false)
+    const [disable, setDisable] = useState(false);
+    const [disableBtn, setDisableBtn] = useState(true)
+
 
     useEffect(() => {
         setEventsListData(mock.eventsList)
     }, []);
 
+
     const handleChange = (obj) => {
         let exist = false;
         let index;
-        for(let i=0; i<selectedEvents.length;i++){
-            if(selectedEvents[i].id === obj.id){
+        for (let i = 0; i < selectedEvents.length; i++) {
+            if (selectedEvents[i].id === obj.id) {
                 exist = true;
                 index = i;
                 break;
             }
-        }       
+        }
+
         if (exist) {
             selectedEvents?.splice(index, 1);
         } else {
             selectedEvents?.push(obj);
         }
-        
-        console.log("select", selectedEvents);
 
-        if (selectedEvents?.length === 4) {
-            setDisable(true)
-        } else{
+        // console.log("select", selectedEvents);
+
+        if (selectedEvents.length > 0 && selectedEvents.length < 4) {
             setDisable(false)
+            setDisableBtn(false)
+        } else {
+            setDisable(true)
+            setDisableBtn(true)
         }
         setSelectedEvents(selectedEvents);
         // console.log('selectedCheckbox', selectedEvents);
-        // console.log(disable)
+        // console.log(disableBtn)
     };
 
 
-
+    console.log('selectedEvents', selectedEvents)
     return (
         <>
             <div className={classes.underHeaderBlock}>
                 <EasyReportPageTitles/>
                 <div className={classes.flex}>
                     <div className={classes.selects}>
-                        <EasyReportPageSelect title={'組'} />
+                        <EasyReportPageSelect title={'組'}/>
                         <EasyReportPageSelect title={'年'} options={year} value={yearSelect} setValue={setYearSelect}/>
-                        <EasyReportPageSelect title={'月'} options={month} value={monthSelect} setValue={setMonthSelect}/>
+                        <EasyReportPageSelect title={'月'} options={month} value={monthSelect}
+                                              setValue={setMonthSelect}/>
                         <LocalisedDatePicker
                             format={'dd'}
-                            value={selectedDate}
-                            onChange={handleDateChange}
+                            value={daySelect ? daySelect : monthSelect && yearSelect ? `${yearSelect}/${monthSelect}` : null}
+                            onChange={setDaySelect}
                         />
                         <span className={classes.selectTitle}>日</span>
                         {/*<EasyReportPageSelect title={'日'}/>*/}
@@ -135,7 +144,8 @@ const EventsListPage = ({selectedEvents, setSelectedEvents, eventsList, setEvent
                         {/*<p className={classes.fourReports}>※一度に選べるレポートは4点までです。</p>*/}
 
                         <div className={classes.btns}>
-                            <Button component={Link} to={FrontendRoutes.EDIT_REPORTS} className={classes.editReportBtn} disabled={disable ? false : true} variant="contained" color="primary">
+                            <Button component={Link} to={FrontendRoutes.EDIT_REPORTS} className={classes.editReportBtn}
+                                    disabled={disableBtn} variant="contained" color="primary">
                                 簡単レポートを編集
                             </Button>
 
@@ -145,7 +155,9 @@ const EventsListPage = ({selectedEvents, setSelectedEvents, eventsList, setEvent
                 </div>
             </div>
 
-            <Event eventsList={eventsList} monthSelect={monthSelect} yearSelect={yearSelect} handleChange={handleChange} selectedCheckbox={selectedEvents} disable={disable} setDisable={setDisable}/>
+            <Event eventsList={eventsList} monthSelect={monthSelect}
+                   yearSelect={yearSelect} handleChange={handleChange} selectedCheckbox={selectedEvents}
+                   disable={disable} setDisable={setDisable}/>
         </>
     );
 }

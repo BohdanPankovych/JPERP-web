@@ -5,3 +5,7 @@ export function dateToYMD(date, separator = "/") {
     return [year, month, day].join(separator)
 }
 
+export function dateToD(date) {
+    const day = date?.getDate()
+    return day
+}
