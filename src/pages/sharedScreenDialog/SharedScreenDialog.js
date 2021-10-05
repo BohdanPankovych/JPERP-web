@@ -115,7 +115,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const SharedScreenDialog = ({ 
+const SharedScreenDialog = ({
   open,
   handleClose,
   setShareReportsApprove,
@@ -162,7 +162,7 @@ const SharedScreenDialog = ({
     >
       <AppBar className={classes.appBar}>
         <Toolbar className={classes.toolBar}>
-          <Typography className={classes.text}>Some text</Typography>
+          <Typography className={classes.text}>いくつかのテキスト</Typography>
           <IconButton
             className={classes.closeButton}
             edge="end"
@@ -173,7 +173,7 @@ const SharedScreenDialog = ({
           </IconButton>
         </Toolbar>
       </AppBar>
-      
+
       <DialogContent className={classes.content}>
         <Box className={classes.leftSide}>
           <Container className={classes.previewContainer}>
@@ -188,7 +188,7 @@ const SharedScreenDialog = ({
             />
             <label htmlFor="contained-button-file">
               <Button className={classes.button} variant="outlined" color="primary"variant="contained" component="span">
-                Select a file
+                ファイルを選択します
               </Button>
             </label>
 
@@ -205,7 +205,7 @@ const SharedScreenDialog = ({
 
           <Container className={classes.confirm}>
             <Switch value={approve} onChange={(e)=>setShareReportsApprove(e.target.checked)} />
-            <Typography>some text</Typography>
+            <Typography>いくつかのテキスト</Typography>
           </Container>
         </Box>
 

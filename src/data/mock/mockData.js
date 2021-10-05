@@ -38,42 +38,42 @@ const mock = {
     },
   ],
   sharedPageChildren: {
-    title: "Child",
+    title: "子供",
     classes: [
       {
-        class: "Class1",
-        kids: ["佐藤","鈴木","高橋","田中",]
+        class: "クラス1",
+        kids: ["子供1","子供2","子供3","子供4",]
       },
       {
-        class: "Class2",
-        kids: ["伊藤","山本","中村","小林",]
+        class: "クラス2",
+        kids: ["子供11","子供12","子供13","子供14",]
       },
       {
-        class: "Class3",
-        kids: ["加藤","吉田","山田","佐々木",]
+        class: "クラス3",
+        kids: ["子供12","子供22","子供32","子供42",]
       },
     ],
   },
   sharedPageClass: {
     title: "クラス",
-    tags: ["Class1", "Class2", "Class3"],
+    tags: ["クラス1", "クラス2", "クラス3", "クラス4"],
   },
   sharedPage: [
     {
       title: "場所",
-      tags: ["tag", "tag", "tag", "tag", "tag", "tag"],
+      tags: ["鬼ごっこ1", "鬼ごっこ2", "鬼ごっこ3", "鬼ごっこ4", "鬼ごっこ5", "鬼ごっこ6"],
     },
     {
-      title: "3 Views",
-      tags: ["tag", "tag", "tag", "tag", "tag", "tag"],
+      title: "3 意見",
+      tags: ["鬼ごっこ1", "鬼ごっこ2", "鬼ごっこ3", "鬼ごっこ4", "鬼ごっこ5", "鬼ごっこ6"],
     },
     {
-      title: "5 領域",
-      tags: ["tag", "tag", "tag", "tag", "tag", "tag"],
+      title: "5 セグメント",
+      tags: ["鬼ごっこ1", "鬼ごっこ2", "鬼ごっこ3", "鬼ごっこ4", "鬼ごっこ5", "鬼ごっこ6"],
     },
     {
-      title: "10 Appearance",
-      tags: ["tag", "tag", "tag", "tag", "tag", "tag"],
+      title: "10 外観",
+      tags: ["鬼ごっこ1", "鬼ごっこ2", "鬼ごっこ3", "鬼ごっこ4", "鬼ごっこ5", "鬼ごっこ6"],
     },
   ],
   eventsList: [
