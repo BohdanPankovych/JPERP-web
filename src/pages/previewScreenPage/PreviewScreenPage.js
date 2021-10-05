@@ -100,7 +100,7 @@ const PreviewScreenPage = ({selectCreator, timeFilter, title, color, description
           description={description}
           selectCreator={selectCreator}
           selectedEvents={selectedEvents}
-          schoolName="school"
+          schoolName="日本標準こども園"
         />
       </Container>
 

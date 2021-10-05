@@ -129,14 +129,17 @@ const EditScreenPage = ({
 
     const history = useHistory()
 
+
+    const checkValidation = (items) => items.every(val => val.description.length > 0 && val.description.length <= 200);
+
     useEffect(() => {
-        if (title && description && selectCreator) {
+        if (title && description && selectCreator && description.length <= 200 && checkValidation(selectedEvents)) {
             setDisable(false)
         } else {
             setDisable(true)
         }
 
-    }, [title, description, selectCreator])
+    }, [title, description, selectCreator, selectedEvents])
 
     // console.log('selectedEvents', selectedEvents[0])
     useEffect(() => {
@@ -149,7 +152,7 @@ const EditScreenPage = ({
     };
 
     const onButtonClick = () => {
-        if (title && description && description.length <= 200) {
+        if (title && description ) {
             setShowError(false);
             history.push(FrontendRoutes.PREVIEW_LiST_PAGE)
         } else {

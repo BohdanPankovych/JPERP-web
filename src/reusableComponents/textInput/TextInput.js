@@ -42,7 +42,6 @@ const TextInput = ({
     };
 
     const onChangeHandler = (e) => {
-        console.log(errorText)
         changeValue(e.target.value);
     };
 

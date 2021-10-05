@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import {shareReportsActions} from "../../../data/redux/shareReports/shareReportsActions";
 import SharedScreenDialog from "../SharedScreenDialog";
 import {addEvent} from '../../../data/redux/eventsList/eventsListActions'
+import {setSelectedEvents} from "../../../data/redux/selectedEvents/selectedEventsActions";
 
 const mapStateToProps = state => ({
     description: state.shareReports.get("description"),
@@ -14,6 +15,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
     ...shareReportsActions,
+    setSelectedEvents,
     addEvent,
 };
 

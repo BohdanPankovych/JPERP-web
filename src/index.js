@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Root from "./pages/rootPage/Root";
+import RootContainer from "./pages/rootPage/container/RootContainer";
 import {Router} from "react-router-dom";
 import {Provider} from "react-redux";
 import CustomHistory from "./CustomHistory";
@@ -13,7 +13,7 @@ ReactDOM.render(
         <Provider store={store}>
             <React.StrictMode>
                 <ThemeProvider theme={theme}>
-                    <Root />
+                    <RootContainer />
                 </ThemeProvider>
             </React.StrictMode>
         </Provider>
