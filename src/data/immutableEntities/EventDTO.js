@@ -8,6 +8,8 @@ const EventDTO = new Immutable.Record({
     description: "",
     date: "",
     month: '',
+    day: '',
+    group: '',
   });
-  
+
   export default EventDTO;

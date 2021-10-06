@@ -1,7 +1,7 @@
 import React, {memo} from "react";
 import EventItem from './EventItem'
 
-const Event = ({ eventsList, monthSelect, yearSelect, handleChange, selectedCheckbox, disable}) => {
+const Event = ({ group, deleteEvent, parsedDay, eventsList, monthSelect, yearSelect, handleChange, selectedCheckbox, disable}) => {
     return (
         <>
             {eventsList.sort((a, b) => a - b).filter(f => {
@@ -14,8 +14,18 @@ const Event = ({ eventsList, monthSelect, yearSelect, handleChange, selectedChec
                     return y.date.includes(yearSelect)
                 }
                 return y
+            }).filter(d => {
+                if (parsedDay) {
+                    return d?.day.includes(parsedDay)
+                }
+                return d
+            }).filter(g => {
+                if (group) {
+                    return g?.group.includes(group)
+                }
+                return g
             }).map((e) => (
-                <EventItem item={e} disable={disable} handleChange={handleChange} selectedCheckbox={selectedCheckbox}/>
+                <EventItem deleteEvent={deleteEvent} item={e} disable={disable} handleChange={handleChange} selectedCheckbox={selectedCheckbox} eventsList={eventsList}/>
             ))}
         </>
 

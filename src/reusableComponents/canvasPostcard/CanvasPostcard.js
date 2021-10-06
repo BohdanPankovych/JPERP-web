@@ -3,7 +3,7 @@ import CanvasEventItem from './canvasItems/CanvasEventItem';
 import {Stage, Layer, Rect, Text, Circle} from 'react-konva';
 
 const CanvasPostcard = ({backgroundColor, selectedEvents, events, width, height, description, title, date, selectCreator, schoolName, reference}) => {
-    console.log('selectedEvents', selectedEvents)
+    // console.log('selectedEvents', selectedEvents)
     return (
         <Stage width={width} height={height} ref={reference}>
             <Layer>

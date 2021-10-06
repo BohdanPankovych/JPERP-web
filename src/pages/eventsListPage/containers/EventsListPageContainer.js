@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import {setEventsListData} from "../../../data/redux/eventsList/eventsListActions";
+import {deleteEvent, setEventsListData} from "../../../data/redux/eventsList/eventsListActions";
 import EventsListPage from "../EventsListPage";
 import {setSelectedEvents} from "../../../data/redux/selectedEvents/selectedEventsActions";
 
@@ -12,6 +12,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
     setEventsListData,
     setSelectedEvents,
+    deleteEvent,
 };
 
 const EventsListPageContainer = props => <EventsListPage {...props} />;

@@ -65,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const EventItem = ({item, disable, handleChange, selectedCheckbox}) => {
+const EventItem = ({deleteEvent, item, disable, handleChange, selectedCheckbox, eventsList}) => {
     const classes = useStyles();
 
     const [open, setOpen] = useState(false);
@@ -90,7 +90,7 @@ const EventItem = ({item, disable, handleChange, selectedCheckbox}) => {
     }, [selectedCheckbox, disable])
 
     return <>
-        <ModalDelete open={open} setOpen={setOpen}/>
+        <ModalDelete open={open} setOpen={setOpen} id={item.id} deleteEvent={deleteEvent} eventsList={eventsList}/>
         <div className={classes.event}>
             <div className={classes.image}>
                 <img className={classes.imgMain} src={item.img} alt=""/>
