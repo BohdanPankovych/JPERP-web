@@ -21,6 +21,9 @@ const useStyles = makeStyles((theme) => ({
         },
         width: "116px",
     },
+    test: {
+        height: '30px'
+    },
 }));
 const MonthSelect = ({disable, title, value, setValue}) => {
     const classes = useStyles();
@@ -39,8 +42,8 @@ const MonthSelect = ({disable, title, value, setValue}) => {
             value={value}
             onChange={handleChange}
         >
-            <MenuItem value={''}>
-                クリア
+            <MenuItem className={classes.test} value={''}>
+
             </MenuItem>
             <MenuItem value={'January'}>
                 一月

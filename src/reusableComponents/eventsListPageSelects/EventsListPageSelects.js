@@ -21,6 +21,9 @@ const useStyles = makeStyles((theme) => ({
         },
         width: "116px",
     },
+    test: {
+        height: '30px'
+    },
 }));
 const EventsListPageSelects = ({title, value, setValue, options}) => {
     const classes = useStyles();
@@ -39,7 +42,7 @@ const EventsListPageSelects = ({title, value, setValue, options}) => {
             onChange={handleChange}
         >
             {options?.map((option) => (
-                <MenuItem key={option} value={option}>
+                <MenuItem className={classes.test} key={option} value={option}>
                     {option}
                 </MenuItem>
             ))}
