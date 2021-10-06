@@ -9,6 +9,7 @@ import mockData from '../../data/mock/mockData'
 const Root = ({setEventsListData}) => {
 
     useEffect(()=>{
+        console.log("Root Page", mockData.eventsList);
         setEventsListData(mockData.eventsList);
     },[])
 
