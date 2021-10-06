@@ -34,6 +34,9 @@ const useStyles = makeStyles((theme) => ({
         "& .MuiOutlinedInput-input": {
             padding: "5px",
         },
+        "& p":{
+            fontSize: "0.5em",
+        },
         height: "100%",
         marginLeft: "7px",
         [theme.breakpoints.down('sm')]: {
@@ -75,12 +78,14 @@ const useStyles = makeStyles((theme) => ({
     },
     headerButton: {
         display: "flex",
-        alignItems: "flex-start",
+        justifyContent: "flex-start",
+        alignItems: "center",
+        flexDirection: "column",
         marginTop: "70px",
         [theme.breakpoints.down('sm')]: {
             marginTop: "20px",
             width: "100%",
-            justifyContent: "center",
+            alignItems: "center",
          },
     },
     button: {
@@ -103,6 +108,10 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down('sm')]: {
             alignItems: "center",
         },
+    },
+    notification:{
+        color: 'red',
+        fontSize: "12px"
     },
 }));
 
@@ -224,6 +233,7 @@ const EditScreenPage = ({
                     >
                         プレビューを確認
                     </Button>
+                    {disable && <p className={classes.notification}>すべての必須フィールドに入力します</p>}
                 </div>
             </div>
 
