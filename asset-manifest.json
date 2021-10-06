@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/JPERP-web/static/js/main.44ff83e9.chunk.js",
-    "main.js.map": "/JPERP-web/static/js/main.44ff83e9.chunk.js.map",
+    "main.js": "/JPERP-web/static/js/main.eb9b9bf1.chunk.js",
+    "main.js.map": "/JPERP-web/static/js/main.eb9b9bf1.chunk.js.map",
     "runtime-main.js": "/JPERP-web/static/js/runtime-main.d56239b6.js",
     "runtime-main.js.map": "/JPERP-web/static/js/runtime-main.d56239b6.js.map",
     "static/js/2.18863d0f.chunk.js": "/JPERP-web/static/js/2.18863d0f.chunk.js",
@@ -17,19 +17,15 @@
     "static/js/3.543c4241.chunk.js.LICENSE.txt": "/JPERP-web/static/js/3.543c4241.chunk.js.LICENSE.txt",
     "static/js/4.35f40035.chunk.js.LICENSE.txt": "/JPERP-web/static/js/4.35f40035.chunk.js.LICENSE.txt",
     "static/js/5.a3b43245.chunk.js.LICENSE.txt": "/JPERP-web/static/js/5.a3b43245.chunk.js.LICENSE.txt",
-    "static/media/casinoBL.2c52b586.jpg": "/JPERP-web/static/media/casinoBL.2c52b586.jpg",
     "static/media/img1.47682d7b.png": "/JPERP-web/static/media/img1.47682d7b.png",
     "static/media/img2.0bc9a818.png": "/JPERP-web/static/media/img2.0bc9a818.png",
     "static/media/img3.46d3e063.png": "/JPERP-web/static/media/img3.46d3e063.png",
     "static/media/img4.43d997c7.png": "/JPERP-web/static/media/img4.43d997c7.png",
-    "static/media/img5.73381e7b.png": "/JPERP-web/static/media/img5.73381e7b.png",
-    "static/media/mockImg.5ae9b1d4.jpg": "/JPERP-web/static/media/mockImg.5ae9b1d4.jpg",
-    "static/media/mockImg2.c19d1454.jpg": "/JPERP-web/static/media/mockImg2.c19d1454.jpg",
-    "static/media/vert.74ef76fe.jpg": "/JPERP-web/static/media/vert.74ef76fe.jpg"
+    "static/media/img5.73381e7b.png": "/JPERP-web/static/media/img5.73381e7b.png"
   },
   "entrypoints": [
     "static/js/runtime-main.d56239b6.js",
     "static/js/2.18863d0f.chunk.js",
-    "static/js/main.44ff83e9.chunk.js"
+    "static/js/main.eb9b9bf1.chunk.js"
   ]
 }
