@@ -159,6 +159,7 @@ const EventsListPage = ({selectedEvents, setSelectedEvents, eventsList, setEvent
                                     disabled={disableBtn} variant="contained" color="primary">
                                 簡単レポートを編集
                             </Button>
+                            {disableBtn ? (<p className={classes.fourReports}>※一度に選べるレポートは4点までです。</p>):(null)}
 
                         </div>
 
