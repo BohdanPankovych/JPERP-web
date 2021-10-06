@@ -1,10 +1,8 @@
 import React, { memo } from "react";
-import { TypeButton } from "../../../../data/constants/ButtonTypeColor";
 import { ListItem, ListItemText, Collapse, Box } from "@material-ui/core";
 import { ExpandMore, ExpandLess } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
-import SelectDestinationButton from "./SelectDestinationButton";
-import mockData from "../../../../data/mock/mockData";
+import SelectTagButton from "../../../../reusableComponents/button/SelectTagButton";
 
 const useStyles = makeStyles((theme) => ({
   tagsList: {
@@ -13,12 +11,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ShareDestinationItem = ({ tags, setDestination }) => {
-  console.log(tags);
+const ShareClassroomItem = ({ title, tags, ...props }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-
-  const [select, setSelect] = React.useState("");
+  const [selected, setSelected] = React.useState([]);
 
   const handleClick = () => {
     setOpen(!open);
@@ -27,26 +23,26 @@ const ShareDestinationItem = ({ tags, setDestination }) => {
   return (
     <>
       <ListItem button onClick={handleClick}>
-        <ListItemText primary={tags?.parent.name} />
+        <ListItemText primary={title} />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <Box className={classes.tagsList}>
-          {tags?.children.map((val) => (
-            <SelectDestinationButton
-              key={val.id}
-              onButtonClick={setSelect}
-              select={select}
-              color="primary"
-              setDestination={setDestination}
-            >
-              {val.name}
-            </SelectDestinationButton>
-          ))}
+          {tags &&
+            tags.map((val) => (
+              <SelectTagButton
+                key={val.parent.id}
+                setSelected={setSelected}
+                selected={selected}
+                {...props}
+              >
+                {val.parent.name}
+              </SelectTagButton>
+            ))}
         </Box>
       </Collapse>
     </>
   );
 };
 
-export default memo(ShareDestinationItem);
+export default memo(ShareClassroomItem);

@@ -1,10 +1,5 @@
 import React, { memo } from "react";
-import {
-  ListItem,
-  ListItemText,
-  Collapse,
-  Box,
-} from "@material-ui/core";
+import { ListItem, ListItemText, Collapse, Box } from "@material-ui/core";
 import { ExpandMore, ExpandLess } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 import SelectTagButton from "../../../reusableComponents/button/SelectTagButton";
@@ -33,9 +28,17 @@ const SharedScreenListItem = ({ title, tags, ...props }) => {
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <Box className={classes.tagsList}>
-          {tags && tags.map((val, index) => (
-            <SelectTagButton key={val + "_" + index} {...props} setSelected={setSelected} selected={selected}>{val}</SelectTagButton>
-          ))}
+          {tags &&
+            tags.map((val) => (
+              <SelectTagButton
+                key={val.id}
+                setSelected={setSelected}
+                selected={selected}
+                {...props}
+              >
+                {val.name}
+              </SelectTagButton>
+            ))}
         </Box>
       </Collapse>
     </>
