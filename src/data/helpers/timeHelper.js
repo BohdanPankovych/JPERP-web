@@ -6,6 +6,6 @@ export function dateToYMD(date, separator = "/") {
 }
 
 export function dateToD(date) {
-    const day = date?.getDate()
+    const day = date.getDate()
     return day
 }

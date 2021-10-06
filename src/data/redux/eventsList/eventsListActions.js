@@ -9,3 +9,8 @@ export const addEvent = event => ({
     type: EventsListActionTypes.ADD_EVENT,
     payload: { event },
 });
+
+export const deleteEvent = eventID => ({
+    type: EventsListActionTypes.DELETE_EVENT,
+    payload: { eventID },
+});

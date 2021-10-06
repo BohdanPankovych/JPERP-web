@@ -1,5 +1,5 @@
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import React, {memo} from "react";
+import React, {memo, useCallback} from "react";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -29,31 +29,41 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const ModalDelete = ({open, setOpen}) => {
+const ModalDelete = ({open, setOpen, id, eventsList, deleteEvent}) => {
     const classes = useStyles();
 
     const handleClose = () => {
         setOpen(false);
     };
 
+
+    const deleteItem = () => {
+        deleteEvent(id)
+        setOpen(false);
+    }
+
+
+
+    // console.log('item.id', id)
+
     return (
-            <Dialog
-                className={classes.dialog}
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description"
-            >
-                <DialogTitle id="alert-dialog-title">{"このイベントを削除しますか?"}</DialogTitle>
-                <DialogActions>
-                    <Button className={classes.btn} onClick={handleClose} variant="contained" color="primary">
-                        はい
-                    </Button>
-                    <Button className={classes.btn} onClick={handleClose} color="primary">
-                        キャンセル
-                    </Button>
-                </DialogActions>
-            </Dialog>
+        <Dialog
+            className={classes.dialog}
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+        >
+            <DialogTitle id="alert-dialog-title">{"このイベントを削除しますか?"}</DialogTitle>
+            <DialogActions>
+                <Button className={classes.btn} onClick={deleteItem} variant="contained" color="primary">
+                    はい
+                </Button>
+                <Button className={classes.btn} onClick={handleClose} color="primary">
+                    キャンセル
+                </Button>
+            </DialogActions>
+        </Dialog>
     );
 }
 

@@ -39,7 +39,9 @@ const MonthSelect = ({disable, title, value, setValue}) => {
             value={value}
             onChange={handleChange}
         >
-
+            <MenuItem value={''}>
+                クリア
+            </MenuItem>
             <MenuItem value={'January'}>
                 一月
             </MenuItem>

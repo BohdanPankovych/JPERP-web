@@ -3,6 +3,7 @@ import {DatePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import jaLocale from "date-fns/locale/ja";
 import {makeStyles} from "@material-ui/core/styles";
+import {dateToD} from "../../../data/helpers/timeHelper";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -18,6 +19,9 @@ const useStyles = makeStyles((theme) => ({
 const LocalisedDatePicker = ({disable, format, value, onChange}) => {
     const classes = useStyles();
     // console.log('date value', value)
+    // const onDayChange = (value) => {
+    //     onChange(dateToD(value))
+    // }
     return (
         <MuiPickersUtilsProvider utils={DateFnsUtils} locale={jaLocale}>
             <DatePicker

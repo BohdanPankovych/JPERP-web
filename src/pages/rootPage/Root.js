@@ -1,4 +1,4 @@
-import React, {memo, useEffect} from "react"
+import React, {memo, useEffect, useMemo} from "react"
 import {Route, Switch} from "react-router-dom";
 import FrontendRoutes from "../../data/constants/FrontendRoutes";
 import EventsListPageContainer from "../eventsListPage/containers/EventsListPageContainer";
@@ -6,7 +6,7 @@ import EditScreenPageContainer from "../editScreenPage/containers/EditScreenPage
 import PreviewScreenPageContainer from "../previewScreenPage/containers/PreviewScreenPageContainer";
 import mockData from '../../data/mock/mockData'
 
-const Root = ({setEventsListData}) => {
+const Root = ({eventsList, setEventsListData}) => {
 
     useEffect(()=>{
         console.log("Root Page", mockData.eventsList);
