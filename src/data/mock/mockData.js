@@ -1,8 +1,4 @@
-import mockImg from "./mockImg.jpg";
-import eventImg from "./eventImg.jpg";
-import mockImg2 from './mockImg2.jpg';
-import vert from './vert.jpg';
-import casinoBL from './casinoBL.jpg';
+import { TypeButton } from '../constants/ButtonTypeColor';
 import img1 from './img1.png';
 import img2 from './img2.png';
 import img3 from './img3.png';
@@ -11,24 +7,6 @@ import img5 from './img5.png';
 
 
 const mock = {
-  reportPage: [
-    {
-      img: mockImg,
-      text: "すテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入ります",
-    },
-    {
-      img: mockImg2,
-      text: "ますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入ります",
-    },
-    {
-      img: casinoBL,
-      text: "ますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入ります",
-    },
-    {
-      img: vert,
-      text: "ますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入ります",
-    },
-  ],
   creators: [
     {
       label: "橋本凛",
@@ -43,6 +21,25 @@ const mock = {
       value: "カヌー優子",
     },
   ],
+   destination: {
+     name: "共有先",
+     items: [{
+      text: "内部で共有する",
+      type: TypeButton.SHARE,
+    },
+    {
+        text: "保護者と共有する",
+        type: TypeButton.SHARE,
+    },
+    {
+        text: "緊急連絡先（内部）",
+        type: TypeButton.EMERGENCY,
+    },
+    {
+        text: "緊急連絡先（保護者）",
+        type: TypeButton.EMERGENCY,
+    },]
+   },
   sharedPageChildren: {
     title: "子供",
     classes: [
@@ -67,7 +64,7 @@ const mock = {
   sharedPage: [
     {
       title: "場所",
-      tags: ["保育室", "遊戯室", "給食室"],
+      tags: ["保育室", "遊戯室", "給食室", "事務室", "トイレ", "廊下", "階段", "園庭", "園外"],
     },
     {
       title: "3 つの視点",
@@ -75,11 +72,11 @@ const mock = {
     },
     {
       title: "5 領域",
-      tags: ["鬼ごっこ1", "鬼ごっこ2", "鬼ごっこ3", "鬼ごっこ4", "鬼ごっこ5", "鬼ごっこ6"],
+      tags: ["養護", "健康", "人間", "環境", "言葉", "表現"],
     },
     {
       title: "10 の姿",
-      tags: ["鬼ごっこ1", "鬼ごっこ2", "鬼ごっこ3", "鬼ごっこ4", "鬼ごっこ5", "鬼ごっこ6"],
+      tags: ["健康", "自立心", "協同性", "規範", "社会", "思考力", "自然", "数・文字", "言葉", "表現"],
     },
   ],
   eventsList: [

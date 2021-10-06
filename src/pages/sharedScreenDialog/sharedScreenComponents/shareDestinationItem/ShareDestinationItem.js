@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { TypeButton } from './ButtonTypeColor'
+import { TypeButton } from '../../../../data/constants/ButtonTypeColor'
 import {
     ListItem,
     ListItemText,
@@ -9,6 +9,7 @@ import {
 import { ExpandMore, ExpandLess } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 import SelectDestinationButton from "./SelectDestinationButton";
+import mockData from '../../../../data/mock/mockData'
 
 const useStyles = makeStyles((theme) => ({
     tagsList: {
@@ -16,26 +17,6 @@ const useStyles = makeStyles((theme) => ({
       margin: "5px 0",
     },
   }));
-
-
-const tags = [
-    {
-        text: "内部で共有する",
-        type: TypeButton.SHARE,
-    },
-    {
-        text: "両親と共有する",
-        type: TypeButton.SHARE,
-    },
-    {
-        text: "緊急連絡先（内部）",
-        type: TypeButton.EMERGENCY,
-    },
-    {
-        text: "緊急連絡先（親）",
-        type: TypeButton.EMERGENCY,
-    },
-];
 
 const ShareDestinationItem = ({ setDestination }) => {
   const classes = useStyles();
@@ -50,12 +31,12 @@ const ShareDestinationItem = ({ setDestination }) => {
     return (
         <>
           <ListItem button onClick={handleClick}>
-            <ListItemText primary="宛先を共有する" />
+            <ListItemText primary={mockData.destination.name} />
             {open ? <ExpandLess /> : <ExpandMore />}
           </ListItem>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box className={classes.tagsList}>
-              {tags.map((val, index) => (
+              {mockData.destination.items.map((val, index) => (
                 <SelectDestinationButton
                 key={val + "_" + index}
                 onButtonClick={setSelect}

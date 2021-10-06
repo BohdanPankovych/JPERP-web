@@ -174,7 +174,7 @@ const SharedScreenDialog = ({
     >
       <AppBar className={classes.appBar}>
         <Toolbar className={classes.toolBar}>
-          <Typography className={classes.text}>いくつかのテキスト</Typography>
+          <Typography className={classes.text}>簡単レポート</Typography>
           <IconButton
             className={classes.closeButton}
             edge="end"
@@ -217,7 +217,7 @@ const SharedScreenDialog = ({
 
           <Container className={classes.confirm}>
             <Switch value={approve} onChange={(e)=>setShareReportsApprove(e.target.checked)} />
-            <Typography>いくつかのテキスト</Typography>
+            <Typography>承認</Typography>
           </Container>
         </Box>
 
