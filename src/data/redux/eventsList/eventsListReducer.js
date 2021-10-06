@@ -14,7 +14,7 @@ const eventsListReducer = (state = defaultState, action) => {
         case EventsListActionTypes.SET_EVENTS:
             return state.set("events", toImmList(EventDTO)(action.payload.events));
         case EventsListActionTypes.ADD_EVENT:
-            const prevState =  state.get("events").concat(action.payload.event)
+            const prevState =  state.get("events").unshift(action.payload.event)
             return state.set("events", toImmList(EventDTO)(prevState));
 
         default:
