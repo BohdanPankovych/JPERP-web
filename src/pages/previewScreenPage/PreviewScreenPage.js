@@ -14,7 +14,6 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     width: "100%",
-    height: "80vh",
     display: "flex",
     justifyContent: "center",
   },
@@ -106,14 +105,14 @@ const PreviewScreenPage = ({selectCreator, timeFilter, title, color, description
 
       <Container className={classes.bottom}>
         <Box>
-          <Button
+          {/* <Button
             className={classes.button}
             variant="outlined"
             color="primary"
             onClick={handleClickOpen}
           >
             一時保存
-          </Button>
+          </Button> */}
           <Button className={classes.button} onClick={onSave} variant="outlined" color="primary">
             PDFで保存
           </Button>
