@@ -58,6 +58,7 @@ const ShareKidsItem = ({ tags, title, setTag }) => {
               return val.children.map((val) => (
                 <SelectTagButton
                   key={val.id}
+                  id={val.id}
                   setTag={setTag}
                   selected={selectedTags}
                   setSelected={setSelectedTags}

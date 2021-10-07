@@ -15,7 +15,7 @@ export const setShareReportsApprove = (approve) => ({
   payload: { approve },
 });
 
-export const setShareReportsTag = (tag) => ({
+export const setTextTag = (tag) => ({
   type: ShareReportsActionsTypes.SET_TAG,
   payload: { tag },
 });
@@ -40,13 +40,31 @@ export const addTag = (tag) => ({
   payload: { tag },
 });
 
+export const selectTagId = (tagId) => ({
+  type: ShareReportsActionsTypes.SELECT_TAG_ID,
+  payload: { tagId },
+});
+
+export const selectClassId = (classId) => ({
+  type: ShareReportsActionsTypes.SELECT_CLASS_ID,
+  payload: { classId },
+});
+
+export const selectChildId = (childId) => ({
+  type: ShareReportsActionsTypes.SELECT_CHILD_ID,
+  payload: { childId },
+});
+
 export const shareReportsActions = {
   setShareReportsImage,
   setShareReportsDescription,
   setShareReportsApprove,
-  setShareReportsTag,
+  setTextTag,
   setDestination,
   setChildTags,
   setGeneralTags,
   addTag,
+  selectTagId,
+  selectClassId,
+  selectChildId,
 };

@@ -24,7 +24,10 @@ const SharedScreenList = ({
   setDestination,
   setChildTags,
   setGeneralTags,
-  setShareReportsTag,
+  setTextTag,
+  selectTagId,
+  selectClassId,
+  selectChildId,
 }) => {
   const classes = useStyles();
   const [text, setText] = useState("");
@@ -53,14 +56,14 @@ const SharedScreenList = ({
         {clsChildTags && (
           <ShareClassroomItem
             title="クラス"
-            setTag={setShareReportsTag}
+            setTag={selectClassId}
             tags={clsChildTags}
           />
         )}
         {clsChildTags && (
           <ShareKidsItem
             title="子供"
-            setTag={setShareReportsTag}
+            setTag={selectChildId}
             tags={clsChildTags}
           />
         )}
@@ -69,7 +72,7 @@ const SharedScreenList = ({
             .slice(1) //remove destination section
             .map((val) => (
               <SharedScreenListItem
-                setTag={setShareReportsTag}
+                setTag={selectTagId}
                 key={val.parent.id}
                 title={val.parent.name}
                 tags={val.children}
@@ -77,7 +80,7 @@ const SharedScreenList = ({
             ))}
         <SharedScreenListItem
           title="都度設定"
-          setTag={setShareReportsTag}
+          setTag={setTextTag}
           color="secondary"
           tags={textTags}
         />

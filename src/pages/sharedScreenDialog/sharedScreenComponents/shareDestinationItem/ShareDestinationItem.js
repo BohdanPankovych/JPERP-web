@@ -1,10 +1,8 @@
 import React, { memo } from "react";
-import { TypeButton } from "../../../../data/constants/ButtonTypeColor";
 import { ListItem, ListItemText, Collapse, Box } from "@material-ui/core";
 import { ExpandMore, ExpandLess } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 import SelectDestinationButton from "./SelectDestinationButton";
-import mockData from "../../../../data/mock/mockData";
 
 const useStyles = makeStyles((theme) => ({
   tagsList: {
@@ -14,7 +12,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ShareDestinationItem = ({ tags, setDestination }) => {
-  console.log(tags);
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 

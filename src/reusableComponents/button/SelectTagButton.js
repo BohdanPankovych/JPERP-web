@@ -9,14 +9,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SelectTagButton = ({ children, onClick, className, setTag, selected, setSelected, ...props }) => {
+const SelectTagButton = ({
+  children,
+  id,
+  onClick,
+  className,
+  setTag,
+  selected,
+  setSelected,
+  ...props
+}) => {
   const classes = useStyles();
   const [select, setSelect] = React.useState(false);
 
   const onButtonClick = () => {
-    setTag(children);
-    !selected.includes(children) && setSelected(prev => [...prev, children]);
-    selected.includes(children) && setSelected(prev => prev.filter((val) => val !== children));
+    setTag(id);
+    !selected.includes(children) && setSelected((prev) => [...prev, children]);
+    selected.includes(children) &&
+      setSelected((prev) => prev.filter((val) => val !== children));
     // setSelect(!select);
   };
 
