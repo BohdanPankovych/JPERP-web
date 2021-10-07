@@ -5,12 +5,22 @@ import EventsListPageContainer from "../eventsListPage/containers/EventsListPage
 import EditScreenPageContainer from "../editScreenPage/containers/EditScreenPageContainer";
 import PreviewScreenPageContainer from "../previewScreenPage/containers/PreviewScreenPageContainer";
 import mockData from '../../data/mock/mockData'
+import {setGardenId} from "../../data/redux/common/commonActions";
+import API from "../../data/api/Api";
+import EventsMock from "../../data/mock/EventsMock";
 
-const Root = ({eventsList, setEventsListData}) => {
+const Root = ({eventsList, setEventsListData, setGardenId, gardenId}) => {
+
+    // useEffect(() => {
+    //     API.garden
+    //         .getGardenId()
+    //         .then((res) => console.log(res.data))
+    // }, []);
 
     useEffect(()=>{
-        console.log("Root Page", mockData.eventsList);
-        setEventsListData(mockData.eventsList);
+        setEventsListData(EventsMock);
+        console.log("Root Page", EventsMock);
+
     },[])
 
   return <>
