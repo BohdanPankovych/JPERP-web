@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
   img: {
     margin: "20px 10px 0",
-    
+
     width: "auto",
     height: "auto",
     maxWidth: "100px",
@@ -56,7 +56,7 @@ const EditScreenPageListItem = ({ data, showError, editSelectedEvents }) => {
   return (
     <div className={classes.root}>
       <div className={classes.imgContainer}>
-        <img className={classes.img} width="auto" height="100" alt="img" src={data.img} />
+        <img className={classes.img} width="auto" height="100" alt="img" src={data.docRec.mediaSha256} />
       </div>
       <div>
         <TextInput

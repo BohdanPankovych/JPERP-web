@@ -77,7 +77,7 @@ const EventItem = ({deleteEvent, item, disable, handleChange, selectedCheckbox, 
     const isChecked = (id) => {
         let check = false;
         for (let i = 0; i < selectedCheckbox.length; i++) {
-            if (selectedCheckbox[i].id === id) {
+            if (selectedCheckbox[i].docRec.id === id) {
                 check = true;
                 break;
             }
@@ -86,27 +86,27 @@ const EventItem = ({deleteEvent, item, disable, handleChange, selectedCheckbox, 
     }
 
     useEffect(() => {
-
+        console.log(selectedCheckbox)
     }, [selectedCheckbox, disable])
 
     return <>
-        <ModalDelete open={open} setOpen={setOpen} id={item.id} deleteEvent={deleteEvent} eventsList={eventsList}/>
+        <ModalDelete open={open} setOpen={setOpen} id={item.docRec.id} deleteEvent={deleteEvent} eventsList={eventsList}/>
         <div className={classes.event}>
             <div className={classes.image}>
-                <img className={classes.imgMain} src={item.img} alt=""/>
+                <img className={classes.imgMain} src={item.docRec.mediaSha256} alt=""/>
             </div>
             <div className={classes.imgDescriptionBlock}>
                 {/*<p className={classes.imgTitle}>{event.title}</p>*/}
-                <div className={classes.tagList}>{item.tagList.map(t => (
+                <div className={classes.tagList}>{item.tags.map(t => (
                     <div className={classes.tag}>{t}</div>))}</div>
 
-                <p className={classes.imgDescr}>{item.description}</p>
+                <p className={classes.imgDescr}>{item.docRec.comment}</p>
             </div>
             <div className={classes.checkbox}>
                 {/*{console.log(item.id, checked, checked ? false : disable)}*/}
                 <input onChange={() => handleChange(item)}
-                       selected={isChecked(item.id)} type="checkbox"
-                       disabled={isChecked(item.id) ? false : disable}
+                       selected={isChecked(item.docRec.id)} type="checkbox"
+                       disabled={isChecked(item.docRec.id) ? false : disable}
                     // disabled={selectedCheckbox.includes(e.id) && disable ? true: false}
                 />
                 <img onClick={deleteModal} className={classes.delete} src={deleteIcon} alt=""/>
