@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const PreviewScreenPage = ({selectCreator, timeFilter, title, color, description, selectedEvents, addEvent, setShareReportsImage}) => {
+const PreviewScreenPage = ({selectCreator, gardenName, timeFilter, title, color, description, selectedEvents, addEvent, setShareReportsImage}) => {
   const stageRef = useRef(null);
   const history = useHistory();
   const classes = useStyles();
@@ -59,7 +59,7 @@ const PreviewScreenPage = ({selectCreator, timeFilter, title, color, description
       0,
       0,
     );
-    pdf.save('report.pdf');
+    pdf.save(`${title}_report.pdf`);
   }
 
   const onTempSave = () => {
@@ -99,7 +99,7 @@ const PreviewScreenPage = ({selectCreator, timeFilter, title, color, description
           description={description}
           selectCreator={selectCreator}
           selectedEvents={selectedEvents}
-          schoolName="日本標準こども園"
+          schoolName={gardenName}
         />
       </Container>
 

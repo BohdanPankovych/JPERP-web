@@ -10,10 +10,13 @@ const defaultState = new Immutable.OrderedMap({
   description: "",
   approve: false,
   destination: "",
+
   clsChildTags: null,
   generalTags: null,
-  textTags: new Immutable.List([]), //tags that are added
+
   tags: new Immutable.List([]), //tags that are selected
+
+  textTags: new Immutable.List([]), //tags that are added
   tagIds: new Immutable.List([]), //selected tags
   clsIds: new Immutable.List([]), //selected class id
   childIds: new Immutable.List([]), //selected child id

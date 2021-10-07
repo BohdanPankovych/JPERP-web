@@ -46,11 +46,8 @@ const useStyles = makeStyles((theme) => ({
 const EditScreenPageListItem = ({ data, showError, editSelectedEvents }) => {
   const classes = useStyles();
 
-  // console.log('edit page', data)
-  // console.log("img", data.img?.naturalWidth)
-
   const onChange = (value) => {
-    editSelectedEvents( data.id, value);
+    editSelectedEvents( data.docRec.id, value);
   }
 
   return (
@@ -64,7 +61,7 @@ const EditScreenPageListItem = ({ data, showError, editSelectedEvents }) => {
           minRows="4"
           variant="outlined"
           className={classes.text}
-          value={data?.description}
+          value={data?.docRec.comment}
           onValueChange={onChange}
           showError={showError}
           validators={[required, notLong]}

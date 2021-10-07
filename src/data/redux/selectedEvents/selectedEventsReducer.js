@@ -16,8 +16,8 @@ const selectedEventsReducer = (state = defaultState, action) => {
         case SelectedEventsActionTypes.EDIT_EVENT:
             
             return state.update("selects", selects => selects.map(val => {
-                if(val.id === action.payload.eventId){
-                    return val.set("description", action.payload.eventDescription);
+                if(val.docRec.id === action.payload.eventId){
+                    return val.setIn(["docRec", "comment"], action.payload.eventDescription);
                 }else{
                     return val;
                 }

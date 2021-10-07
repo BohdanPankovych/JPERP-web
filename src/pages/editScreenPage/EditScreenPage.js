@@ -139,7 +139,7 @@ const EditScreenPage = ({
     const history = useHistory()
 
 
-    const checkValidation = (items) => items.every(val => val.description.length > 0 && val.description.length <= 200);
+    const checkValidation = (items) => items.every(val => val.docRec.comment.length > 0 && val.docRec.comment.length <= 200);
 
     useEffect(() => {
         if (title && description && selectCreator && description.length <= 200 && checkValidation(selectedEvents)) {

@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import Root from '../Root'
 import {setEventsListData} from "../../../data/redux/eventsList/eventsListActions";
-import {setGardenId} from "../../../data/redux/common/commonActions";
+import {CommonActions} from "../../../data/redux/common/commonActions";
 
 const mapStateToProps = state => ({
     eventsList: state.eventsList.get("events")?.toJS(),
@@ -11,7 +11,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
     setEventsListData,
-    setGardenId,
+    ...CommonActions,
 };
 
 const RootContainer = props => <Root {...props} />;

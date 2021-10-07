@@ -119,17 +119,17 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const SharedScreenDialog = ({
   open,
+  newEvent,
   destination,
   handleClose,
-  setShareReportsApprove,
   approve,
   description,
-  setShareReportsDescription,
-  tags,
   image,
-  setShareReportsImage,
-  setSelectedEvents,
   addEvent,
+  setShareReportsImage,
+  setShareReportsApprove,
+  setSelectedEvents,
+  setShareReportsDescription,
   setDestination,
 }) => {
   const classes = useStyles();
@@ -143,17 +143,13 @@ const SharedScreenDialog = ({
   };
 
   const onSave = () => {
+    console.log(image);
     if (description) {
       if (destination) {
         setShowError(false);
-        addEvent({
-          id: 284478378,
-          img: image,
-          title: "title",
-          tagList: tags,
-          description: description,
-          date: dateToYMD(new Date()),
-        });
+
+        addEvent(newEvent);
+
         setSelectedEvents([]);
         setDestination(null);
         history.push(FrontendRoutes.EVENTS_LIST_PAGE);
