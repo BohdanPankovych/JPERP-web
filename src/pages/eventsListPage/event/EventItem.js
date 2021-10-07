@@ -87,8 +87,8 @@ const EventItem = ({deleteEvent, item, disable, handleChange, selectedCheckbox, 
     }
 
     useEffect(() => {
-        console.log('selectedCheckbox', selectedCheckbox)
-        console.log('item', item)
+        // console.log('selectedCheckbox', selectedCheckbox)
+        // console.log('item', item)
     }, [selectedCheckbox, disable])
 
     return <>

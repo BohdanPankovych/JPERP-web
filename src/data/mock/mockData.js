@@ -8,16 +8,16 @@ import img5 from "./mockImg/img5.png";
 const mock = {
   creators: [
     {
-      label: "橋本凛",
-      value: "橋本凛",
+      id: "1",
+      name: "橋本凛",
     },
     {
-      label: "春野サクラ",
-      value: "春野サクラ",
+      id: "2",
+      name: "春野サクラ",
     },
     {
-      label: "カヌー優子",
-      value: "カヌー優子",
+      id: "3",
+      name: "カヌー優子",
     },
   ],
   destination: {

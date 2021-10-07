@@ -14,7 +14,6 @@ const CanvasPostcard = ({
   schoolName,
   reference,
 }) => {
-  console.log("selectedEvents", selectedEvents);
   return (
     <Stage width={width} height={height} ref={reference}>
       <Layer>
