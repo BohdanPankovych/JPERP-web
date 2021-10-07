@@ -197,6 +197,7 @@ const SharedScreenDialog = ({
               onChange={onUploadClick}
               id="contained-button-file"
               type="file"
+              accept=".jpg, .jpeg, .png"
             />
             <label htmlFor="contained-button-file">
               <Button className={classes.button} variant="outlined" color="primary"variant="contained" component="span">
