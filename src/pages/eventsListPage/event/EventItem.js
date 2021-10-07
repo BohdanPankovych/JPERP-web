@@ -75,6 +75,7 @@ const EventItem = ({deleteEvent, item, disable, handleChange, selectedCheckbox, 
     },[])
 
     const isChecked = (id) => {
+
         let check = false;
         for (let i = 0; i < selectedCheckbox.length; i++) {
             if (selectedCheckbox[i].docRec.id === id) {
@@ -86,7 +87,8 @@ const EventItem = ({deleteEvent, item, disable, handleChange, selectedCheckbox, 
     }
 
     useEffect(() => {
-        console.log(selectedCheckbox)
+        console.log('selectedCheckbox', selectedCheckbox)
+        console.log('item', item)
     }, [selectedCheckbox, disable])
 
     return <>

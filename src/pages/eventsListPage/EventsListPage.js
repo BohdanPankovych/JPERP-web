@@ -99,7 +99,7 @@ const EventsListPage = ({selectedEvents, setSelectedEvents, eventsList, deleteEv
         let exist = false;
         let index;
         for (let i = 0; i < selectedEvents.length; i++) {
-            if (selectedEvents[i].id === obj.id) {
+            if (selectedEvents[i].docRec.id === obj.docRec.id) {
                 exist = true;
                 index = i;
                 break;
