@@ -13,7 +13,7 @@ import Button from "@material-ui/core/Button";
 import {setSelectedEvents} from "../../data/redux/selectedEvents/selectedEventsActions";
 import {Link} from "react-router-dom";
 import FrontendRoutes from "../../data/constants/FrontendRoutes";
-import {dateToD, dateToYMD} from "../../data/helpers/timeHelper";
+import {dateToD, dateToY, dateToYMD} from "../../data/helpers/timeHelper";
 import jpMonths from "../../data/constants/JpMonths";
 import {MenuItem, TextField} from "@material-ui/core";
 import MonthSelect from "./monthSelect/MonthSelect";
@@ -128,6 +128,8 @@ const EventsListPage = ({selectedEvents, setSelectedEvents, eventsList, deleteEv
 
     // console.log('list', eventsList)
     useEffect(() => {
+        // console.log('yearSelect', yearSelect)
+
         if (daySelect) {
             setParsedDay(dateToD(daySelect))
         }
@@ -138,8 +140,8 @@ const EventsListPage = ({selectedEvents, setSelectedEvents, eventsList, deleteEv
         }
     }, [yearSelect, monthSelect, daySelect])
 
-
-    // console.log('day', parsedDay)
+    let testDate = eventsList.map(e => e.docRec.dateTime)
+    console.log('eventsList date', parsedDay)
     return (
         <>
             <div className={classes.underHeaderBlock}>
@@ -178,7 +180,8 @@ const EventsListPage = ({selectedEvents, setSelectedEvents, eventsList, deleteEv
                 </div>
             </div>
 
-            <Event eventsList={eventsList} group={group} monthSelect={monthSelect} parsedDay={parsedDay} deleteEvent={deleteEvent}
+            <Event eventsList={eventsList} group={group} monthSelect={monthSelect} parsedDay={parsedDay}
+                   deleteEvent={deleteEvent}
                    yearSelect={yearSelect} handleChange={handleChange} selectedCheckbox={selectedEvents}
                    disable={disable} setDisable={setDisable}/>
         </>
