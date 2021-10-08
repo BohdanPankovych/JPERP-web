@@ -1,5 +1,4 @@
 import React, { memo, useRef } from "react";
-import SharedScreenDialogContainer from "../sharedScreenDialog/containers/SharedScreenDialogContainer";
 import { Button, Container, Box, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import CanvasPostcard from "../../reusableComponents/canvasPostcard/CanvasPostcard";
@@ -48,20 +47,15 @@ const PreviewScreenPage = ({
   selectedEvents,
   addEvent,
   setShareReportsImage,
+  resetSelectedData
 }) => {
   const stageRef = useRef(null);
   const history = useHistory();
   const classes = useStyles();
-  //const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
     setShareReportsImage(stageRef.current.toDataURL({ pixelRatio: 1.5 }));
     showTagsDialog(true);
-    //setOpen(true);
-  };
-
-  const handleClose = () => {
-    //setOpen(false);
   };
 
   const onSave = () => {
@@ -71,6 +65,7 @@ const PreviewScreenPage = ({
   };
 
   const onTempSave = () => {
+    resetSelectedData();//reset data after send API
     history.push(FrontendRoutes.EVENTS_LIST_PAGE);
   };
 
@@ -131,7 +126,6 @@ const PreviewScreenPage = ({
           </Button>
         </Box>
       </Container>
-      {/* <SharedScreenDialogContainer open={open} handleClose={handleClose} /> */}
     </>
   );
 };

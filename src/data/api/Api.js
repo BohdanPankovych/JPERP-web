@@ -11,8 +11,8 @@ const API = {
         deleteEvent: (garden_id, event_id) => axios.delete(` /api/v1/Garden/${garden_id}/DocRec/${event_id}`)
     },
     editPage: {
-        getCreators: () => axios.get(' /api/v1/Staff/'),
-        getCreator: (user_id) => axios.get(`/api/v1/Usr/${user_id}`)
+        getCreatorsId: () => axios.get(' /api/v1/Staff/'),
+        getCreatorName: (user_id) => axios.get(`/api/v1/Usr/${user_id}`)
     },
     previewPage: {
         getTagList: (garden_id) => axios.get(` api/v1/Garden/${garden_id}/DocRec/tags`),

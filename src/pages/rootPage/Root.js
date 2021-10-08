@@ -7,7 +7,7 @@ import PreviewScreenPageContainer from "../previewScreenPage/containers/PreviewS
 import mockData from '../../data/mock/mockData'
 import API from "../../data/api/Api";
 import EventsMock from "../../data/mock/EventsMock";
-import SharedScreenDialog from '../sharedScreenDialog/SharedScreenDialog'
+import SharedScreenDialogContainer from '../sharedScreenDialog/containers/SharedScreenDialogContainer'
 
 const Root = ({eventsList, setEventsListData, isTagDialogShown, showTagsDialog, setGardenId, setGardenName, gardenId}) => {
 
@@ -43,7 +43,7 @@ const Root = ({eventsList, setEventsListData, isTagDialogShown, showTagsDialog, 
                   <PreviewScreenPageContainer />
               </Route>
           </Switch>
-          <SharedScreenDialog open={isTagDialogShown} handleClose={() => showTagsDialog(false)}/>
+          <SharedScreenDialogContainer open={isTagDialogShown} handleClose={() => showTagsDialog(false)}/>
   </>;
 };
 

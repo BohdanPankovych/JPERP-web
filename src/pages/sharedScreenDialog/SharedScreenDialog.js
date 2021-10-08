@@ -192,7 +192,7 @@ const SharedScreenDialog = ({
             {image != null ? (
               <img className={classes.imgPreview} src={image} alt="preview" />
             ) : (
-              <Typography>No Image</Typography>
+              <Typography>画像無し</Typography>
             )}
           </Container>
           <input

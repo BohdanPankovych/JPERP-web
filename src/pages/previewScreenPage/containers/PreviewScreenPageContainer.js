@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { setTimeFilter } from "../../../data/redux/common/commonActions";
 import { editReportsActions } from "../../../data/redux/editReports/editReportActions";
 import { addEvent } from "../../../data/redux/eventsList/eventsListActions";
-import { setSelectedEvents } from "../../../data/redux/selectedEvents/selectedEventsActions";
+import { setSelectedEvents, resetSelectedData } from "../../../data/redux/selectedEvents/selectedEventsActions";
 import { setShareReportsImage } from "../../../data/redux/shareReports/shareReportsActions";
 import { showTagsDialog } from "../../../data/redux/common/commonActions";
 import PreviewScreenPage from "../PreviewScreenPage";
@@ -24,6 +24,7 @@ const mapDispatchToProps = {
   addEvent,
   setShareReportsImage,
   showTagsDialog,
+  resetSelectedData,
   ...editReportsActions,
 };
 

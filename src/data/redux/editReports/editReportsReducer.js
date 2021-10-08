@@ -1,34 +1,25 @@
 import Immutable from "immutable";
 import EditReportsActionTypes from "./editReportsActionTypes";
-// import colors from "../../constants/Colors";
+import CreatorDTO from '../../immutableEntities/CreatorDTO'
+
+const toImmList = (model) => (arr) =>
+  new Immutable.List(arr.map((e) => new model(e)));
 
 const defaultState = new Immutable.OrderedMap({
   reports: new Immutable.List(),
   creators: new Immutable.List(),
-  // selectCreator: "",
-  // title: "",
-  // description: "",
-  // color: colors[0],
 });
 
 const editReportsReducer = (state = defaultState, action) => {
   switch (action.type) {
     case EditReportsActionTypes.SET_REPORTS:
-      return state.set("reports", new Immutable.List(action.payload.reports)); //DLETE
-
-    // case EditReportsActionTypes.SET_TITLE:
-    //   return state.set("title", action.payload.title);
-    // case EditReportsActionTypes.SET_COLOR:
-    //   return state.set("color", action.payload.color);
-    // case EditReportsActionTypes.SET_REPORT_COMMENT:
-    //   return state.set("description", action.payload.description);
-    // case EditReportsActionTypes.SELECT_CREATOR:
-    //   return state.set("selectCreator", action.payload.creator);
+      return state.set("reports", new Immutable.List(action.payload.reports)); //DELETE
 
     case EditReportsActionTypes.SET_CREATORS:
       return state.set("creators", new Immutable.List(action.payload.creators));
 
-    
+    case EditReportsActionTypes.ADD_CREATOR:
+      return state.update("creators", creators => toImmList(CreatorDTO)(creators.push(action.payload.creator))) 
 
     default:
       return state;

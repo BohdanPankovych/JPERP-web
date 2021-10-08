@@ -10,6 +10,7 @@ import TextInput from "../../reusableComponents/textInput/TextInput";
 import LocalisedDatePicker from "./editScreenPageComponents/LocalisedDatePicker";
 import FrontendRoutes from "../../data/constants/FrontendRoutes";
 import { useHistory } from "react-router-dom";
+import API from "../../data/api/Api";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -131,12 +132,29 @@ const EditScreenPage = ({
   setEditReportsComment,
   setSelectCreator,
   editSelectedEvents,
+  addCreator,
 }) => {
   const classes = useStyles();
   const [showError, setShowError] = React.useState(false);
   const [disable, setDisable] = useState(true);
 
   const history = useHistory();
+
+  useEffect(() => {
+    //Try to get all creators Name
+    // API.getCreatorsId()
+    //   .then((res) =>
+    //     res.data.map((val) =>
+    //       API.getCreatorName(val.usrId)
+    //         .then(res => addCreator({id: val.usrId, name: res.data.familyName}))
+    //         .catch((err) => console.error(err))
+    //     )
+    //   )
+    //   .catch((err) => console.error(err));
+
+    setEditReportsData(mock.reportPage);
+    setEditReportsCreators(mock.creators);
+  }, []);
 
   const checkValidation = (items) =>
     items.every(
@@ -156,11 +174,6 @@ const EditScreenPage = ({
       setDisable(true);
     }
   }, [title, description, selectCreator, selectedEvents]);
-
-  useEffect(() => {
-    setEditReportsData(mock.reportPage);
-    setEditReportsCreators(mock.creators);
-  }, []);
 
   const handleChange = (value) => {
     setSelectCreator(value);

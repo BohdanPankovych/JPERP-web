@@ -26,15 +26,6 @@ const EventDTO = new Immutable.Record({
     staffId: null,
     staffName: '',
     purchased: '',
-    // id: 0,
-    // img: null,
-    // title: "",
-    // tagList: [],
-    // description: "",
-    // date: "",
-    // month: '',
-    // day: '',
-    // group: '',
   });
 
   export default EventDTO;
