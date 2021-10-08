@@ -7,8 +7,9 @@ import PreviewScreenPageContainer from "../previewScreenPage/containers/PreviewS
 import mockData from '../../data/mock/mockData'
 import API from "../../data/api/Api";
 import EventsMock from "../../data/mock/EventsMock";
+import SharedScreenDialog from '../sharedScreenDialog/SharedScreenDialog'
 
-const Root = ({eventsList, setEventsListData, setGardenId, setGardenName, gardenId}) => {
+const Root = ({eventsList, setEventsListData, isTagDialogShown, showTagsDialog, setGardenId, setGardenName, gardenId}) => {
 
     // useEffect(() => {
     //     API.garden
@@ -34,6 +35,7 @@ const Root = ({eventsList, setEventsListData, setGardenId, setGardenName, garden
                   <PreviewScreenPageContainer />
               </Route>
           </Switch>
+          <SharedScreenDialog open={isTagDialogShown} handleClose={() => showTagsDialog(false)}/>
   </>;
 };
 

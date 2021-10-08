@@ -11,10 +11,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SharedScreenListItem = ({ title, tags, ...props }) => {
+const SharedScreenListItem = ({ title, selectedTags, tags, ...props }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const [selected, setSelected] = React.useState([]);
+ // const [selected, setSelected] = React.useState([]);
 
   const handleClick = () => {
     setOpen(!open);
@@ -33,8 +33,8 @@ const SharedScreenListItem = ({ title, tags, ...props }) => {
               <SelectTagButton
                 key={val.id || index}
                 id={val.id || val}
-                setSelected={setSelected}
-                selected={selected}
+                //setSelected={setSelected}
+                selected={selectedTags.includes(val.id || val)}
                 {...props}
               >
                 {val.name || val}

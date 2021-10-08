@@ -138,8 +138,12 @@ const SharedScreenDialog = ({
   const [openModalDialog, setOpenModalDialog] = React.useState(false);
 
   const onUploadClick = (event) => {
-    let img = event.target.files[0];
-    setShareReportsImage(URL.createObjectURL(img));
+    try{
+      let img = event.target.files[0];
+      setShareReportsImage(URL.createObjectURL(img));
+    }catch( error ){
+      console.error(error);
+    }
   };
 
   const onSave = () => {

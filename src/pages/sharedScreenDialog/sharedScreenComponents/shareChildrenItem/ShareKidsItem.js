@@ -17,13 +17,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ShareKidsItem = ({ tags, title, setTag }) => {
+const ShareKidsItem = ({ tags, selectedTags, title, setTag }) => {
   const classes = useStyles();
 
   const [open, setOpen] = React.useState(false);
   const [select, setSelect] = React.useState(null);
 
-  const [selectedTags, setSelectedTags] = React.useState([]);
+  //const [selectedTags, setSelectedTags] = React.useState([]);
 
   const handleClick = () => {
     setOpen(!open);
@@ -60,8 +60,8 @@ const ShareKidsItem = ({ tags, title, setTag }) => {
                   key={val.id}
                   id={val.id}
                   setTag={setTag}
-                  selected={selectedTags}
-                  setSelected={setSelectedTags}
+                  selected={selectedTags.includes(val.id)}
+                  //setSelected={setSelectedTags}
                 >
                   {val.name}
                 </SelectTagButton>

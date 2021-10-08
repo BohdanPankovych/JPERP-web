@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ShareClassroomItem = ({ title, tags, ...props }) => {
+const ShareClassroomItem = ({ title, selectedTags, tags, ...props }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [selected, setSelected] = React.useState([]);
@@ -34,7 +34,7 @@ const ShareClassroomItem = ({ title, tags, ...props }) => {
                 key={val.parent.id}
                 id={val.parent.id}
                 setSelected={setSelected}
-                selected={selected}
+                selected={selectedTags.includes(val.parent.id)}
                 {...props}
               >
                 {val.parent.name}
