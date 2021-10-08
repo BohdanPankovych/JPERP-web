@@ -17,7 +17,7 @@ const eventsListReducer = (state = defaultState, action) => {
             const prevState =  state.get("events").unshift(action.payload.event)
             return state.set("events", toImmList(EventDTO)(prevState));
         case EventsListActionTypes.DELETE_EVENT:
-            return state.update("events", events => events.filter(e => e.id !== action.payload.eventID))
+            return state.update("events", events => events.filter(e => e.docRec.id !== action.payload.eventID))
 
         default:
             return state;
