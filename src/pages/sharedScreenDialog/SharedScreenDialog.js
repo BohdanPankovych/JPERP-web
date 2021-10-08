@@ -17,12 +17,11 @@ import {
 } from "@material-ui/core";
 import SharedScreenListContainer from "./containers/SharedScreenListContainer";
 import TextInput from "../../reusableComponents/textInput/TextInput";
-import {dateToYMD} from '../../data/helpers/timeHelper'
-import { useHistory } from 'react-router-dom'
-import FrontendRoutes from '../../data/constants/FrontendRoutes'
+import { dateToYMD } from "../../data/helpers/timeHelper";
+import { useHistory } from "react-router-dom";
+import FrontendRoutes from "../../data/constants/FrontendRoutes";
 import { required } from "../../data/helpers/validators";
-import ModalDialog from './sharedScreenComponents/ModalDialog'
-
+import ModalDialog from "./sharedScreenComponents/ModalDialog";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -56,10 +55,10 @@ const useStyles = makeStyles((theme) => ({
     width: "30vw",
     padding: "15px",
   },
-  imgPreview:{
+  imgPreview: {
     width: "auto",
     height: "auto",
-    maxHeight: "20vh"
+    maxHeight: "20vh",
   },
   previewContainer: {
     backgroundColor: "white",
@@ -98,8 +97,9 @@ const useStyles = makeStyles((theme) => ({
     border: "1px solid #bdbdbd",
     borderRadius: "5px",
     width: "70vw",
-    height: "100%",
+    height: "fit-content",
     marginRight: "10px",
+    paddingBottom: "10px",
   },
   saveButton: {
     position: "absolute",
@@ -119,19 +119,19 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const SharedScreenDialog = ({
   open,
+  newEvent,
   destination,
   handleClose,
-  setShareReportsApprove,
   approve,
   description,
-  setShareReportsDescription,
-  tags,
   image,
-  setShareReportsImage,
-  setSelectedEvents,
   addEvent,
-  setDestination
- }) => {
+  setShareReportsImage,
+  setShareReportsApprove,
+  setSelectedEvents,
+  setShareReportsDescription,
+  setDestination,
+}) => {
   const classes = useStyles();
   const history = useHistory();
   const [showError, setShowError] = React.useState(false);
@@ -140,30 +140,26 @@ const SharedScreenDialog = ({
   const onUploadClick = (event) => {
     let img = event.target.files[0];
     setShareReportsImage(URL.createObjectURL(img));
-}
+  };
 
   const onSave = () => {
-    if(description){
-      if(destination){
+    console.log(image);
+    if (description) {
+      if (destination) {
         setShowError(false);
-        addEvent({
-          id: 284478378,
-          img: image,
-          title: "title",
-          tagList: tags,
-          description: description,
-          date: dateToYMD(new Date()),
-          });
-          setSelectedEvents([]);
-          setDestination(null);
-          history.push(FrontendRoutes.EVENTS_LIST_PAGE);
-      }else{
+
+        addEvent(newEvent);
+
+        setSelectedEvents([]);
+        setDestination(null);
+        history.push(FrontendRoutes.EVENTS_LIST_PAGE);
+      } else {
         setOpenModalDialog(true);
       }
-    }else{
+    } else {
       setShowError(true);
     }
-  }
+  };
 
   return (
     <Dialog
@@ -189,21 +185,30 @@ const SharedScreenDialog = ({
       <DialogContent className={classes.content}>
         <Box className={classes.leftSide}>
           <Container className={classes.previewContainer}>
-             {image != null ? <img className={classes.imgPreview} src={image} alt="preview"/>:<Typography>No Image</Typography>}
-
-            </Container>
-            <input
-              className={classes.input}
-              onChange={onUploadClick}
-              id="contained-button-file"
-              type="file"
-              accept=".jpg, .jpeg, .png"
-            />
-            <label htmlFor="contained-button-file">
-              <Button className={classes.button} variant="outlined" color="primary"variant="contained" component="span">
-                ファイルを選択します
-              </Button>
-            </label>
+            {image != null ? (
+              <img className={classes.imgPreview} src={image} alt="preview" />
+            ) : (
+              <Typography>No Image</Typography>
+            )}
+          </Container>
+          <input
+            className={classes.input}
+            onChange={onUploadClick}
+            id="contained-button-file"
+            type="file"
+            accept=".jpg, .jpeg, .png, .jfif"
+          />
+          <label htmlFor="contained-button-file">
+            <Button
+              className={classes.button}
+              variant="outlined"
+              color="primary"
+              variant="contained"
+              component="span"
+            >
+              ファイルを選択します
+            </Button>
+          </label>
 
           <TextInput
             className={classes.textAreaText}
@@ -217,21 +222,32 @@ const SharedScreenDialog = ({
           />
 
           <Container className={classes.confirm}>
-            <Switch value={approve} onChange={(e)=>setShareReportsApprove(e.target.checked)} />
+            <Switch
+              value={approve}
+              onChange={(e) => setShareReportsApprove(e.target.checked)}
+            />
             <Typography>承認</Typography>
           </Container>
         </Box>
 
         <Box className={classes.rightSide}>
-          <SharedScreenListContainer/>
+          <SharedScreenListContainer />
         </Box>
-
       </DialogContent>
 
-      <IconButton className={classes.saveButton} onClick={onSave} aria-label="save">
+      <IconButton
+        className={classes.saveButton}
+        onClick={onSave}
+        aria-label="save"
+      >
         <SaveIcon />
       </IconButton>
-      <ModalDialog open={openModalDialog} onClose={setOpenModalDialog} title="" text="宛先が選択されていません"/>
+      <ModalDialog
+        open={openModalDialog}
+        onClose={setOpenModalDialog}
+        title=""
+        text="宛先が選択されていません"
+      />
     </Dialog>
   );
 };

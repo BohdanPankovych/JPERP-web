@@ -1,16 +1,25 @@
-import React, {memo, useEffect, useMemo} from "react"
+import React, {memo, useEffect} from "react"
 import {Route, Switch} from "react-router-dom";
 import FrontendRoutes from "../../data/constants/FrontendRoutes";
 import EventsListPageContainer from "../eventsListPage/containers/EventsListPageContainer";
 import EditScreenPageContainer from "../editScreenPage/containers/EditScreenPageContainer";
 import PreviewScreenPageContainer from "../previewScreenPage/containers/PreviewScreenPageContainer";
 import mockData from '../../data/mock/mockData'
+import API from "../../data/api/Api";
+import EventsMock from "../../data/mock/EventsMock";
 
-const Root = ({eventsList, setEventsListData}) => {
+const Root = ({eventsList, setEventsListData, setGardenId, setGardenName, gardenId}) => {
+
+    // useEffect(() => {
+    //     API.garden
+    //         .getGardenId()
+    //         .then((res) => console.log(res.data))
+    // }, []);
 
     useEffect(()=>{
-        console.log("Root Page", mockData.eventsList);
-        setEventsListData(mockData.eventsList);
+        setGardenName("日本標準こども園");
+        setEventsListData(EventsMock);
+        console.log("Root Page", EventsMock);
     },[])
 
   return <>

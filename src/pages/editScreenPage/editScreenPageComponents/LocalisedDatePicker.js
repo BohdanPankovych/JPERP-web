@@ -16,25 +16,22 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const LocalisedDatePicker = ({disable, format, value, onChange}) => {
+const LocalisedDatePicker = ({ disable, format, value, onChange}) => {
     const classes = useStyles();
-    // console.log('date value', value)
-    // const onDayChange = (value) => {
-    //     onChange(dateToD(value))
-    // }
+
     return (
         <MuiPickersUtilsProvider utils={DateFnsUtils} locale={jaLocale}>
-            <DatePicker
-                disabled={disable}
-                autoOk
-                disableToolbar
-                className={classes.root}
-                variant="inline"
-                inputVariant="outlined"
-                value={value}
-                format={format}
-                onChange={onChange}
-            />
+                <DatePicker
+                    disabled={disable}
+                    autoOk
+                    disableToolbar
+                    className={classes.root}
+                    variant="inline"
+                    inputVariant="outlined"
+                    value={value}
+                    format={format}
+                    onChange={onChange}
+                />
         </MuiPickersUtilsProvider>
     );
 };

@@ -31,8 +31,8 @@ const MonthSelect = ({disable, title, value, setValue}) => {
 
     const handleChange = useCallback((e) => {
         setValue(e.target.value)
+        // console.log('monthSelect', value)
     }, [])
-
     return <>
         <TextField
             disabled={disable}
@@ -45,40 +45,40 @@ const MonthSelect = ({disable, title, value, setValue}) => {
             <MenuItem className={classes.test} value={''}>
 
             </MenuItem>
-            <MenuItem value={'January'}>
+            <MenuItem value={'01'}>
                 一月
             </MenuItem>
-            <MenuItem value={'February'}>
+            <MenuItem value={'02'}>
                 二月
             </MenuItem>
-            <MenuItem value={'March'}>
+            <MenuItem value={'03'}>
                 三月
             </MenuItem>
-            <MenuItem value={'April'}>
+            <MenuItem value={'04'}>
                 四月
             </MenuItem>
-            <MenuItem value={'May'}>
+            <MenuItem value={'05'}>
                 五月
             </MenuItem>
-            <MenuItem value={'June'}>
+            <MenuItem value={'06'}>
                 六月
             </MenuItem>
-            <MenuItem value={'July'}>
+            <MenuItem value={'07'}>
                 七月
             </MenuItem>
-            <MenuItem value={'August'}>
+            <MenuItem value={'08'}>
                 八月
             </MenuItem>
-            <MenuItem value={'September'}>
+            <MenuItem value={'09'}>
                 九月
             </MenuItem>
-            <MenuItem value={'Octover'}>
+            <MenuItem value={'10'}>
                 十月
             </MenuItem>
-            <MenuItem value={'November'}>
+            <MenuItem value={'11'}>
                 十一月
             </MenuItem>
-            <MenuItem value={'December'}>
+            <MenuItem value={'12'}>
                 十二月
             </MenuItem>
         </TextField>

@@ -10,6 +10,7 @@ import PreviewScreenPage from "../PreviewScreenPage";
 const mapStateToProps = state => ({
     selectCreator: state.reportsList.get("selectCreator"),
     timeFilter: state.common.get('timeFilter'),
+    gardenName: state.common.get('gardenName'),
     title: state.reportsList.get('title'),
     color: state.reportsList.get('color'),
     description: state.reportsList.get('description'),

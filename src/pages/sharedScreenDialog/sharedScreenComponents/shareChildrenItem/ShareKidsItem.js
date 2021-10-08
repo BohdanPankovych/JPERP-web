@@ -45,7 +45,7 @@ const ShareKidsItem = ({ tags, title, setTag }) => {
             tags.map((val) => (
               <Button
                 key={val.parent.id}
-                color={select === val.parent.name ? "primary" : ""}
+                color={select === val.parent.name ? "primary" : "default"}
                 onClick={() => onClassSelect(val.parent.name)}
               >
                 {val.parent.name}
@@ -58,6 +58,7 @@ const ShareKidsItem = ({ tags, title, setTag }) => {
               return val.children.map((val) => (
                 <SelectTagButton
                   key={val.id}
+                  id={val.id}
                   setTag={setTag}
                   selected={selectedTags}
                   setSelected={setSelectedTags}

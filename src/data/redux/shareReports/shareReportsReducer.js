@@ -10,10 +10,16 @@ const defaultState = new Immutable.OrderedMap({
   description: "",
   approve: false,
   destination: "",
+
   clsChildTags: null,
   generalTags: null,
-  textTags: new Immutable.List([]), //tags that are added
+
   tags: new Immutable.List([]), //tags that are selected
+
+  textTags: new Immutable.List([]), //tags that are added
+  tagIds: new Immutable.List([]), //selected tags
+  clsIds: new Immutable.List([]), //selected class id
+  childIds: new Immutable.List([]), //selected child id
 });
 
 const eventsListReducer = (state = defaultState, action) => {
@@ -40,7 +46,7 @@ const eventsListReducer = (state = defaultState, action) => {
 
     case ShareReportsActionsTypes.ADD_TAG:
       return state.update("textTags", (textTags) =>
-        textTags.push({ name: action.payload.tag })
+        textTags.push(action.payload.tag)
       );
 
     case ShareReportsActionsTypes.SET_TAG:
@@ -49,6 +55,33 @@ const eventsListReducer = (state = defaultState, action) => {
           return tags.filter((val) => val !== action.payload.tag);
         } else {
           return tags.push(action.payload.tag);
+        }
+      });
+
+    case ShareReportsActionsTypes.SELECT_TAG_ID:
+      return state.update("tagIds", (tags) => {
+        if (tags.includes(action.payload.tagId)) {
+          return tags.filter((val) => val !== action.payload.tagId);
+        } else {
+          return tags.push(action.payload.tagId);
+        }
+      });
+
+    case ShareReportsActionsTypes.SELECT_CLASS_ID:
+      return state.update("clsIds", (tags) => {
+        if (tags.includes(action.payload.classId)) {
+          return tags.filter((val) => val !== action.payload.classId);
+        } else {
+          return tags.push(action.payload.classId);
+        }
+      });
+
+    case ShareReportsActionsTypes.SELECT_CHILD_ID:
+      return state.update("childIds", (tags) => {
+        if (tags.includes(action.payload.childId)) {
+          return tags.filter((val) => val !== action.payload.childId);
+        } else {
+          return tags.push(action.payload.childId);
         }
       });
     default:

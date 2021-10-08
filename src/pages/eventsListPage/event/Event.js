@@ -1,30 +1,53 @@
 import React, {memo} from "react";
 import EventItem from './EventItem'
+import {dateToM} from "../../../data/helpers/timeHelper";
 
 const Event = ({ group, deleteEvent, parsedDay, eventsList, monthSelect, yearSelect, handleChange, selectedCheckbox, disable}) => {
     return (
         <>
-            {eventsList.sort((a, b) => a - b).filter(f => {
-                if (monthSelect) {
-                    return f.month.toLowerCase().includes(monthSelect.toLowerCase())
-                }
-                return f
-            }).filter(y => {
-                if (yearSelect) {
-                    return y.date.includes(yearSelect)
-                }
-                return y
-            }).filter(d => {
-                if (parsedDay) {
-                    return d?.day.includes(parsedDay)
-                }
-                return d
-            }).filter(g => {
-                if (group) {
-                    return g?.group.includes(group)
-                }
-                return g
-            }).map((e) => (
+            {eventsList.sort((a, b) => a - b)
+
+                // .filter(y => {
+            //     if (yearSelect) {
+            //         return y.date.includes(yearSelect)
+            //     }
+            //     return y
+            // }).filter(d => {
+            //     if (parsedDay) {
+            //         return d?.day.includes(parsedDay)
+            //     }
+            //     return d
+            // }).filter(g => {
+            //     if (group) {
+            //         return g?.group.includes(group)
+            //     }
+            //     return g
+            // })
+            //     .filter(g => {
+            //             if (group) {
+            //                 return g?.group.includes(group)
+            //             }
+            //             return g
+            //         })
+                .filter(d => {
+                    if (parsedDay) {
+                        return d.docRec.dateTime.includes(yearSelect + '/' + monthSelect + '/' + parsedDay)
+                    }
+                    return d
+                })
+                .filter(f => {
+                    if (monthSelect) {
+                        return f.docRec.dateTime.includes(yearSelect + '/' + monthSelect)
+                    }
+                    return f
+                })
+                .filter(y => {
+                        if (yearSelect) {
+                            return y.docRec.dateTime.includes(yearSelect)
+                        }
+                        return y
+                    })
+                .map((e) => (
                 <EventItem deleteEvent={deleteEvent} item={e} disable={disable} handleChange={handleChange} selectedCheckbox={selectedCheckbox} eventsList={eventsList}/>
             ))}
         </>

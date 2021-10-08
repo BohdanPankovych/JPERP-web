@@ -32,6 +32,7 @@ const ShareClassroomItem = ({ title, tags, ...props }) => {
             tags.map((val) => (
               <SelectTagButton
                 key={val.parent.id}
+                id={val.parent.id}
                 setSelected={setSelected}
                 selected={selected}
                 {...props}

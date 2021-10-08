@@ -1,11 +1,11 @@
 import Immutable from "immutable";
 import EditReportsActionTypes from "./editReportsActionTypes";
-import colors from '../../constants/Colors'
+import colors from "../../constants/Colors";
 
 const defaultState = new Immutable.OrderedMap({
   reports: new Immutable.List(),
   creators: new Immutable.List(),
-  selectCreator: "",
+  selectCreator: '',
   title: "",
   description: "",
   color: colors[0],

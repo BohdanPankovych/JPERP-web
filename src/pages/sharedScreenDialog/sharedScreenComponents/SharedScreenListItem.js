@@ -29,14 +29,15 @@ const SharedScreenListItem = ({ title, tags, ...props }) => {
       <Collapse in={open} timeout="auto" unmountOnExit>
         <Box className={classes.tagsList}>
           {tags &&
-            tags.map((val) => (
+            tags.map((val, index) => (
               <SelectTagButton
-                key={val.id}
+                key={val.id || index}
+                id={val.id || val}
                 setSelected={setSelected}
                 selected={selected}
                 {...props}
               >
-                {val.name}
+                {val.name || val}
               </SelectTagButton>
             ))}
         </Box>
