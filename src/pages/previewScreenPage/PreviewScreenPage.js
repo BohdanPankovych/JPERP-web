@@ -100,14 +100,14 @@ const PreviewScreenPage = ({
 
       <Container className={classes.bottom}>
         <Box>
-          <Button
+          {/* <Button
             className={classes.button}
             variant="outlined"
             color="primary"
             onClick={onTempSave}
           >
             一時保存
-          </Button>
+          </Button> */}
           <Button
             className={classes.button}
             onClick={onSave}

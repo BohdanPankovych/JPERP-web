@@ -142,18 +142,18 @@ const EditScreenPage = ({
 
   useEffect(() => {
     //Try to get all creators Name
-    // API.getCreatorsId()
-    //   .then((res) =>
-    //     res.data.map((val) =>
-    //       API.getCreatorName(val.usrId)
-    //         .then(res => addCreator({id: val.usrId, name: res.data.familyName}))
-    //         .catch((err) => console.error(err))
-    //     )
-    //   )
-    //   .catch((err) => console.error(err));
+    API.editPage.getCreatorsId()
+      .then((res) =>
+        res.data.map((val) =>
+          API.editPage.getCreatorName(val.usrId)
+            .then(res => addCreator({id: val.usrId, name: res.data.familyName}))
+            .catch((err) => console.error(err))
+        )
+      )
+      .catch((err) => console.error(err));
 
-    setEditReportsData(mock.reportPage);
-    setEditReportsCreators(mock.creators);
+    // setEditReportsData(mock.reportPage);
+    // setEditReportsCreators(mock.creators);
   }, []);
 
   const checkValidation = (items) =>

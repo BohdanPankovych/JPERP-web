@@ -9,7 +9,7 @@ import ThemeProvider from "@material-ui/styles/ThemeProvider";
 import theme from "./Theme";
 
 ReactDOM.render(
-    <Router basename="/JPERP-web" history={CustomHistory}>
+    <Router history={CustomHistory}>
         <Provider store={store}>
             <React.StrictMode>
                 <ThemeProvider theme={theme}>

@@ -7,7 +7,7 @@ const toImmList = (model) => (arr) =>
 
 const defaultState = new Immutable.OrderedMap({
     events: new Immutable.List(),
-    groups: '',
+    groups: [],
 });
 
 const eventsListReducer = (state = defaultState, action) => {

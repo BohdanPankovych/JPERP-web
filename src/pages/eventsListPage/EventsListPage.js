@@ -18,6 +18,8 @@ import jpMonths from "../../data/constants/JpMonths";
 import {MenuItem, TextField} from "@material-ui/core";
 import MonthSelect from "./monthSelect/MonthSelect";
 import groups from "../../data/constants/Groups";
+import Api from '../../data/api/Api'
+
 
 const useStyles = makeStyles((theme) => ({
     underHeaderBlock: {
@@ -67,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const EventsListPage = ({selectedEvents,gardenGroups, setGardenGroups, setSelectedEvents, eventsList, deleteEvent, addSelectedEvent, removeSelectedEvent, setEventsListData}) => {
+const EventsListPage = ({selectedEvents, gardenGroups, setGardenGroups, setSelectedEvents, eventsList, deleteEvent, addSelectedEvent, removeSelectedEvent, setEventsListData}) => {
     const classes = useStyles();
     const [group, setGroup] = useState('')
     const [monthSelect, setMonthSelect] = useState('');
@@ -79,9 +81,16 @@ const EventsListPage = ({selectedEvents,gardenGroups, setGardenGroups, setSelect
     const [disableBtn, setDisableBtn] = useState(true)
     const [disableDay, setDisableDay] = useState(true)
 
-    // useEffect(() => {
-    //     setEventsListData(mock.eventsList)
-    // }, []);
+    useEffect(() => {
+        Api.eventsList.getClasses().then((res)=>{
+            let groups = [];
+            res.data.map(val=>{
+                groups.push(val.name);
+            });
+            setGardenGroups(groups);
+        }).catch((err)=>console.log(err))
+       // setEventsListData(mock.eventsList)
+    }, []);
     //console.log("Selected", selectedEvents);
 
     const handleChange = (obj) => {
@@ -134,7 +143,7 @@ const EventsListPage = ({selectedEvents,gardenGroups, setGardenGroups, setSelect
                 <EasyReportPageTitles/>
                 <div className={classes.flex}>
                     <div className={classes.selects}>
-                        <EasyReportPageSelect title={'組'} options={groups} value={group} setValue={setGroup}/>
+                        <EasyReportPageSelect title={'組'} options={gardenGroups} value={group} setValue={setGroup}/>
                         <EasyReportPageSelect title={'年'} options={year} value={yearSelect} setValue={setYearSelect}/>
                         {/*<EasyReportPageSelect title={'月'} options={month} value={monthSelect}*/}
                         {/*                      setValue={setMonthSelect}/>*/}

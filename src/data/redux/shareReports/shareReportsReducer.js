@@ -44,11 +44,6 @@ const eventsListReducer = (state = defaultState, action) => {
         toImmList(TagListDTO)(action.payload.tags)
       );
 
-    // case ShareReportsActionsTypes.ADD_TAG:
-    //   return state.update("textTags", (textTags) =>
-    //     textTags.push(action.payload.tag)
-    //   );
-
     case ShareReportsActionsTypes.SET_TAG:
       return state.update("tags", (tags) => {
         if (tags.includes(action.payload.tag)) {
@@ -57,33 +52,6 @@ const eventsListReducer = (state = defaultState, action) => {
           return tags.push(action.payload.tag);
         }
       });
-
-    // case ShareReportsActionsTypes.SELECT_TAG_ID:
-    //   return state.update("tagIds", (tags) => {
-    //     if (tags.includes(action.payload.tagId)) {
-    //       return tags.filter((val) => val !== action.payload.tagId);
-    //     } else {
-    //       return tags.push(action.payload.tagId);
-    //     }
-    //   });
-
-    // case ShareReportsActionsTypes.SELECT_CLASS_ID:
-    //   return state.update("clsIds", (tags) => {
-    //     if (tags.includes(action.payload.classId)) {
-    //       return tags.filter((val) => val !== action.payload.classId);
-    //     } else {
-    //       return tags.push(action.payload.classId);
-    //     }
-    //   });
-
-    // case ShareReportsActionsTypes.SELECT_CHILD_ID:
-    //   return state.update("childIds", (tags) => {
-    //     if (tags.includes(action.payload.childId)) {
-    //       return tags.filter((val) => val !== action.payload.childId);
-    //     } else {
-    //       return tags.push(action.payload.childId);
-    //     }
-    //   });
     default:
       return state;
   }

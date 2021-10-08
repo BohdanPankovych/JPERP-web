@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { shareReportsActions } from "../../../data/redux/shareReports/shareReportsActions";
 import SharedScreenDialog from "../SharedScreenDialog";
 import { addEvent } from "../../../data/redux/eventsList/eventsListActions";
-import { setSelectedEvents } from "../../../data/redux/selectedEvents/selectedEventsActions";
+import { setSelectedEvents,resetSelectedData  } from "../../../data/redux/selectedEvents/selectedEventsActions";
 
 const mapStateToProps = (state) => ({
   description: state.shareReports.get("description"),
@@ -11,6 +11,13 @@ const mapStateToProps = (state) => ({
   approve: state.shareReports.get("approve"),
   destination: state.shareReports.get("destination"),
   tags: state.shareReports.get("tags"),
+  gardenId: state.common.get("gardenId"),
+
+  tagIds: state.selectedEvents.get("tagIds")?.toJS(),
+  textTags: state.selectedEvents.get("textTags")?.toJS(),
+  clsIds: state.selectedEvents.get("clsIds")?.toJS(),
+  childIds: state.selectedEvents.get("childIds")?.toJS(),
+
   newEvent: {
     //DELETE IT IN FURURE
     docRec: {
@@ -30,10 +37,10 @@ const mapStateToProps = (state) => ({
     },
     maybeAdminTag: [],
     maybeAppliTag: [],
-    tags: state.shareReports.get("tagIds")?.toJS(),
-    textTags: state.shareReports.get("textTags")?.toJS(),
-    clsTags: state.shareReports.get("clsIds")?.toJS(),
-    childTags: state.shareReports.get("childIds")?.toJS(),
+    tags: state.selectedEvents.get("tagIds")?.toJS(),
+    textTags: state.selectedEvents.get("textTags")?.toJS(),
+    clsTags: state.selectedEvents.get("clsIds")?.toJS(),
+    childTags: state.selectedEvents.get("childIds")?.toJS(),
     staffId: null,
     staffName: "",
     purchased: "",
@@ -43,6 +50,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   ...shareReportsActions,
   setSelectedEvents,
+  resetSelectedData,
   addEvent,
 };
 

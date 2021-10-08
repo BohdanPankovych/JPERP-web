@@ -10,12 +10,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const SelectDestinationButton = ({select, onButtonClick, children, className, setDestination, ...props}) => {
+const SelectDestinationButton = ({select, tagKind, onButtonClick, children, className, setDestination, ...props}) => {
     const classes = useStyles();
 
     const onClick = () => {
         onButtonClick(children);
-        setDestination(children);
+        setDestination(tagKind);
     }
 
     return (

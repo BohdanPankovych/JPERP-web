@@ -35,26 +35,6 @@ export const setGeneralTags = (tags) => ({
   payload: { tags },
 });
 
-// export const addTag = (tag) => ({
-//   type: ShareReportsActionsTypes.ADD_TAG,
-//   payload: { tag },
-// });
-
-// export const selectTagId = (tagId) => ({
-//   type: ShareReportsActionsTypes.SELECT_TAG_ID,
-//   payload: { tagId },
-// });
-
-// export const selectClassId = (classId) => ({
-//   type: ShareReportsActionsTypes.SELECT_CLASS_ID,
-//   payload: { classId },
-// });
-
-// export const selectChildId = (childId) => ({
-//   type: ShareReportsActionsTypes.SELECT_CHILD_ID,
-//   payload: { childId },
-// });
-
 export const shareReportsActions = {
   setShareReportsImage,
   setShareReportsDescription,
@@ -63,8 +43,4 @@ export const shareReportsActions = {
   setDestination,
   setChildTags,
   setGeneralTags,
-  // addTag,
-  // selectTagId,
-  // selectClassId,
-  // selectChildId,
 };

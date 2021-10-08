@@ -9,7 +9,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { generalTagsMock } from "../../../data/mock/generalTagsMock";
 import { clsChildTagsMock } from "../../../data/mock/clsChildTagsMock";
 
-import Api from "../../../data/api/Api";
+import API from "../../../data/api/Api";
 
 const useStyles = makeStyles((theme) => ({
   textInput: {
@@ -39,15 +39,15 @@ const SharedScreenList = ({
   const [text, setText] = useState("");
 
   React.useEffect(() => {
-    // Api.getTagList(gardenId)
-    //   .then((res) => {
-    //     setChildTags(res.data.clsChildTags);
-    //     setGeneralTags(res.data.generalTags);
-    //   })
-    //   .catch((err) => console.log(err));
+    API.previewPage.getTagList(gardenId)
+      .then((res) => {
+        setChildTags(res.data.clsChildTags);
+        setGeneralTags(res.data.generalTags);
+      })
+      .catch((err) => console.error(err));
 
-    setChildTags(clsChildTagsMock);//MOCK DATA
-    setGeneralTags(generalTagsMock);
+    // setChildTags(clsChildTagsMock);//MOCK DATA
+    // setGeneralTags(generalTagsMock);
   }, []);
 
   const onEnterPress = (e) => {

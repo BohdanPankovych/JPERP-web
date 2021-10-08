@@ -22,6 +22,7 @@ import { useHistory } from "react-router-dom";
 import FrontendRoutes from "../../data/constants/FrontendRoutes";
 import { required } from "../../data/helpers/validators";
 import ModalDialog from "./sharedScreenComponents/ModalDialog";
+import API from '../../data/api/Api';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -131,6 +132,13 @@ const SharedScreenDialog = ({
   setSelectedEvents,
   setShareReportsDescription,
   setDestination,
+  gardenId,
+  resetSelectedData,
+
+  clsIds,
+  childIds,
+  textTags,
+  tagIds,
 }) => {
   const classes = useStyles();
   const history = useHistory();
@@ -147,16 +155,22 @@ const SharedScreenDialog = ({
   };
 
   const onSave = () => {
-    console.log(image);
     if (description) {
       if (destination) {
         setShowError(false);
-
-        addEvent(newEvent);
-
-        setSelectedEvents([]);
-        setDestination(null);
-        history.push(FrontendRoutes.EVENTS_LIST_PAGE);
+        API.sharedDialog.sendReport(gardenId, {
+          comment: description,
+          tagIds,
+          clsIds,
+          childIds,
+          textTags,
+          tagKind: destination,
+        }).then((res)=>{
+          addEvent(newEvent);
+          resetSelectedData();
+          setDestination(null);
+          history.push(FrontendRoutes.EVENTS_LIST_PAGE);
+        }).catch((err) => console.error(err))
       } else {
         setOpenModalDialog(true);
       }
