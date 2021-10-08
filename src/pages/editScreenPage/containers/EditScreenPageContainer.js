@@ -3,18 +3,19 @@ import {connect} from "react-redux";
 import EditScreenPage from "../EditScreenPage";
 import {setTimeFilter} from "../../../data/redux/common/commonActions";
 import {editReportsActions} from "../../../data/redux/editReports/editReportActions";
+import {selectedEventsActions} from '../../../data/redux/selectedEvents/selectedEventsActions'
 import {setSelectedEvents, editSelectedEvents} from "../../../data/redux/selectedEvents/selectedEventsActions";
 
 const mapStateToProps = state => ({
     reportsList: state.reportsList.get("reports")?.toJS(),
-    selectCreator: state.reportsList.get("selectCreator"),
+    selectedEvents: state.selectedEvents.get('selects')?.toJS(),
     creators: state.reportsList.get("creators")?.toJS(),
     timeFilter: state.common.get('timeFilter').toJS(),
-    title: state.reportsList.get('title'),
-    color: state.reportsList.get('color'),
-    description: state.reportsList.get('description'),
-    selectedEvents: state.selectedEvents.get('selects')?.toJS(),
 
+    title: state.selectedEvents.get('title'),
+    color: state.selectedEvents.get('color'),
+    description: state.selectedEvents.get('description'),
+    selectCreator: state.selectedEvents.get("selectCreator"),
 });
 
 const mapDispatchToProps = {
@@ -22,6 +23,7 @@ const mapDispatchToProps = {
     setSelectedEvents,
     editSelectedEvents,
     ...editReportsActions,
+    ...selectedEventsActions,
 };
 
 const EditScreenPageContainer = props => <EditScreenPage {...props} />;

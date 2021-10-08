@@ -20,9 +20,62 @@ export const removeSelectedEvent = (eventID) => ({
     payload: { eventID },
 });
 
+export const addTag = (tag) => ({
+    type: SelectedEventsActionTypes.ADD_TAG,
+    payload: { tag },
+  });
+  
+  export const selectTagId = (tagId) => ({
+    type: SelectedEventsActionTypes.SELECT_TAG_ID,
+    payload: { tagId },
+  });
+  
+  export const selectClassId = (classId) => ({
+    type: SelectedEventsActionTypes.SELECT_CLASS_ID,
+    payload: { classId },
+  });
+  
+  export const selectChildId = (childId) => ({
+    type: SelectedEventsActionTypes.SELECT_CHILD_ID,
+    payload: { childId },
+  });
+
+  export const setEditReportsTitle = (title) => ({
+    type: SelectedEventsActionTypes.SET_TITLE,
+    payload: { title },
+  });
+  
+  export const setEditReportsColor = (color) => ({
+    type: SelectedEventsActionTypes.SET_COLOR,
+    payload: { color },
+  });
+  
+  export const setEditReportsComment = (description) => ({
+    type: SelectedEventsActionTypes.SET_REPORT_COMMENT,
+    payload: { description },
+  });
+
+  export const setSelectCreator = (creator) => ({
+    type: SelectedEventsActionTypes.SELECT_CREATOR,
+    payload: { creator },
+  });
+
+  export const resetSelectedData = () => ({
+    type: SelectedEventsActionTypes.RESET_SELECTED_DATA,
+  })
+
 export const selectedEventsActions = {
     setSelectedEvents,
     editSelectedEvents,
     addSelectedEvent,
     removeSelectedEvent,
+    addTag,
+    selectTagId,
+    selectClassId,
+    selectChildId,
+    setEditReportsTitle,
+    setEditReportsColor,
+    setEditReportsComment,
+    setSelectCreator,
+    resetSelectedData
 }

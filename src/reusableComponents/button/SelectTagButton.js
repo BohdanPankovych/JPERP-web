@@ -24,16 +24,16 @@ const SelectTagButton = ({
 
   const onButtonClick = () => {
     setTag(id);
-    !selected.includes(children) && setSelected((prev) => [...prev, children]);
-    selected.includes(children) &&
-      setSelected((prev) => prev.filter((val) => val !== children));
-    // setSelect(!select);
+    // !selected.includes(children) && setSelected((prev) => [...prev, children]);
+    // selected.includes(children) &&
+    //   setSelected((prev) => prev.filter((val) => val !== children));
+    // // setSelect(!select);
   };
 
   return (
     <Button
       className={classes.root + " " + className}
-      variant={selected.includes(children) ? "contained" : "outlined"}
+      variant={selected ? "contained" : "outlined"}
       onClick={onButtonClick}
       color="primary"
       {...props}

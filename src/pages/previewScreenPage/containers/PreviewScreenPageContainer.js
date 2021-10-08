@@ -5,16 +5,16 @@ import {editReportsActions} from "../../../data/redux/editReports/editReportActi
 import {addEvent} from '../../../data/redux/eventsList/eventsListActions'
 import {setSelectedEvents} from "../../../data/redux/selectedEvents/selectedEventsActions";
 import {setShareReportsImage} from '../../../data/redux/shareReports/shareReportsActions';
+import {showTagsDialog} from '../../../data/redux/common/commonActions'
 import PreviewScreenPage from "../PreviewScreenPage";
 
 const mapStateToProps = state => ({
-    selectCreator: state.reportsList.get("selectCreator"),
     timeFilter: state.common.get('timeFilter'),
     gardenName: state.common.get('gardenName'),
-    title: state.reportsList.get('title'),
-    color: state.reportsList.get('color'),
-    description: state.reportsList.get('description'),
-    selectCreator: state.reportsList.get('selectCreator'),
+    title: state.selectedEvents.get('title'),
+    color: state.selectedEvents.get('color'),
+    description: state.selectedEvents.get('description'),
+    selectCreator: state.selectedEvents.get('selectCreator'),
     selectedEvents: state.selectedEvents.get('selects')?.toJS(),
 });
 
@@ -23,6 +23,7 @@ const mapDispatchToProps = {
     setSelectedEvents,
     addEvent,
     setShareReportsImage,
+    showTagsDialog,
     ...editReportsActions,
 };
 

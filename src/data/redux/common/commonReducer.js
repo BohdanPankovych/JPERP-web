@@ -7,6 +7,7 @@ const defaultState = new Immutable.OrderedMap({
     timeFilter: new TimeFilter(),
     gardenId: '',
     gardenName: '',
+    isTagDialogShown: false,
 });
 
 const commonReducer = (state = defaultState, action) => {
@@ -19,6 +20,9 @@ const commonReducer = (state = defaultState, action) => {
         
         case CommonActionTypes.SET_GARDEN_NAME:
             return state.set("gardenName", action.payload.gardenName);
+
+        case CommonActionTypes.SHOW_TAGS_DIALOG:
+            return state.set("isTagDialogShown", action.payload.isShown);
 
         default:
             return state;

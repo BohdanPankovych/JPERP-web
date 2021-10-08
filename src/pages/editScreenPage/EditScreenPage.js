@@ -128,7 +128,7 @@ const EditScreenPage = ({
   setEditReportsData,
   setEditReportsTitle,
   setEditReportsColor,
-  setEditReportsDescription,
+  setEditReportsComment,
   setSelectCreator,
   editSelectedEvents,
 }) => {
@@ -272,7 +272,7 @@ const EditScreenPage = ({
             showError={showError}
             variant="outlined"
             value={description}
-            onValueChange={setEditReportsDescription}
+            onValueChange={setEditReportsComment}
             validators={[required, notLong]}
           />
         </div>

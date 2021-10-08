@@ -16,8 +16,14 @@ export const setGardenName = gardenName => ({
     payload: {gardenName}
 });
 
+export const showTagsDialog = (isShown) => ({
+    type: CommonActionTypes.SHOW_TAGS_DIALOG,
+    payload: {isShown},
+})
+
 export const CommonActions = {
     setTimeFilter,
     setGardenId,
-    setGardenName
+    setGardenName,
+    showTagsDialog
 }

@@ -37,19 +37,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const PreviewScreenPage = ({selectCreator, gardenName, timeFilter, title, color, description, selectedEvents, addEvent, setShareReportsImage}) => {
+const PreviewScreenPage = ({selectCreator, showTagsDialog, gardenName, timeFilter, title, color, description, selectedEvents, addEvent, setShareReportsImage}) => {
   const stageRef = useRef(null);
   const history = useHistory();
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+  //const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
     setShareReportsImage(stageRef.current.toDataURL({ pixelRatio: 1.5 }));
-    setOpen(true);
+    showTagsDialog(true);
+    //setOpen(true);
   };
 
   const handleClose = () => {
-    setOpen(false);
+    //setOpen(false);
   };
 
   const onSave = () => {
@@ -63,14 +64,7 @@ const PreviewScreenPage = ({selectCreator, gardenName, timeFilter, title, color,
   }
 
   const onTempSave = () => {
-    addEvent({
-    id: 284478378,
-    img: null,
-    title: title,
-    tagList: [],
-    description: description,
-    date: timeFilter,
-    })
+  
     history.push(FrontendRoutes.EVENTS_LIST_PAGE)
   }
 
@@ -105,14 +99,14 @@ const PreviewScreenPage = ({selectCreator, gardenName, timeFilter, title, color,
 
       <Container className={classes.bottom}>
         <Box>
-          {/* <Button
+          <Button
             className={classes.button}
             variant="outlined"
             color="primary"
-            onClick={handleClickOpen}
+            onClick={onTempSave}
           >
             一時保存
-          </Button> */}
+          </Button>
           <Button className={classes.button} onClick={onSave} variant="outlined" color="primary">
             PDFで保存
           </Button>
@@ -126,7 +120,7 @@ const PreviewScreenPage = ({selectCreator, gardenName, timeFilter, title, color,
           </Button>
         </Box>
       </Container>
-      <SharedScreenDialogContainer open={open} handleClose={handleClose} />
+      {/* <SharedScreenDialogContainer open={open} handleClose={handleClose} /> */}
     </>
   );
 };
