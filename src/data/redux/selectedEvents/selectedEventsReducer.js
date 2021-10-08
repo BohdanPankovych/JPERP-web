@@ -13,8 +13,13 @@ const selectedEventsReducer = (state = defaultState, action) => {
     switch (action.type) {
         case SelectedEventsActionTypes.SET_SELECTED:
             return state.set("selects", toImmList(EventDTO)(action.payload.selects));
-        case SelectedEventsActionTypes.EDIT_EVENT:
-            
+
+        case SelectedEventsActionTypes.ADD_SELECTED_EVENT:
+            return state.update("selects", selects => selects.push(action.payload.event));
+        case SelectedEventsActionTypes.REMOVE_SELECTED_EVENT:
+            return state.update("selects", selects => selects.filter(val => val.docRec.id != action.payload.eventID));
+
+        case SelectedEventsActionTypes.EDIT_EVENT: 
             return state.update("selects", selects => selects.map(val => {
                 if(val.docRec.id === action.payload.eventId){
                     return val.setIn(["docRec", "comment"], action.payload.eventDescription);
