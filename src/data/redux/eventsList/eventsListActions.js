@@ -14,3 +14,8 @@ export const deleteEvent = eventID => ({
     type: EventsListActionTypes.DELETE_EVENT,
     payload: { eventID },
 });
+
+export const setGardenGroups = groups => ({
+    type: EventsListActionTypes.SET_GARDEN_GROUPS,
+    payload: { groups },
+})

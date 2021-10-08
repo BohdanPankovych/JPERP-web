@@ -11,10 +11,18 @@ import SharedScreenDialog from '../sharedScreenDialog/SharedScreenDialog'
 
 const Root = ({eventsList, setEventsListData, isTagDialogShown, showTagsDialog, setGardenId, setGardenName, gardenId}) => {
 
+    // const getEvents = (gardenId) => {
+    //     API.eventsList
+    //          .getEventsList(gardenId)
+    //          .then((res) => setEventsListData(res.data))
+    //          .catch((err) => console.log(err));
+    // }
+
     // useEffect(() => {
     //     API.garden
     //         .getGardenId()
-    //         .then((res) => console.log(res.data))
+    //         .then((res) => {setGardenId(res.data[0].id); setGardenName(res.data[0].name)})
+    //         .catch((err)=>console.log(err));
     // }, []);
 
     useEffect(()=>{

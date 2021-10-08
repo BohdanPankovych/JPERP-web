@@ -75,7 +75,6 @@ const EventItem = ({deleteEvent, item, disable, handleChange, selectedCheckbox, 
     },[])
 
     const isChecked = (id) => {
-
         let check = false;
         for (let i = 0; i < selectedCheckbox.length; i++) {
             if (selectedCheckbox[i].docRec.id === id) {
@@ -111,6 +110,7 @@ const EventItem = ({deleteEvent, item, disable, handleChange, selectedCheckbox, 
                        disabled={isChecked(item.docRec.id) ? false : disable}
                     // disabled={selectedCheckbox.includes(e.id) && disable ? true: false}
                 />
+                <img onClick={deleteModal} className={classes.delete} src={deleteIcon} alt=""/>
                 <img onClick={deleteModal} className={classes.delete} src={deleteIcon} alt=""/>
             </div>
         </div>

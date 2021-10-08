@@ -6,7 +6,8 @@ const toImmList = (model) => (arr) =>
   new Immutable.List(arr.map((e) => new model(e)));
 
 const defaultState = new Immutable.OrderedMap({
-    events: new Immutable.List()
+    events: new Immutable.List(),
+    groups: '',
 });
 
 const eventsListReducer = (state = defaultState, action) => {
@@ -18,6 +19,8 @@ const eventsListReducer = (state = defaultState, action) => {
             return state.set("events", toImmList(EventDTO)(prevState));
         case EventsListActionTypes.DELETE_EVENT:
             return state.update("events", events => events.filter(e => e.docRec.id !== action.payload.eventID))
+        case EventsListActionTypes.SET_GARDEN_GROUPS:
+            return state.set("groups", action.payload.groups)
 
         default:
             return state;

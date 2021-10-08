@@ -54,17 +54,6 @@ const useStyles = makeStyles((theme) => ({
     editReportBtn: {
         width: '146',
         height: '30px',
-        // background: '#00AE00',
-        // color: 'white',
-        // border: '1px solid #00AE00',
-        // borderRadius: '5px',
-        // fontSize: '12px',
-        // marginLeft: '15px',
-        // cursor: "pointer",
-        // "&:hover": {
-        //     backgroundColor: "#1db51d",
-        //     cursor: "pointer",
-        // },
     },
     reportBlock: {
         position: 'relative',
@@ -78,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const EventsListPage = ({selectedEvents, setSelectedEvents, eventsList, deleteEvent, addSelectedEvent, removeSelectedEvent, setEventsListData}) => {
+const EventsListPage = ({selectedEvents,gardenGroups, setGardenGroups, setSelectedEvents, eventsList, deleteEvent, addSelectedEvent, removeSelectedEvent, setEventsListData}) => {
     const classes = useStyles();
     const [group, setGroup] = useState('')
     const [monthSelect, setMonthSelect] = useState('');
@@ -100,7 +89,6 @@ const EventsListPage = ({selectedEvents, setSelectedEvents, eventsList, deleteEv
         for (let i = 0; i < selectedEvents?.length; i++) {
             if (selectedEvents[i].docRec.id === obj.docRec.id) {
                 exist = true;
-                //index = i;
                 break;
             }
         }
@@ -111,8 +99,6 @@ const EventsListPage = ({selectedEvents, setSelectedEvents, eventsList, deleteEv
             console.log(obj)
             addSelectedEvent(obj);
         }
-        
-        //setSelectedEvents(selectedEvents);
     };
 
     useEffect(()=>{
