@@ -3,8 +3,8 @@ import SharedScreenDialogContainer from "../sharedScreenDialog/containers/Shared
 import { Button, Container, Box, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import CanvasPostcard from "../../reusableComponents/canvasPostcard/CanvasPostcard";
-import { jsPDF } from 'jspdf';
-import {Link, useHistory } from "react-router-dom";
+import { jsPDF } from "jspdf";
+import { Link, useHistory } from "react-router-dom";
 import FrontendRoutes from "../../data/constants/FrontendRoutes";
 
 const useStyles = makeStyles((theme) => ({
@@ -37,7 +37,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const PreviewScreenPage = ({selectCreator, showTagsDialog, gardenName, timeFilter, title, color, description, selectedEvents, addEvent, setShareReportsImage}) => {
+const PreviewScreenPage = ({
+  selectCreator,
+  showTagsDialog,
+  gardenName,
+  timeFilter,
+  title,
+  bgColor,
+  description,
+  selectedEvents,
+  addEvent,
+  setShareReportsImage,
+}) => {
   const stageRef = useRef(null);
   const history = useHistory();
   const classes = useStyles();
@@ -55,18 +66,13 @@ const PreviewScreenPage = ({selectCreator, showTagsDialog, gardenName, timeFilte
 
   const onSave = () => {
     var pdf = new jsPDF();
-    pdf.addImage(
-      stageRef.current.toDataURL({ pixelRatio: 1.5 }),
-      0,
-      0,
-    );
+    pdf.addImage(stageRef.current.toDataURL({ pixelRatio: 1.5 }), 0, 0);
     pdf.save(`${title}_report.pdf`);
-  }
+  };
 
   const onTempSave = () => {
-  
-    history.push(FrontendRoutes.EVENTS_LIST_PAGE)
-  }
+    history.push(FrontendRoutes.EVENTS_LIST_PAGE);
+  };
 
   return (
     <>
@@ -87,7 +93,7 @@ const PreviewScreenPage = ({selectCreator, showTagsDialog, gardenName, timeFilte
           className={classes.canvas}
           width={530}
           height={750}
-          backgroundColor={color}
+          backgroundColor={bgColor}
           title={title}
           date={timeFilter?.day}
           description={description}
@@ -107,7 +113,12 @@ const PreviewScreenPage = ({selectCreator, showTagsDialog, gardenName, timeFilte
           >
             一時保存
           </Button>
-          <Button className={classes.button} onClick={onSave} variant="outlined" color="primary">
+          <Button
+            className={classes.button}
+            onClick={onSave}
+            variant="outlined"
+            color="primary"
+          >
             PDFで保存
           </Button>
           <Button

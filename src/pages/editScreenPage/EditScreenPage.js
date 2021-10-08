@@ -121,7 +121,7 @@ const EditScreenPage = ({
   title,
   creators,
   selectCreator,
-  color,
+  bgColor,
   description,
   setTimeFilter,
   setEditReportsCreators,
@@ -226,7 +226,7 @@ const EditScreenPage = ({
             <ColorSelectItem
               key={val}
               color={val}
-              selectedColor={color}
+              selectedColor={bgColor}
               setColor={setEditReportsColor}
             ></ColorSelectItem>
           ))}

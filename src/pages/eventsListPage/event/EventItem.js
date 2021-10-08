@@ -111,7 +111,6 @@ const EventItem = ({deleteEvent, item, disable, handleChange, selectedCheckbox, 
                     // disabled={selectedCheckbox.includes(e.id) && disable ? true: false}
                 />
                 <img onClick={deleteModal} className={classes.delete} src={deleteIcon} alt=""/>
-                <img onClick={deleteModal} className={classes.delete} src={deleteIcon} alt=""/>
             </div>
         </div>
         <div className={classes.line}></div>

@@ -9,10 +9,10 @@ const toImmList = (model) => (arr) =>
 const defaultState = new Immutable.OrderedMap({
   selects: new Immutable.List(),
 
-  selectCreator: '',
+  selectCreator: "",
   title: "",
   description: "",
-  color: colors[0],
+  bgColor: colors[0],
 
   textTags: new Immutable.List([]), //tags that are added
   tagIds: new Immutable.List([]), //selected tags
@@ -27,7 +27,7 @@ const selectedEventsReducer = (state = defaultState, action) => {
 
     case SelectedEventsActionTypes.ADD_SELECTED_EVENT:
       return state.update("selects", (selects) =>
-      toImmList(EventDTO)(selects.push(action.payload.event))
+        toImmList(EventDTO)(selects.push(action.payload.event))
       );
     case SelectedEventsActionTypes.REMOVE_SELECTED_EVENT:
       return state.update("selects", (selects) =>
@@ -38,7 +38,10 @@ const selectedEventsReducer = (state = defaultState, action) => {
       return state.update("selects", (selects) =>
         selects.map((val) => {
           if (val.docRec.id === action.payload.eventId) {
-            return val.setIn(["docRec", "comment"], action.payload.eventDescription);
+            return val.setIn(
+              ["docRec", "comment"],
+              action.payload.eventDescription
+            );
           } else {
             return val;
           }
@@ -77,17 +80,17 @@ const selectedEventsReducer = (state = defaultState, action) => {
         }
       });
 
-      case SelectedEventsActionTypes.SET_TITLE:
-        return state.set("title", action.payload.title);
-      case SelectedEventsActionTypes.SET_COLOR:
-        return state.set("color", action.payload.color);
-      case SelectedEventsActionTypes.SET_REPORT_COMMENT:
-        return state.set("description", action.payload.description);
-      case SelectedEventsActionTypes.SELECT_CREATOR:
-        return state.set("selectCreator", action.payload.creator);
+    case SelectedEventsActionTypes.SET_TITLE:
+      return state.set("title", action.payload.title);
+    case SelectedEventsActionTypes.SET_COLOR:
+      return state.set("bgColor", action.payload.bgColor);
+    case SelectedEventsActionTypes.SET_REPORT_COMMENT:
+      return state.set("description", action.payload.description);
+    case SelectedEventsActionTypes.SELECT_CREATOR:
+      return state.set("selectCreator", action.payload.creator);
 
-      case SelectedEventsActionTypes.RESET_SELECTED_DATA:
-        return defaultState;
+    case SelectedEventsActionTypes.RESET_SELECTED_DATA:
+      return defaultState;
 
     default:
       return state;

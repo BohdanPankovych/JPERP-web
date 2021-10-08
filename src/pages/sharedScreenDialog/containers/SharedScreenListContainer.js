@@ -13,6 +13,8 @@ const mapStateToProps = (state) => ({
   tagIds: state.selectedEvents.get("tagIds"),
   clsIds: state.selectedEvents.get("clsIds"),
   childIds: state.selectedEvents.get("childIds"),
+
+  gardenId: state.common.get("gardenId"),
 });
 
 const mapDispatchToProps = {

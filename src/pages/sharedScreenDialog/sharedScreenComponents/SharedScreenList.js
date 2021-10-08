@@ -9,6 +9,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import { generalTagsMock } from "../../../data/mock/generalTagsMock";
 import { clsChildTagsMock } from "../../../data/mock/clsChildTagsMock";
 
+import Api from "../../../data/api/Api";
+
 const useStyles = makeStyles((theme) => ({
   textInput: {
     width: "98%",
@@ -31,12 +33,20 @@ const SharedScreenList = ({
   tagIds,
   clsIds,
   childIds,
+  gardenId,
 }) => {
   const classes = useStyles();
   const [text, setText] = useState("");
 
   React.useEffect(() => {
-    setChildTags(clsChildTagsMock);
+    // Api.getTagList(gardenId)
+    //   .then((res) => {
+    //     setChildTags(res.data.clsChildTags);
+    //     setGeneralTags(res.data.generalTags);
+    //   })
+    //   .catch((err) => console.log(err));
+
+    setChildTags(clsChildTagsMock);//MOCK DATA
     setGeneralTags(generalTagsMock);
   }, []);
 
