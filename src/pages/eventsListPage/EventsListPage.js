@@ -78,7 +78,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const EventsListPage = ({selectedEvents, setSelectedEvents, eventsList, deleteEvent, setEventsListData}) => {
+const EventsListPage = ({selectedEvents, setSelectedEvents, eventsList, deleteEvent, addSelectedEvent, removeSelectedEvent, setEventsListData}) => {
     const classes = useStyles();
     const [group, setGroup] = useState('')
     const [monthSelect, setMonthSelect] = useState('');
@@ -93,25 +93,29 @@ const EventsListPage = ({selectedEvents, setSelectedEvents, eventsList, deleteEv
     // useEffect(() => {
     //     setEventsListData(mock.eventsList)
     // }, []);
-
+    //console.log("Selected", selectedEvents);
 
     const handleChange = (obj) => {
         let exist = false;
-        let index;
-        for (let i = 0; i < selectedEvents.length; i++) {
+        for (let i = 0; i < selectedEvents?.length; i++) {
             if (selectedEvents[i].docRec.id === obj.docRec.id) {
                 exist = true;
-                index = i;
+                //index = i;
                 break;
             }
         }
 
         if (exist) {
-            selectedEvents?.splice(index, 1);
+            removeSelectedEvent(obj.docRec.id);
         } else {
-            selectedEvents?.push(obj);
+            console.log(obj)
+            addSelectedEvent(obj);
         }
+        
+        //setSelectedEvents(selectedEvents);
+    };
 
+    useEffect(()=>{
         if (selectedEvents.length > 0 && selectedEvents.length < 4) {
             setDisable(false)
             setDisableBtn(false)
@@ -123,13 +127,9 @@ const EventsListPage = ({selectedEvents, setSelectedEvents, eventsList, deleteEv
             setDisable(false)
             setDisableBtn(true)
         }
-        setSelectedEvents(selectedEvents);
-    };
+    },[selectedEvents])
 
-    // console.log('list', eventsList)
     useEffect(() => {
-        // console.log('yearSelect', yearSelect)
-
         if (daySelect) {
             setParsedDay(dateToD(daySelect))
         }
@@ -140,8 +140,8 @@ const EventsListPage = ({selectedEvents, setSelectedEvents, eventsList, deleteEv
         }
     }, [yearSelect, monthSelect, daySelect])
 
-    let testDate = eventsList.map(e => e.docRec.dateTime)
-    console.log('eventsList date', parsedDay)
+    //let testDate = eventsList.map(e => e.docRec.dateTime)
+    //console.log('eventsList date', parsedDay)
     return (
         <>
             <div className={classes.underHeaderBlock}>
