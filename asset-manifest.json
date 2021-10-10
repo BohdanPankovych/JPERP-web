@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/JPERP-web/static/js/main.6fd97c2d.chunk.js",
-    "main.js.map": "/JPERP-web/static/js/main.6fd97c2d.chunk.js.map",
+    "main.js": "/JPERP-web/static/js/main.a418fdc2.chunk.js",
+    "main.js.map": "/JPERP-web/static/js/main.a418fdc2.chunk.js.map",
     "runtime-main.js": "/JPERP-web/static/js/runtime-main.d4f08841.js",
     "runtime-main.js.map": "/JPERP-web/static/js/runtime-main.d4f08841.js.map",
     "static/js/2.4d86916c.chunk.js": "/JPERP-web/static/js/2.4d86916c.chunk.js",
@@ -26,6 +26,6 @@
   "entrypoints": [
     "static/js/runtime-main.d4f08841.js",
     "static/js/2.4d86916c.chunk.js",
-    "static/js/main.6fd97c2d.chunk.js"
+    "static/js/main.a418fdc2.chunk.js"
   ]
 }
