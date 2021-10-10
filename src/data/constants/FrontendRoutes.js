@@ -1,7 +1,7 @@
 const FrontendRoutes = {
- EDIT_REPORTS: "/edit-reports",
- PREVIEW_LiST_PAGE: "/preview",
- EVENTS_LIST_PAGE: "/events-list"
+ EDIT_REPORTS: "/GardenReport/editReports",
+ PREVIEW_LiST_PAGE: "/GardenReport/preview",
+ EVENTS_LIST_PAGE: "/GardenReport/eventsList"
 };
 
 export default FrontendRoutes;
