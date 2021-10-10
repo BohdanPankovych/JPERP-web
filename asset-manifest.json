@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.js": "/JPERP-web/static/js/main.2dc09d0c.chunk.js",
-    "main.js.map": "/JPERP-web/static/js/main.2dc09d0c.chunk.js.map",
-    "runtime-main.js": "/JPERP-web/static/js/runtime-main.536bffa6.js",
-    "runtime-main.js.map": "/JPERP-web/static/js/runtime-main.536bffa6.js.map",
-    "static/js/2.e1f68199.chunk.js": "/JPERP-web/static/js/2.e1f68199.chunk.js",
-    "static/js/2.e1f68199.chunk.js.map": "/JPERP-web/static/js/2.e1f68199.chunk.js.map",
-    "static/js/3.a788782d.chunk.js": "/JPERP-web/static/js/3.a788782d.chunk.js",
-    "static/js/3.a788782d.chunk.js.map": "/JPERP-web/static/js/3.a788782d.chunk.js.map",
-    "static/js/4.35f40035.chunk.js": "/JPERP-web/static/js/4.35f40035.chunk.js",
-    "static/js/4.35f40035.chunk.js.map": "/JPERP-web/static/js/4.35f40035.chunk.js.map",
-    "static/js/5.a3b43245.chunk.js": "/JPERP-web/static/js/5.a3b43245.chunk.js",
-    "static/js/5.a3b43245.chunk.js.map": "/JPERP-web/static/js/5.a3b43245.chunk.js.map",
+    "main.js": "/JPERP-web/static/js/main.6fd97c2d.chunk.js",
+    "main.js.map": "/JPERP-web/static/js/main.6fd97c2d.chunk.js.map",
+    "runtime-main.js": "/JPERP-web/static/js/runtime-main.d4f08841.js",
+    "runtime-main.js.map": "/JPERP-web/static/js/runtime-main.d4f08841.js.map",
+    "static/js/2.4d86916c.chunk.js": "/JPERP-web/static/js/2.4d86916c.chunk.js",
+    "static/js/2.4d86916c.chunk.js.map": "/JPERP-web/static/js/2.4d86916c.chunk.js.map",
+    "static/js/3.b19a87fd.chunk.js": "/JPERP-web/static/js/3.b19a87fd.chunk.js",
+    "static/js/3.b19a87fd.chunk.js.map": "/JPERP-web/static/js/3.b19a87fd.chunk.js.map",
+    "static/js/4.4a4bcd3e.chunk.js": "/JPERP-web/static/js/4.4a4bcd3e.chunk.js",
+    "static/js/4.4a4bcd3e.chunk.js.map": "/JPERP-web/static/js/4.4a4bcd3e.chunk.js.map",
+    "static/js/5.b9349c51.chunk.js": "/JPERP-web/static/js/5.b9349c51.chunk.js",
+    "static/js/5.b9349c51.chunk.js.map": "/JPERP-web/static/js/5.b9349c51.chunk.js.map",
     "index.html": "/JPERP-web/index.html",
-    "static/js/2.e1f68199.chunk.js.LICENSE.txt": "/JPERP-web/static/js/2.e1f68199.chunk.js.LICENSE.txt",
-    "static/js/3.a788782d.chunk.js.LICENSE.txt": "/JPERP-web/static/js/3.a788782d.chunk.js.LICENSE.txt",
-    "static/js/4.35f40035.chunk.js.LICENSE.txt": "/JPERP-web/static/js/4.35f40035.chunk.js.LICENSE.txt",
-    "static/js/5.a3b43245.chunk.js.LICENSE.txt": "/JPERP-web/static/js/5.a3b43245.chunk.js.LICENSE.txt",
+    "static/js/2.4d86916c.chunk.js.LICENSE.txt": "/JPERP-web/static/js/2.4d86916c.chunk.js.LICENSE.txt",
+    "static/js/3.b19a87fd.chunk.js.LICENSE.txt": "/JPERP-web/static/js/3.b19a87fd.chunk.js.LICENSE.txt",
+    "static/js/4.4a4bcd3e.chunk.js.LICENSE.txt": "/JPERP-web/static/js/4.4a4bcd3e.chunk.js.LICENSE.txt",
+    "static/js/5.b9349c51.chunk.js.LICENSE.txt": "/JPERP-web/static/js/5.b9349c51.chunk.js.LICENSE.txt",
     "static/media/img1.47682d7b.png": "/JPERP-web/static/media/img1.47682d7b.png",
     "static/media/img2.0bc9a818.png": "/JPERP-web/static/media/img2.0bc9a818.png",
     "static/media/img3.46d3e063.png": "/JPERP-web/static/media/img3.46d3e063.png",
@@ -24,8 +24,8 @@
     "static/media/img5.73381e7b.png": "/JPERP-web/static/media/img5.73381e7b.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.536bffa6.js",
-    "static/js/2.e1f68199.chunk.js",
-    "static/js/main.2dc09d0c.chunk.js"
+    "static/js/runtime-main.d4f08841.js",
+    "static/js/2.4d86916c.chunk.js",
+    "static/js/main.6fd97c2d.chunk.js"
   ]
 }
