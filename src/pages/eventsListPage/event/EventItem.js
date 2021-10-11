@@ -97,18 +97,25 @@ const EventItem = ({gardenId, deleteEvent, item, disable, handleChange, selected
     useEffect(() => {
         Api.eventsList.getImg(gardenId, item.docRec.id,)
             .then(((res) => {
-                setImg(new Buffer(res.data).toString("base64"));
-                console.log('Buffer', new Buffer(res.data).toString("base64"))
+                
+                // console.log('Buffer', new Buffer(res.data).toString("base64"))
                 console.log('res', res)
+                console.log("uInt8 array", new Uint8Array(res.data))
+                console.log("BLOB!!!", new Blob( new Uint8Array(res.data), {type : 'image/jpeg'}))
+                console.log("media type", new Blob(item.docRec.mediaSha256))
+                setImg(res.data);
             }))
             .catch((err) => console.error(err))
 
-        Api.eventsList.getImgTwo(gardenId, item.docRec.id, item.docRec.mediaType)
-            .then(((res) => {
-                // setImg(res.data);
-                console.log('resTwo!', URL.createObjectURL(res.data))
-            }))
-            .catch((err) => console.error(err))
+        // Api.eventsList.getImgTwo(gardenId, item.docRec.id, item.docRec.mediaType)
+        //     .then(((res) => {
+        //         // setImg(res.data);
+        //         console.log('res2', res)
+        //         console.log("uInt8 array2", new Uint8Array(res.data))
+        //         console.log("BLOB!!!2", new Blob( new Uint8Array(res.data), {type : 'image/jpeg'}))
+        //         setImg(res.data);
+        //     }))
+        //     .catch((err) => console.error(err))
 
     },[gardenId, item])
 
@@ -116,8 +123,8 @@ const EventItem = ({gardenId, deleteEvent, item, disable, handleChange, selected
         <ModalDelete open={open} setOpen={setOpen} id={item.docRec.id} deleteEvent={deleteEvent} eventsList={eventsList}/>
         <div className={classes.event}>
             <div className={classes.image}>
-                <img className={classes.imgMain} src={img ? URL.createObjectURL(img) : null} alt=""/>
-                <img className={classes.imgMain} src={img} alt=""/>
+                <img className={classes.imgMain} src={img ? URL.createObjectURL(new Blob( new Uint8Array(img), {type : 'image/jpeg'})) : null} alt=""/>
+                {/* <img className={classes.imgMain} src={img} alt=""/> */}
             </div>
             <div className={classes.imgDescriptionBlock}>
                 {/*<p className={classes.imgTitle}>{event.title}</p>*/}
