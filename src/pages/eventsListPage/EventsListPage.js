@@ -8,7 +8,7 @@ import Event from "./event/Event";
 import year from "../../data/constants/Year";
 import month from "../../data/constants/Month";
 import LocalisedDatePicker from "../editScreenPage/editScreenPageComponents/LocalisedDatePicker";
-import deleteIcon from "../../data/assets/icons/deleteBtnIcon.jpg";
+import deleteIcon from "../../assets/icons/deleteBtnIcon.jpg";
 import Button from "@material-ui/core/Button";
 import {setSelectedEvents} from "../../data/redux/selectedEvents/selectedEventsActions";
 import {Link} from "react-router-dom";
@@ -69,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const EventsListPage = ({selectedEvents, gardenGroups, setGardenGroups, setSelectedEvents, eventsList, deleteEvent, addSelectedEvent, removeSelectedEvent, setEventsListData}) => {
+const EventsListPage = ({ gardenId, selectedEvents, gardenGroups, setGardenGroups, setSelectedEvents, eventsList, deleteEvent, addSelectedEvent, removeSelectedEvent, setEventsListData}) => {
     const classes = useStyles();
     const [group, setGroup] = useState('')
     const [monthSelect, setMonthSelect] = useState('');
@@ -80,18 +80,18 @@ const EventsListPage = ({selectedEvents, gardenGroups, setGardenGroups, setSelec
     const [disable, setDisable] = useState(false);
     const [disableBtn, setDisableBtn] = useState(true)
     const [disableDay, setDisableDay] = useState(true)
-
+    console.log("GARDEN ID!!!!!!!!!!!!", gardenId)
     useEffect(() => {
-        Api.eventsList.getClasses().then((res)=>{
-            let groups = [];
-            res.data.map(val=>{
-                groups.push(val.name);
-            });
-            setGardenGroups(groups);
-        }).catch((err)=>console.log(err))
-       // setEventsListData(mock.eventsList)
-    }, []);
-    //console.log("Selected", selectedEvents);
+        if (gardenId) {
+            Api.eventsList.getClasses(gardenId).then((res)=>{
+                let groups = [];
+                res.data?.map(val=>{
+                    groups.push(val.name);
+                });
+                setGardenGroups(groups);
+            }).catch((err)=>console.log(err))
+        }
+    }, [gardenId]);
 
     const handleChange = (obj) => {
         let exist = false;
@@ -175,7 +175,7 @@ const EventsListPage = ({selectedEvents, gardenGroups, setGardenGroups, setSelec
                 </div>
             </div>
 
-            <Event eventsList={eventsList} group={group} monthSelect={monthSelect} parsedDay={parsedDay}
+            <Event gardenId={gardenId} eventsList={eventsList} group={group} monthSelect={monthSelect} parsedDay={parsedDay}
                    deleteEvent={deleteEvent}
                    yearSelect={yearSelect} handleChange={handleChange} selectedCheckbox={selectedEvents}
                    disable={disable} setDisable={setDisable}/>

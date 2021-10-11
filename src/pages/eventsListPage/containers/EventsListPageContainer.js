@@ -8,6 +8,7 @@ const mapStateToProps = state => ({
     eventsList: state.eventsList.get("events")?.toJS(),
     selectedEvents: state.selectedEvents.get('selects')?.toJS(),
     gardenGroups: state.eventsList.get("groups"),
+    gardenId: state.common.get("gardenId"),
 });
 
 const mapDispatchToProps = {

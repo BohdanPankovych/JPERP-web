@@ -1,7 +1,8 @@
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import React, {memo, useCallback, useEffect, useState} from "react";
-import deleteIcon from "../../../data/assets/icons/deleteBtnIcon.jpg"
+import deleteIcon from "../../../assets/icons/deleteBtnIcon.jpg"
 import ModalDelete from "../modalDelete/ModalDelete";
+import Api from "../../../data/api/Api";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -65,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const EventItem = ({deleteEvent, item, disable, handleChange, selectedCheckbox, eventsList}) => {
+const EventItem = ({gardenId, deleteEvent, item, disable, handleChange, selectedCheckbox, eventsList}) => {
     const classes = useStyles();
 
     const [open, setOpen] = useState(false);
@@ -90,16 +91,38 @@ const EventItem = ({deleteEvent, item, disable, handleChange, selectedCheckbox, 
         // console.log('item', item)
     }, [selectedCheckbox, disable])
 
+    const [img, setImg] = useState();
+
+    console.log('IMAGE!!!', img)
+    useEffect(() => {
+        Api.eventsList.getImg(gardenId, item.docRec.id,)
+            .then(((res) => {
+                setImg(new Buffer(res.data).toString("base64"));
+                console.log('Buffer', new Buffer(res.data).toString("base64"))
+                console.log('res', res)
+            }))
+            .catch((err) => console.error(err))
+
+        Api.eventsList.getImgTwo(gardenId, item.docRec.id, item.docRec.mediaType)
+            .then(((res) => {
+                // setImg(res.data);
+                console.log('resTwo!', URL.createObjectURL(res.data))
+            }))
+            .catch((err) => console.error(err))
+
+    },[gardenId, item])
+
     return <>
         <ModalDelete open={open} setOpen={setOpen} id={item.docRec.id} deleteEvent={deleteEvent} eventsList={eventsList}/>
         <div className={classes.event}>
             <div className={classes.image}>
-                <img className={classes.imgMain} src={item.docRec.mediaSha256} alt=""/>
+                <img className={classes.imgMain} src={img ? URL.createObjectURL(img) : null} alt=""/>
+                <img className={classes.imgMain} src={img} alt=""/>
             </div>
             <div className={classes.imgDescriptionBlock}>
                 {/*<p className={classes.imgTitle}>{event.title}</p>*/}
                 <div className={classes.tagList}>{item.tags.map(t => (
-                    <div className={classes.tag}>{t}</div>))}</div>
+                    <div className={classes.tag}>{t?.value}</div>))}</div>
 
                 <p className={classes.imgDescr}>{item.docRec.comment}</p>
             </div>

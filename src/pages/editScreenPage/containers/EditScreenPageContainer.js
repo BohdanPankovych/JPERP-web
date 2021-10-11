@@ -14,7 +14,7 @@ const mapStateToProps = (state) => ({
   selectedEvents: state.selectedEvents.get("selects")?.toJS(),
   creators: state.reportsList.get("creators")?.toJS(),
   timeFilter: state.common.get("timeFilter").toJS(),
-
+  gardenId: state.common.get('gardenId'),
   title: state.selectedEvents.get("title"),
   bgColor: state.selectedEvents.get("bgColor"),
   description: state.selectedEvents.get("description"),

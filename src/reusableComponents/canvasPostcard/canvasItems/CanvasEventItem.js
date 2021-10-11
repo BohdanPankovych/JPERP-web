@@ -1,3 +1,4 @@
+import React from "react";
 import useImage from 'use-image';
 import { Text, Image } from 'react-konva';
 import {ResizeImg} from '../../../data/helpers/resizeImg'

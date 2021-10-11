@@ -1,8 +1,9 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextInput from "../../../reusableComponents/textInput/TextInput";
 import { required, notLong } from "../../../data/helpers/validators";
 import { ResizeImg } from '../../../data/helpers/resizeImg'
+import Api from "../../../data/api/Api";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,8 +44,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const EditScreenPageListItem = ({ data, showError, editSelectedEvents }) => {
+
+
+const EditScreenPageListItem = ({ gardenId, data, showError, editSelectedEvents }) => {
   const classes = useStyles();
+  const [img, setImg] = useState('');
+
+
+  useEffect(() => {
+    Api.eventsList.getImg(gardenId, data.docRec.id)
+        .then(((res) => {
+          setImg(res?.data);
+          console.log(res)
+        }))
+        .catch((err) => console.error(err))
+  },[gardenId, data])
+
 
   const onChange = (value) => {
     editSelectedEvents( data.docRec.id, value);
@@ -53,7 +68,7 @@ const EditScreenPageListItem = ({ data, showError, editSelectedEvents }) => {
   return (
     <div className={classes.root}>
       <div className={classes.imgContainer}>
-        <img className={classes.img} width="auto" height="100" alt="img" src={data.docRec.mediaSha256} />
+        <img className={classes.img} width="auto" height="100" alt="img" src={img} />
       </div>
       <div>
         <TextInput
