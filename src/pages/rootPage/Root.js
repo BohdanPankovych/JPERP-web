@@ -1,14 +1,12 @@
-import React, { memo, useEffect } from "react";
-import { Route, Switch } from "react-router-dom";
+import React, {memo, useEffect} from "react";
+import {Route, Switch} from "react-router-dom";
 import FrontendRoutes from "../../data/constants/FrontendRoutes";
 import EventsListPageContainer from "../eventsListPage/containers/EventsListPageContainer";
 import EditScreenPageContainer from "../editScreenPage/containers/EditScreenPageContainer";
 import PreviewScreenPageContainer from "../previewScreenPage/containers/PreviewScreenPageContainer";
-import mockData from "../../data/mock/mockData";
 import API from "../../data/api/Api";
-import EventsMock from "../../data/mock/EventsMock";
 import SharedScreenDialogContainer from "../sharedScreenDialog/containers/SharedScreenDialogContainer";
-import { dateToYMD } from '../../data/helpers/timeHelper'
+import {dateToYMD} from '../../data/helpers/timeHelper'
 
 const Root = ({
   eventsList,

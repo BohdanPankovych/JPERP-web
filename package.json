@@ -2,12 +2,9 @@
   "name": "jaerp",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://bohdanpankovych.github.io/JPERP-web/",
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
-    "deploy": "gh-pages -d build",
-    "predeploy": "npm run build"
+    "build": "react-scripts build"
   },
   "eslintConfig": {
     "extends": [
