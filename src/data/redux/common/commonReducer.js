@@ -9,9 +9,9 @@ const defaultState = new Immutable.OrderedMap({
     gardenName: '',
     isTagDialogShown: false,
     group: '',
-    month: '',
-    year: '',
-    day: '',
+    month: '01',
+    year: '2021',
+    day: '01',
 });
 
 const commonReducer = (state = defaultState, action) => {

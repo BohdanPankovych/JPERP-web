@@ -1,6 +1,8 @@
+import {dateToY} from "../helpers/timeHelper";
+
 const jpMonths = [
     {
-        id: null,
+        id: '01',
         name: ''
     },
     {

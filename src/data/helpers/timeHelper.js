@@ -27,6 +27,6 @@ export function testDate(date) {
 }
 
 export function qwe(year, month, day, separator = '-') {
-    [year ?? '' ,month ?? '', day ?? ''].filter(val=>val).join(separator)
+   return [year ?? '' ,month ?? '', day ?? ''].filter(val=>val).join(separator)
 }
 

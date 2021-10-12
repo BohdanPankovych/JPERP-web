@@ -58,7 +58,6 @@ const Root = ({
                     clsId: group,
                     childId: null,
                     from: qwe(year, month, day),
-                    to: qwe(year, month, day),
                     text: null,
                     generalTagIds: [],
                     staffId: null,

@@ -1,6 +1,8 @@
+import {dateToY} from "../helpers/timeHelper";
+
 const years = [
     {
-        id: null,
+        id: dateToY(new Date()),
         name: ''
     },
     {
