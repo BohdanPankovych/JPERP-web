@@ -32,7 +32,7 @@ const ShareDestinationItem = ({ tags, setDestination }) => {
           {tags?.children.map((val) => (
             <SelectDestinationButton
               key={val.id}
-              tagKind={val.tagKind}
+              tagKind={val.tagKindValue}
               onButtonClick={setSelect}
               select={select}
               color="primary"

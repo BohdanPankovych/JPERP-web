@@ -66,6 +66,37 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
+function toUTF8Array(str) {
+    var utf8 = [];
+    for (var i=0; i < str.length; i++) {
+        var charcode = str.charCodeAt(i);
+        if (charcode < 0x80) utf8.push(charcode);
+        else if (charcode < 0x800) {
+            utf8.push(0xc0 | (charcode >> 6),
+                0x80 | (charcode & 0x3f));
+        }
+        else if (charcode < 0xd800 || charcode >= 0xe000) {
+            utf8.push(0xe0 | (charcode >> 12),
+                0x80 | ((charcode>>6) & 0x3f),
+                0x80 | (charcode & 0x3f));
+        }
+        // surrogate pair
+        else {
+            i++;
+            // UTF-16 encodes 0x10000-0x10FFFF by
+            // subtracting 0x10000 and splitting the
+            // 20 bits of 0x0-0xFFFFF into two halves
+            charcode = 0x10000 + (((charcode & 0x3ff)<<10)
+                | (str.charCodeAt(i) & 0x3ff));
+            utf8.push(0xf0 | (charcode >>18),
+                0x80 | ((charcode>>12) & 0x3f),
+                0x80 | ((charcode>>6) & 0x3f),
+                0x80 | (charcode & 0x3f));
+        }
+    }
+    return utf8;
+}
+
 const EventItem = ({gardenId, deleteEvent, item, disable, handleChange, selectedCheckbox, eventsList}) => {
     const classes = useStyles();
 
@@ -95,35 +126,23 @@ const EventItem = ({gardenId, deleteEvent, item, disable, handleChange, selected
 
     console.log('IMAGE!!!', img)
     useEffect(() => {
-        Api.eventsList.getImg(gardenId, item.docRec.id,)
+        Api.eventsList.getImg(gardenId, item.docRec.id)
             .then(((res) => {
-                
+
                 // console.log('Buffer', new Buffer(res.data).toString("base64"))
-                console.log('res', res)
-                console.log("uInt8 array", new Uint8Array(res.data))
-                console.log("BLOB!!!", new Blob( new Uint8Array(res.data), {type : 'image/jpeg'}))
-                console.log("media type", new Blob(item.docRec.mediaSha256))
-                setImg(res.data);
+                console.log('res', toUTF8Array(res.data))
+                // console.log("uInt8 array", new Uint8Array(res.data))
+                // console.log("BLOB!!!", new Blob( new Uint8Array(res.data), {type : 'image/jpeg'}))
+                setImg(toUTF8Array(res.data));
             }))
             .catch((err) => console.error(err))
-
-        // Api.eventsList.getImgTwo(gardenId, item.docRec.id, item.docRec.mediaType)
-        //     .then(((res) => {
-        //         // setImg(res.data);
-        //         console.log('res2', res)
-        //         console.log("uInt8 array2", new Uint8Array(res.data))
-        //         console.log("BLOB!!!2", new Blob( new Uint8Array(res.data), {type : 'image/jpeg'}))
-        //         setImg(res.data);
-        //     }))
-        //     .catch((err) => console.error(err))
-
     },[gardenId, item])
 
     return <>
         <ModalDelete open={open} setOpen={setOpen} id={item.docRec.id} deleteEvent={deleteEvent} eventsList={eventsList}/>
         <div className={classes.event}>
             <div className={classes.image}>
-                <img className={classes.imgMain} src={img ? URL.createObjectURL(new Blob( new Uint8Array(img), {type : 'image/jpeg'})) : null} alt=""/>
+                <img className={classes.imgMain} src={img ? URL.createObjectURL(new Blob(new Uint8Array(img), {type : item.docRec.mediaType})) : null} alt=""/>
                 {/* <img className={classes.imgMain} src={img} alt=""/> */}
             </div>
             <div className={classes.imgDescriptionBlock}>

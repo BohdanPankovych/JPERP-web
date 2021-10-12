@@ -143,19 +143,20 @@ const EditScreenPage = ({
 
     useEffect(() => {
         //Try to get all creators Name
-        API.editPage.getCreatorsId()
-            .then((res) =>
-                res.data.map((val) =>
-                    API.editPage.getCreatorName(val.usrId)
-                        .then(res => addCreator({id: val.usrId, name: res.data.familyName}))
-                        .catch((err) => console.error(err))
+        if(gardenId) {
+            API.editPage.getCreatorsId(gardenId)
+                .then((res) =>
+                    res.data.map((val) =>
+                        API.editPage.getCreatorName(val.usrId)
+                            .then(res => addCreator({id: val.usrId, name: res.data.familyName}))
+                            .catch((err) => console.error(err))
+                    )
                 )
-            )
-            .catch((err) => console.error(err));
-
+                .catch((err) => console.error(err));
+        }
         // setEditReportsData(mock.reportPage);
         // setEditReportsCreators(mock.creators);
-    }, []);
+    }, [gardenId]);
 
     const checkValidation = (items) =>
         items.every(
