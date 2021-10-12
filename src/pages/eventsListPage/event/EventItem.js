@@ -96,7 +96,6 @@ function toUTF8Array(str) {
     }
     return utf8;
 }
-
 const EventItem = ({gardenId, deleteEvent, item, disable, handleChange, selectedCheckbox, eventsList}) => {
     const classes = useStyles();
 
@@ -135,10 +134,10 @@ const EventItem = ({gardenId, deleteEvent, item, disable, handleChange, selected
             .then(((res) => {
 
                 // console.log('Buffer', new Buffer(res.data).toString("base64"))
-                console.log('res', toUTF8Array(res.data))
+                console.log('res', Buffer.from(res.data, 'binary').toString('base64'))
                 // console.log("uInt8 array", new Uint8Array(res.data))
                 // console.log("BLOB!!!", new Blob( new Uint8Array(res.data), {type : 'image/jpeg'}))
-                setImg(toUTF8Array(res.data));
+                setImg(Buffer.from(res.data, 'binary').toString('base64'));
             }))
             .catch((err) => console.error(err))
     },[gardenId, item])
@@ -148,7 +147,7 @@ const EventItem = ({gardenId, deleteEvent, item, disable, handleChange, selected
         <ModalDelete open={open} setOpen={setOpen} garden_id={gardenId} event_id={item.docRec.id} deleteEvent={deleteEvent} eventsList={eventsList}/>
         <div className={classes.event}>
             <div className={classes.image}>
-                <img className={classes.imgMain} src={img ? URL.createObjectURL(new Blob(new Uint8Array(img), {type : item.docRec.mediaType})) : null} alt=""/>
+                <img className={classes.imgMain} src={`data:image/jpeg;base64,${img}`} alt=""/>
                 {/* <img className={classes.imgMain} src={img} alt=""/> */}
             </div>
             <div className={classes.imgDescriptionBlock}>

@@ -75,6 +75,7 @@ const EventsListPage = ({ setGroup, setMonth, setYear, setDay, group, month, yea
         if (gardenId) {
             Api.eventsList.getClasses(gardenId).then((res)=>{
                 let groups = [];
+                groups.push({id: null, name: ''})
                 res.data?.map(val=>{
                     groups.push({
                         id: val.id,
