@@ -161,7 +161,7 @@ const EventItem = ({gardenId, deleteEvent, item, disable, handleChange, selected
             <div className={classes.checkbox}>
                 {/*{console.log(item.id, checked, checked ? false : disable)}*/}
                 <input onChange={() => handleChange(item)}
-                       selected={isChecked(item.docRec.id)} type="checkbox"
+                       checked={isChecked(item.docRec.id)} type="checkbox"
                        disabled={isChecked(item.docRec.id) ? false : disable}
                     // disabled={selectedCheckbox.includes(e.id) && disable ? true: false}
                 />

@@ -7,10 +7,11 @@ import LocalisedDatePicker from "../editScreenPage/editScreenPageComponents/Loca
 import Button from "@material-ui/core/Button";
 import {Link} from "react-router-dom";
 import FrontendRoutes from "../../data/constants/FrontendRoutes";
-import {dateToD} from "../../data/helpers/timeHelper";
+import {dateToD, qwe} from "../../data/helpers/timeHelper";
 import MonthSelect from "./monthSelect/MonthSelect";
 import Api from '../../data/api/Api'
 import years from "../../data/constants/Year";
+import jpMonths from "../../data/constants/JpMonths";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -70,9 +71,6 @@ const EventsListPage = ({ setGroup, setMonth, setYear, setDay, group, month, yea
     const [disableDay, setDisableDay] = useState(true)
 
     // console.log("GARDEN ID!!!!!!!!!!!!", gardenId)
-    console.log('year', year)
-    console.log('month', month)
-    console.log('day', daySelect)
     useEffect(() => {
         if (gardenId) {
             Api.eventsList.getClasses(gardenId).then((res)=>{
@@ -111,6 +109,7 @@ const EventsListPage = ({ setGroup, setMonth, setYear, setDay, group, month, yea
             setDisableBtn(false)
         } else {
             setDisable(true)
+            setDisableBtn(false)
         }
 
         if (selectedEvents.length === 0) {
@@ -129,6 +128,12 @@ const EventsListPage = ({ setGroup, setMonth, setYear, setDay, group, month, yea
             setDisableDay(true)
         }
     }, [year, month, daySelect])
+    console.log('eventsList', eventsList)
+
+    useEffect(() => {
+        let test = qwe(year, month, day)
+        console.log('test', test)
+    },[year, month, day])
 
     //let testDate = eventsList.map(e => e.docRec.dateTime)
     //console.log('eventsList date', parsedDay)
@@ -140,10 +145,10 @@ const EventsListPage = ({ setGroup, setMonth, setYear, setDay, group, month, yea
                     <div className={classes.selects}>
                         <EasyReportPageSelect title={'組'} options={gardenGroups} value={group} setValue={setGroup}/>
                         <EasyReportPageSelect title={'年'} options={years} value={year} setValue={setYear}/>
-                        {/*<EasyReportPageSelect title={'月'} options={month} value={monthSelect}*/}
-                        {/*                      setValue={setMonthSelect}/>*/}
-                        <MonthSelect title={'月'} setValue={setMonth}
-                                     value={month}/>
+                        <EasyReportPageSelect title={'月'} options={jpMonths} value={month}
+                                              setValue={setMonth}/>
+                        {/*<MonthSelect title={'月'} setValue={setMonth}*/}
+                        {/*             value={month}/>*/}
 
                         <LocalisedDatePicker
                             disable={disableDay}

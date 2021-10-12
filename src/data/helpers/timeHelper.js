@@ -25,3 +25,8 @@ export function testDate(date) {
     const day = date.getDate()
     return [year, month, day]
 }
+
+export function qwe(year, month, day, separator = '-') {
+    [year ?? '' ,month ?? '', day ?? ''].filter(val=>val).join(separator)
+}
+
