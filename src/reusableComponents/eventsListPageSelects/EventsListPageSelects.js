@@ -42,8 +42,8 @@ const EventsListPageSelects = ({title, value, setValue, options}) => {
             onChange={handleChange}
         >
             {options?.map((option) => (
-                <MenuItem className={classes.test} key={option} value={option}>
-                    {option}
+                <MenuItem className={classes.test} key={option} value={option.id}>
+                    {option.name}
                 </MenuItem>
             ))}
         </TextField>

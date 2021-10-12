@@ -2,23 +2,15 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 import React, {memo, useEffect, useState} from "react";
 import EasyReportPageTitles from "./eventsListPageTitles/EventsListPageTitles";
 import EasyReportPageSelect from "../../reusableComponents/eventsListPageSelects/EventsListPageSelects";
-import {deleteEvent, setEventsListData} from "../../data/redux/eventsList/eventsListActions";
-import mock from "../../data/mock/mockData";
 import Event from "./event/Event";
-import year from "../../data/constants/Year";
-import month from "../../data/constants/Month";
 import LocalisedDatePicker from "../editScreenPage/editScreenPageComponents/LocalisedDatePicker";
-import deleteIcon from "../../assets/icons/deleteBtnIcon.jpg";
 import Button from "@material-ui/core/Button";
-import {setSelectedEvents} from "../../data/redux/selectedEvents/selectedEventsActions";
 import {Link} from "react-router-dom";
 import FrontendRoutes from "../../data/constants/FrontendRoutes";
-import {dateToD, dateToY, dateToYMD} from "../../data/helpers/timeHelper";
-import jpMonths from "../../data/constants/JpMonths";
-import {MenuItem, TextField} from "@material-ui/core";
+import {dateToD} from "../../data/helpers/timeHelper";
 import MonthSelect from "./monthSelect/MonthSelect";
-import groups from "../../data/constants/Groups";
 import Api from '../../data/api/Api'
+import years from "../../data/constants/Year";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -69,24 +61,27 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const EventsListPage = ({ gardenId, selectedEvents, gardenGroups, setGardenGroups, setSelectedEvents, eventsList, deleteEvent, addSelectedEvent, removeSelectedEvent, setEventsListData}) => {
+const EventsListPage = ({ setGroup, setMonth, setYear, setDay, group, month, year, day, gardenId, selectedEvents, gardenGroups, setGardenGroups, eventsList, deleteEvent, addSelectedEvent, removeSelectedEvent, setEventsListData}) => {
     const classes = useStyles();
-    const [group, setGroup] = useState('')
-    const [monthSelect, setMonthSelect] = useState('');
-    const [yearSelect, setYearSelect] = useState('');
+    // const [group, setGroup] = useState('')
     const [daySelect, setDaySelect] = useState('');
-    const [parsedDay, setParsedDay] = useState('');
-    const [selectedDate, handleDateChange] = useState(null);
     const [disable, setDisable] = useState(false);
     const [disableBtn, setDisableBtn] = useState(true)
     const [disableDay, setDisableDay] = useState(true)
-    console.log("GARDEN ID!!!!!!!!!!!!", gardenId)
+
+    // console.log("GARDEN ID!!!!!!!!!!!!", gardenId)
+    console.log('year', year)
+    console.log('month', month)
+    console.log('day', daySelect)
     useEffect(() => {
         if (gardenId) {
             Api.eventsList.getClasses(gardenId).then((res)=>{
                 let groups = [];
                 res.data?.map(val=>{
-                    groups.push(val.name);
+                    groups.push({
+                        id: val.id,
+                        name:val.name
+                    });
                 });
                 setGardenGroups(groups);
             }).catch((err)=>console.log(err))
@@ -126,14 +121,14 @@ const EventsListPage = ({ gardenId, selectedEvents, gardenGroups, setGardenGroup
 
     useEffect(() => {
         if (daySelect) {
-            setParsedDay(dateToD(daySelect))
+            setDay(dateToD(daySelect))
         }
-        if (yearSelect && monthSelect) {
+        if (year && month) {
             setDisableDay(false)
         } else {
             setDisableDay(true)
         }
-    }, [yearSelect, monthSelect, daySelect])
+    }, [year, month, daySelect])
 
     //let testDate = eventsList.map(e => e.docRec.dateTime)
     //console.log('eventsList date', parsedDay)
@@ -144,16 +139,16 @@ const EventsListPage = ({ gardenId, selectedEvents, gardenGroups, setGardenGroup
                 <div className={classes.flex}>
                     <div className={classes.selects}>
                         <EasyReportPageSelect title={'組'} options={gardenGroups} value={group} setValue={setGroup}/>
-                        <EasyReportPageSelect title={'年'} options={year} value={yearSelect} setValue={setYearSelect}/>
+                        <EasyReportPageSelect title={'年'} options={years} value={year} setValue={setYear}/>
                         {/*<EasyReportPageSelect title={'月'} options={month} value={monthSelect}*/}
                         {/*                      setValue={setMonthSelect}/>*/}
-                        <MonthSelect title={'月'} setValue={setMonthSelect}
-                                     value={monthSelect}/>
+                        <MonthSelect title={'月'} setValue={setMonth}
+                                     value={month}/>
 
                         <LocalisedDatePicker
                             disable={disableDay}
                             format={'dd'}
-                            value={daySelect ? daySelect : monthSelect && yearSelect ? `${yearSelect}/${monthSelect}` : null}
+                            value={daySelect ? daySelect : month && year ? `${year}/${month}` : null}
                             onChange={setDaySelect}
                         />
                         <span className={classes.selectTitle}>日</span>
@@ -175,9 +170,9 @@ const EventsListPage = ({ gardenId, selectedEvents, gardenGroups, setGardenGroup
                 </div>
             </div>
 
-            <Event gardenId={gardenId} eventsList={eventsList} group={group} monthSelect={monthSelect} parsedDay={parsedDay}
+            <Event gardenId={gardenId} eventsList={eventsList} group={group} monthSelect={month} parsedDay={day}
                    deleteEvent={deleteEvent}
-                   yearSelect={yearSelect} handleChange={handleChange} selectedCheckbox={selectedEvents}
+                   yearSelect={year} handleChange={handleChange} selectedCheckbox={selectedEvents}
                    disable={disable} setDisable={setDisable}/>
         </>
     );

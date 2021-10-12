@@ -19,7 +19,29 @@ export const setGardenName = gardenName => ({
 export const showTagsDialog = (isShown) => ({
     type: CommonActionTypes.SHOW_TAGS_DIALOG,
     payload: {isShown},
-})
+});
+
+export const setGroup = group => ({
+    type: CommonActionTypes.SET_GROUP,
+    payload: {group},
+});
+
+export const setMonth = month => ({
+    type: CommonActionTypes.SET_MONTH,
+    payload: {month},
+});
+
+export const setYear = year => ({
+    type: CommonActionTypes.SET_YEAR,
+    payload: {year},
+});
+
+export const setDay = day => ({
+    type: CommonActionTypes.SET_DAY,
+    payload: {day},
+});
+
+
 
 export const CommonActions = {
     setTimeFilter,
