@@ -154,17 +154,24 @@ const SharedScreenDialog = ({
     }
   };
 
+  function convertImgFile(img){
+    return img?.indexOf("base64") != -1 ? img.replace(img.substring(0, img.indexOf(";base64,") + 8), "") : img;
+  }
+
   const onSave = () => {
     if (description) {
       if (destination) {
         setShowError(false);
         API.sharedDialog.sendReport(gardenId, {
-          comment: description,
-          tagIds,
-          clsIds,
-          childIds,
-          textTags,
-          tagKind: destination,
+          json:{
+            comment: description,
+            tagIds,
+            clsIds,
+            childIds,
+            textTags,
+            tagKind: destination,
+          },
+          file: convertImgFile(image),
         }).then((res)=>{
           addEvent(newEvent);
           resetSelectedData();
