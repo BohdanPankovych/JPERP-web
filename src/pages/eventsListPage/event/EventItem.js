@@ -106,7 +106,12 @@ const EventItem = ({gardenId, deleteEvent, item, disable, handleChange, selected
         setOpen(true);
     },[])
 
-    const isChecked = (id) => {
+    // const isChecked = (checkName, selectedCheck) => {
+    //     return selectedCheck?.indexOf(checkName) >= 0
+    // }
+    // indeterminate={isChecked('Бретон', oneRule?.hat)}
+
+    const isChecked = (id, checkName) => {
         let check = false;
         for (let i = 0; i < selectedCheckbox.length; i++) {
             if (selectedCheckbox[i].docRec.id === id) {
@@ -114,7 +119,7 @@ const EventItem = ({gardenId, deleteEvent, item, disable, handleChange, selected
                 break;
             }
         }
-        return check;
+        return check
     }
 
     useEffect(() => {
@@ -137,6 +142,7 @@ const EventItem = ({gardenId, deleteEvent, item, disable, handleChange, selected
             }))
             .catch((err) => console.error(err))
     },[gardenId, item])
+
 
     return <>
         <ModalDelete open={open} setOpen={setOpen} garden_id={gardenId} event_id={item.docRec.id} deleteEvent={deleteEvent} eventsList={eventsList}/>

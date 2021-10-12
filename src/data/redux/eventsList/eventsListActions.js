@@ -19,3 +19,4 @@ export const setGardenGroups = groups => ({
     type: EventsListActionTypes.SET_GARDEN_GROUPS,
     payload: { groups },
 })
+

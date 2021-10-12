@@ -1,9 +1,13 @@
 
 const CommonActionTypes = {
     SET_TIME_FILTER: 'SET_TIME_FILTER',
-    SET_GARDEN_ID: 'SET_GARDEN_ID', 
+    SET_GARDEN_ID: 'SET_GARDEN_ID',
     SET_GARDEN_NAME: 'SET_GARDEN_NAME',
     SHOW_TAGS_DIALOG: 'SHOW_TAGS_DIALOG',
+    SET_GROUP: 'SET_GROUP',
+    SET_MONTH: 'SET_MONTH',
+    SET_YEAR: 'SET_YEAR',
+    SET_DAY: 'SET_DAY',
 };
 
 export default CommonActionTypes

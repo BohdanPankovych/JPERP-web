@@ -16,6 +16,10 @@ const Root = ({
   setGardenId,
   setGardenName,
   gardenId,
+    group,
+    month,
+    year,
+    day
 }) => {
   const getEvents = (gardenId) => {
     API.eventsList
@@ -45,6 +49,26 @@ const Root = ({
       })
       .catch((err) => console.error(err));
   }, []);
+
+    useEffect(() => {
+        {
+            gardenId && API.eventsList
+                .getEventsList(gardenId, {
+                    clsId: group,
+                    childId: null,
+                    from: [year, month,day].join('-'),
+                    to: [year, month,day].join('-'),
+                    text: null,
+                    generalTagIds: [],
+                    staffId: null,
+                    limit: 20,
+                    offset: 0,
+                    isApproved: null,
+                })
+                .then((res) => setEventsListData(res.data))
+                .catch((err) => console.error(err));
+        }
+    }, [group, month, year, day]);
 
   // useEffect(()=>{
   //     setGardenName("日本標準こども園");

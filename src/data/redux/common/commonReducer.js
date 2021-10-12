@@ -8,6 +8,10 @@ const defaultState = new Immutable.OrderedMap({
     gardenId: '',
     gardenName: '',
     isTagDialogShown: false,
+    group: '',
+    month: '',
+    year: '',
+    day: '',
 });
 
 const commonReducer = (state = defaultState, action) => {
@@ -17,12 +21,24 @@ const commonReducer = (state = defaultState, action) => {
 
         case CommonActionTypes.SET_GARDEN_ID:
             return state.set("gardenId", action.payload.gardenId);
-        
+
         case CommonActionTypes.SET_GARDEN_NAME:
             return state.set("gardenName", action.payload.gardenName);
 
         case CommonActionTypes.SHOW_TAGS_DIALOG:
             return state.set("isTagDialogShown", action.payload.isShown);
+
+        case CommonActionTypes.SET_GROUP:
+            return state.set("group", action.payload.group);
+
+        case CommonActionTypes.SET_MONTH:
+            return state.set("month", action.payload.month);
+
+        case CommonActionTypes.SET_YEAR:
+            return state.set("year", action.payload.year);
+
+        case CommonActionTypes.SET_DAY:
+            return state.set("day", action.payload.day);
 
         default:
             return state;
