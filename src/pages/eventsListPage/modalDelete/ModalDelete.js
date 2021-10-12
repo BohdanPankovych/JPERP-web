@@ -4,6 +4,7 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogActions from "@material-ui/core/DialogActions";
 import Button from "@material-ui/core/Button";
+import Api from '../../../data/api/Api'
 
 const useStyles = makeStyles((theme) => ({
     dialog: {
@@ -29,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const ModalDelete = ({open, setOpen, id, eventsList, deleteEvent}) => {
+const ModalDelete = ({open, setOpen, event_id, garden_id, eventsList, deleteEvent}) => {
     const classes = useStyles();
 
     const handleClose = () => {
@@ -38,13 +39,11 @@ const ModalDelete = ({open, setOpen, id, eventsList, deleteEvent}) => {
 
 
     const deleteItem = () => {
-        deleteEvent(id)
-        setOpen(false);
+        Api.eventsList.deleteEvent(garden_id, event_id).then((res)=>{
+            deleteEvent(event_id)
+            setOpen(false);
+        }).catch((err)=>console.error(err))
     }
-
-
-
-    // console.log('item.id', id)
 
     return (
         <Dialog

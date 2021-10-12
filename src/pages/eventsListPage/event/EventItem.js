@@ -139,7 +139,7 @@ const EventItem = ({gardenId, deleteEvent, item, disable, handleChange, selected
     },[gardenId, item])
 
     return <>
-        <ModalDelete open={open} setOpen={setOpen} id={item.docRec.id} deleteEvent={deleteEvent} eventsList={eventsList}/>
+        <ModalDelete open={open} setOpen={setOpen} garden_id={gardenId} event_id={item.docRec.id} deleteEvent={deleteEvent} eventsList={eventsList}/>
         <div className={classes.event}>
             <div className={classes.image}>
                 <img className={classes.imgMain} src={img ? URL.createObjectURL(new Blob(new Uint8Array(img), {type : item.docRec.mediaType})) : null} alt=""/>
