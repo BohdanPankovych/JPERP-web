@@ -3,6 +3,7 @@ import React, {memo, useCallback, useEffect, useState} from "react";
 import deleteIcon from "../../../assets/icons/deleteBtnIcon.jpg"
 import ModalDelete from "../modalDelete/ModalDelete";
 import Api from "../../../data/api/Api";
+import EventItemImg from "./EventItemImg";
 
 
 const useStyles = makeStyles(() => ({
@@ -111,7 +112,7 @@ const EventItem = ({gardenId, deleteEvent, item, disable, handleChange, selected
                      deleteEvent={deleteEvent} eventsList={eventsList}/>
         <div className={classes.event}>
             <div className={classes.image}>
-                <img className={classes.imgMain} src={item?.docRec?.image} alt=""/>
+                <EventItemImg image={item?.docRec?.image} styles={classes.imgMain}/>
             </div>
             <div className={classes.imgDescriptionBlock}>
                 {/*<p className={classes.imgTitle}>{event.title}</p>*/}
