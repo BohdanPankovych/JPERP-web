@@ -1,5 +1,4 @@
 import Immutable from "immutable";
-import img1 from "../mock/mockImg/img1.png";
 
 const EventDTO = new Immutable.Record({
     docRec: {
@@ -16,6 +15,7 @@ const EventDTO = new Immutable.Record({
       lastModified: "",
       lastModifiedUsrId: "",
       approved: false,
+        image: ""
     },
     maybeAdminTag: [],
     maybeAppliTag: [],

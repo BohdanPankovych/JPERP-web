@@ -15,7 +15,7 @@ const API = {
         getGardenId: () => axios.get('/api/v1/Garden', {headers}),
     },
     eventsList: {
-        getImg: (garden_id, id) => axios.get(`/api/v1/Garden/${garden_id}/Img/doc/s/${id}.jpeg`, {headers}),
+        getImg: (garden_id, id) => axios.get(`/api/v1/Garden/${garden_id}/Img/doc/s/${id}.jpeg`, {responseType: "blob", headers: headers}),
         getImgTwo: (garden_id, id, type) => axios.get(`/api/v1/Garden/${garden_id}/Img/doc/${id}${textExtencion(type)}`, {headers}),
 
         getEventsList: (garden_id, eventTypes) => axios.post(`/api/v1/Garden/${garden_id}/DocRec/search`, eventTypes, {headers}),

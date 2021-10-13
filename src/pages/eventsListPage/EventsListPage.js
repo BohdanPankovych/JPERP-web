@@ -8,13 +8,12 @@ import Button from "@material-ui/core/Button";
 import {Link} from "react-router-dom";
 import FrontendRoutes from "../../data/constants/FrontendRoutes";
 import {dateToD, qwe} from "../../data/helpers/timeHelper";
-import MonthSelect from "./monthSelect/MonthSelect";
 import Api from '../../data/api/Api'
 import years from "../../data/constants/Year";
 import jpMonths from "../../data/constants/JpMonths";
 
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     underHeaderBlock: {
         marginLeft: 30,
         marginRight: 60,
@@ -62,20 +61,18 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const EventsListPage = ({ setGroup, setMonth, setYear, setDay, group, month, year, day, gardenId, selectedEvents, gardenGroups, setGardenGroups, eventsList, deleteEvent, addSelectedEvent, removeSelectedEvent, setEventsListData}) => {
+const EventsListPage = ({ setGroup, setMonth, setYear, setDay, group, month, year, day, gardenId, selectedEvents, gardenGroups, setGardenGroups, eventsList, deleteEvent, addSelectedEvent, removeSelectedEvent, setEventImage}) => {
     const classes = useStyles();
-    // const [group, setGroup] = useState('')
     const [daySelect, setDaySelect] = useState('');
     const [disable, setDisable] = useState(false);
     const [disableBtn, setDisableBtn] = useState(true)
     const [disableDay, setDisableDay] = useState(true)
 
-    // console.log("GARDEN ID!!!!!!!!!!!!", gardenId)
     useEffect(() => {
         if (gardenId) {
             Api.eventsList.getClasses(gardenId).then((res)=>{
                 let groups = [];
-                groups.push({id: null, name: ''})
+                groups.push({id: null, name: null})
                 res.data?.map(val=>{
                     groups.push({
                         id: val.id,
@@ -136,8 +133,6 @@ const EventsListPage = ({ setGroup, setMonth, setYear, setDay, group, month, yea
         console.log('test', test)
     },[year, month, day])
 
-    //let testDate = eventsList.map(e => e.docRec.dateTime)
-    //console.log('eventsList date', parsedDay)
     return (
         <>
             <div className={classes.underHeaderBlock}>
@@ -179,7 +174,9 @@ const EventsListPage = ({ setGroup, setMonth, setYear, setDay, group, month, yea
             <Event gardenId={gardenId} eventsList={eventsList} group={group} monthSelect={month} parsedDay={day}
                    deleteEvent={deleteEvent}
                    yearSelect={year} handleChange={handleChange} selectedCheckbox={selectedEvents}
-                   disable={disable} setDisable={setDisable}/>
+                   disable={disable} setDisable={setDisable}
+                   setEventImage={setEventImage}
+            />
         </>
     );
 }

@@ -7,10 +7,8 @@ import PreviewScreenPageContainer from "../previewScreenPage/containers/PreviewS
 import API from "../../data/api/Api";
 import SharedScreenDialogContainer from "../sharedScreenDialog/containers/SharedScreenDialogContainer";
 import {dateToYMD, qwe} from '../../data/helpers/timeHelper'
-import EventsMock from "../../data/mock/EventsMock";
 
 const Root = ({
-  eventsList,
   setEventsListData,
   isTagDialogShown,
   showTagsDialog,
@@ -52,29 +50,24 @@ const Root = ({
   }, []);
 
     useEffect(() => {
-        {
-            gardenId && API.eventsList
-                .getEventsList(gardenId, {
-                    clsId: group,
-                    childId: null,
-                    from: qwe(year, month, day),
-                    text: null,
-                    generalTagIds: [],
-                    staffId: null,
-                    limit: 20,
-                    offset: 0,
-                    isApproved: null,
-                })
-                .then((res) => setEventsListData(res.data))
-                .catch((err) => console.error(err));
-        }
-    }, [group, month, year, day]);
+        console.log(group, month, year, day)
+        gardenId && API.eventsList
+            .getEventsList(gardenId, {
+                clsId: group || null,
+                childId: null,
+                from: qwe(year, month, day > 10 ? day : "0" + day),
+                to: null,
+                text: null,
+                generalTagIds: [],
+                staffId: null,
+                limit: 20,
+                offset: 0,
+                isApproved: null,
+            })
+            .then((res) => setEventsListData(res.data))
+            .catch((err) => console.error(err));
 
-  // useEffect(()=>{
-  //     setGardenName("日本標準こども園");
-  //     setEventsListData(EventsMock);
-  //     console.log("Root Page", EventsMock);
-  // },[])
+    }, [group, month, year, day]);
 
   return (
     <>

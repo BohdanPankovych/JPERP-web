@@ -52,25 +52,25 @@ const CanvasPostcard = ({
         <CanvasEventItem
           x={70}
           y={90}
-          img={selectedEvents[0]?.docRec.mediaSha256}
+          img={selectedEvents[0]?.docRec.image}
           text={selectedEvents[0]?.docRec.comment}
         />
         <CanvasEventItem
           x={70}
           y={360}
-          img={selectedEvents[1]?.docRec.mediaSha256}
+          img={selectedEvents[1]?.docRec.image}
           text={selectedEvents[1]?.docRec.comment}
         />
         <CanvasEventItem
           x={290}
           y={90}
-          img={selectedEvents[2]?.docRec.mediaSha256}
+          img={selectedEvents[2]?.docRec.image}
           text={selectedEvents[2]?.docRec.comment}
         />
         <CanvasEventItem
           x={290}
           y={360}
-          img={selectedEvents[3]?.docRec.mediaSha256}
+          img={selectedEvents[3]?.docRec.image}
           text={selectedEvents[3]?.docRec.comment}
         />
 

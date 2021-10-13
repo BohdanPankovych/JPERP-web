@@ -5,7 +5,7 @@ import ModalDelete from "../modalDelete/ModalDelete";
 import Api from "../../../data/api/Api";
 
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
 
     event: {
         marginTop: 62,
@@ -66,49 +66,14 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function toUTF8Array(str) {
-    var utf8 = [];
-    for (var i=0; i < str.length; i++) {
-        var charcode = str.charCodeAt(i);
-        if (charcode < 0x80) utf8.push(charcode);
-        else if (charcode < 0x800) {
-            utf8.push(0xc0 | (charcode >> 6),
-                0x80 | (charcode & 0x3f));
-        }
-        else if (charcode < 0xd800 || charcode >= 0xe000) {
-            utf8.push(0xe0 | (charcode >> 12),
-                0x80 | ((charcode>>6) & 0x3f),
-                0x80 | (charcode & 0x3f));
-        }
-        // surrogate pair
-        else {
-            i++;
-            // UTF-16 encodes 0x10000-0x10FFFF by
-            // subtracting 0x10000 and splitting the
-            // 20 bits of 0x0-0xFFFFF into two halves
-            charcode = 0x10000 + (((charcode & 0x3ff)<<10)
-                | (str.charCodeAt(i) & 0x3ff));
-            utf8.push(0xf0 | (charcode >>18),
-                0x80 | ((charcode>>12) & 0x3f),
-                0x80 | ((charcode>>6) & 0x3f),
-                0x80 | (charcode & 0x3f));
-        }
-    }
-    return utf8;
-}
-const EventItem = ({gardenId, deleteEvent, item, disable, handleChange, selectedCheckbox, eventsList}) => {
+const EventItem = ({gardenId, deleteEvent, item, disable, handleChange, selectedCheckbox, eventsList, setEventImage}) => {
     const classes = useStyles();
 
     const [open, setOpen] = useState(false);
 
-    const deleteModal = useCallback((e) => {
+    const deleteModal = useCallback(() => {
         setOpen(true);
     },[])
-
-    // const isChecked = (checkName, selectedCheck) => {
-    //     return selectedCheck?.indexOf(checkName) >= 0
-    // }
-    // indeterminate={isChecked('Бретон', oneRule?.hat)}
 
     const isChecked = (id, checkName) => {
         let check = false;
@@ -126,33 +91,28 @@ const EventItem = ({gardenId, deleteEvent, item, disable, handleChange, selected
         // console.log('item', item)
     }, [selectedCheckbox, disable])
 
-    const [img, setImg] = useState();
-
-    console.log('IMAGE!!!', img)
     useEffect(() => {
         Api.eventsList.getImg(gardenId, item.docRec.id)
             .then(((res) => {
-
-                // console.log('Buffer', new Buffer(res.data).toString("base64"))
-                console.log('res', Buffer.from(res.data, 'binary').toString('base64'))
-                // console.log("uInt8 array", new Uint8Array(res.data))
-                // console.log("BLOB!!!", new Blob( new Uint8Array(res.data), {type : 'image/jpeg'}))
-                setImg(Buffer.from(res.data, 'binary').toString('base64'));
+                let reader = new window.FileReader();
+                reader.readAsDataURL(res.data);
+                reader.onload = function () {
+                    let imageDataUrl = reader.result;
+                    setEventImage(item.docRec.id, imageDataUrl);
+                };
             }))
             .catch((err) => console.error(err))
     },[gardenId, item])
-
 
     return <>
         <ModalDelete open={open} setOpen={setOpen} garden_id={gardenId} event_id={item.docRec.id} deleteEvent={deleteEvent} eventsList={eventsList}/>
         <div className={classes.event}>
             <div className={classes.image}>
-                <img className={classes.imgMain} src={`data:image/jpeg;base64,${img}`} alt=""/>
-                {/* <img className={classes.imgMain} src={img} alt=""/> */}
+                <img className={classes.imgMain} src={item?.docRec?.image} alt=""/>
             </div>
             <div className={classes.imgDescriptionBlock}>
                 {/*<p className={classes.imgTitle}>{event.title}</p>*/}
-                <div className={classes.tagList}>{item.tags.map(t => (
+                <div className={classes.tagList}>{item?.tags?.map(t => (
                     <div className={classes.tag}>{t?.value}</div>))}</div>
 
                 <p className={classes.imgDescr}>{item.docRec.comment}</p>
@@ -167,7 +127,7 @@ const EventItem = ({gardenId, deleteEvent, item, disable, handleChange, selected
                 <img onClick={deleteModal} className={classes.delete} src={deleteIcon} alt=""/>
             </div>
         </div>
-        <div className={classes.line}></div>
+        <div className={classes.line}/>
     </>
 }
 

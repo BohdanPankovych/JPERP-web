@@ -11,7 +11,7 @@ const defaultState = new Immutable.OrderedMap({
     group: '',
     month: '01',
     year: '2021',
-    day: '01',
+    day: 1,
 });
 
 const commonReducer = (state = defaultState, action) => {

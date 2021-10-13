@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
 const ShareClassroomItem = ({ title, selectedTags, tags, ...props }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const [selected, setSelected] = React.useState([]);
+  const [selected, setSelected] = React.useState([]); //FIXME
 
   const handleClick = () => {
     setOpen(!open);
@@ -28,8 +28,7 @@ const ShareClassroomItem = ({ title, selectedTags, tags, ...props }) => {
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <Box className={classes.tagsList}>
-          {tags &&
-            tags.map((val) => (
+          {tags?.map((val) => (
               <SelectTagButton
                 key={val.parent.id}
                 id={val.parent.id}

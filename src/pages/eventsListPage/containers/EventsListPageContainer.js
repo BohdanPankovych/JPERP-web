@@ -1,6 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import {deleteEvent, setEventsListData, setGardenGroups} from "../../../data/redux/eventsList/eventsListActions";
+import {
+    deleteEvent,
+    setEventImage,
+    setEventsListData,
+    setGardenGroups
+} from "../../../data/redux/eventsList/eventsListActions";
 import EventsListPage from "../EventsListPage";
 import {selectedEventsActions} from "../../../data/redux/selectedEvents/selectedEventsActions";
 import {setDay, setGroup, setMonth, setYear} from "../../../data/redux/common/commonActions";
@@ -25,6 +30,7 @@ const mapDispatchToProps = {
     setMonth,
     setYear,
     setDay,
+    setEventImage
 };
 
 const EventsListPageContainer = props => <EventsListPage {...props} />;

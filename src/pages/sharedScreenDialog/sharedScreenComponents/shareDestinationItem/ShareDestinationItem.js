@@ -29,7 +29,7 @@ const ShareDestinationItem = ({ tags, setDestination }) => {
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <Box className={classes.tagsList}>
-          {tags?.children.map((val) => (
+          {tags?.children?.map((val) => (
             <SelectDestinationButton
               key={val.id}
               tagKind={val.tagKindValue}

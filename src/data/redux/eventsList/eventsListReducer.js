@@ -21,7 +21,10 @@ const eventsListReducer = (state = defaultState, action) => {
             return state.update("events", events => events.filter(e => e.docRec.id !== action.payload.eventID))
         case EventsListActionTypes.SET_GARDEN_GROUPS:
             return state.set("groups", action.payload.groups)
-
+        case EventsListActionTypes.SET_EVENT_IMAGE:
+            return state.setIn(
+                ["events",  state.get("events").findIndex(e => e.docRec.id === action.payload.id), "docRec", "image"],
+                action.payload.image)
         default:
             return state;
     }

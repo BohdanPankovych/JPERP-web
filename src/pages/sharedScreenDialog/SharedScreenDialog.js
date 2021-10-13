@@ -17,14 +17,13 @@ import {
 } from "@material-ui/core";
 import SharedScreenListContainer from "./containers/SharedScreenListContainer";
 import TextInput from "../../reusableComponents/textInput/TextInput";
-import { dateToYMD } from "../../data/helpers/timeHelper";
 import { useHistory } from "react-router-dom";
 import FrontendRoutes from "../../data/constants/FrontendRoutes";
 import { required } from "../../data/helpers/validators";
 import ModalDialog from "./sharedScreenComponents/ModalDialog";
 import API from '../../data/api/Api';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   appBar: {
     position: "relative",
     backgroundColor: "#F6F6F6",
@@ -129,7 +128,6 @@ const SharedScreenDialog = ({
   addEvent,
   setShareReportsImage,
   setShareReportsApprove,
-  setSelectedEvents,
   setShareReportsDescription,
   setDestination,
   gardenId,
@@ -162,17 +160,26 @@ const SharedScreenDialog = ({
     if (description) {
       if (destination) {
         setShowError(false);
-        API.sharedDialog.sendReport(gardenId, {
-          json:{
+        const data = JSON.stringify({
             comment: description,
             tagIds,
             clsIds,
             childIds,
             textTags,
             tagKind: destination,
-          },
-          file: convertImgFile(image),
-        }).then((res)=>{
+      });
+        console.log({data});
+        var formData = new FormData();
+
+        formData.append("json", new Blob([data], {type: "application/json"}));
+        // formData.append("file", new Blob([image], { type: 'image/jpeg' }), "file.jpeg", "image/jpeg"); // число 123456 немедленно преобразуется в строку "123456"
+        console.log({formData});
+        // var utf8 = unescape(encodeURIComponent(data));
+        // var arr = [];
+        // for (var i = 0; i < utf8.length; i++) {
+        //   arr.push(utf8.charCodeAt(i));
+        // }
+        API.sharedDialog.sendReport(gardenId, formData).then((res)=>{
           addEvent(newEvent);
           resetSelectedData();
           setDestination(null);
