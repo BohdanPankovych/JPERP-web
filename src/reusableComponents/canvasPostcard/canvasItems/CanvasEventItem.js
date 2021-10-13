@@ -9,7 +9,7 @@ const CanvasEventItem = ({img, x, y, text, ...props})=>{
 
   return <>
   <Image image={image} width={adaptedWidth} height={adaptedHeight} x={x} y={y} stroke="white" strokeWidth={10} cornerRadius={10} {...props}/>
-  <Text x={x} y={y+adaptedHeight+5} width={200} text={text} fontSize={8.5} />
+  <Text x={x} y={y+adaptedHeight+15} width={200} text={text} fontSize={8.5} />
   </>
 }
 

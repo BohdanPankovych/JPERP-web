@@ -14,9 +14,11 @@ const useStyles = makeStyles((theme) => ({
   },
   imgContainer:{
     maxWidth: 100,
+    width: "100px",
     maxHeight: 100,
     display: "flex",
-    justifyContent: "center"
+    justifyContent: "center",
+    alignItems: "center",
   },
   img: {
     margin: "20px 10px 0",
