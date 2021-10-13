@@ -69,6 +69,12 @@ const Root = ({
 
     }, [group, month, year, day]);
 
+  // useEffect(()=>{
+  //     setGardenName("日本標準こども園");
+  //     setEventsListData(EventsMock);
+  //     console.log("Root Page", EventsMock);
+  // },[])
+
   return (
     <>
       <Switch>
