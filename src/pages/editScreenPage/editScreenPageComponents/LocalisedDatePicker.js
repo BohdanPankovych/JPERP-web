@@ -1,4 +1,4 @@
-import React from "react";
+import React, {memo} from "react";
 import {DatePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import jaLocale from "date-fns/locale/ja";
@@ -36,4 +36,4 @@ const LocalisedDatePicker = ({ disable, format, value, onChange}) => {
     );
 };
 
-export default LocalisedDatePicker;
+export default memo(LocalisedDatePicker);

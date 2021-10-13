@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextInput from "../../../reusableComponents/textInput/TextInput";
 import { required, notLong } from "../../../data/helpers/validators";
+import EventItemImg from "../../eventsListPage/event/EventItemImg";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -56,7 +57,7 @@ const EditScreenPageListItem = ({ data, showError, editSelectedEvents }) => {
   return (
     <div className={classes.root}>
       <div className={classes.imgContainer}>
-        <img className={classes.img} width="auto" height="100" alt="img" src={data.docRec?.image} />
+        <EventItemImg styles={classes.img} width="auto" height="100" alt="img" image={data.docRec?.image} />
       </div>
       <div>
         <TextInput
