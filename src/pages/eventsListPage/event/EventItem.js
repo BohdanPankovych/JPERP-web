@@ -73,7 +73,7 @@ const EventItem = ({gardenId, deleteEvent, item, disable, handleChange, selected
 
     const deleteModal = useCallback(() => {
         setOpen(true);
-    },[])
+    }, [])
 
     const isChecked = (id, checkName) => {
         let check = false;
@@ -102,18 +102,25 @@ const EventItem = ({gardenId, deleteEvent, item, disable, handleChange, selected
                 };
             }))
             .catch((err) => console.error(err))
-    },[gardenId, item])
+    }, [gardenId, item])
 
     return <>
-        <ModalDelete open={open} setOpen={setOpen} garden_id={gardenId} event_id={item.docRec.id} deleteEvent={deleteEvent} eventsList={eventsList}/>
+        <ModalDelete open={open} setOpen={setOpen} garden_id={gardenId} event_id={item.docRec.id}
+                     deleteEvent={deleteEvent} eventsList={eventsList}/>
         <div className={classes.event}>
             <div className={classes.image}>
                 <img className={classes.imgMain} src={item?.docRec?.image} alt=""/>
             </div>
             <div className={classes.imgDescriptionBlock}>
                 {/*<p className={classes.imgTitle}>{event.title}</p>*/}
-                <div className={classes.tagList}>{item?.tags?.map(t => (
-                    <div className={classes.tag}>{t?.value}</div>))}</div>
+                <div className={classes.tagList}>
+                    {item?.tags?.map(t => (
+                        <div className={classes.tag}>{t?.value}</div>))}
+                    {item?.clsTags?.map(t => (
+                        <div className={classes.tag}>{t?.value}</div>))}
+                    {item?.childTags?.map(t => (
+                        <div className={classes.tag}>{t?.value}</div>))}
+                </div>
 
                 <p className={classes.imgDescr}>{item.docRec.comment}</p>
             </div>

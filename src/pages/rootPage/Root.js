@@ -7,6 +7,7 @@ import PreviewScreenPageContainer from "../previewScreenPage/containers/PreviewS
 import API from "../../data/api/Api";
 import SharedScreenDialogContainer from "../sharedScreenDialog/containers/SharedScreenDialogContainer";
 import {dateToYMD, qwe} from '../../data/helpers/timeHelper'
+import EventsMock from "../../data/mock/EventsMock";
 
 const Root = ({
   setEventsListData,
@@ -38,42 +39,42 @@ const Root = ({
       .catch((err) => console.error(err));
   };
 
-  useEffect(() => {
-    API.garden
-      .getGardenId()
-      .then((res) => {
-        setGardenId(res.data[0].id);
-        setGardenName(res.data[0].name);
-        getEvents(res.data[0].id);
-      })
-      .catch((err) => console.error(err));
-  }, []);
+  // useEffect(() => {
+  //   API.garden
+  //     .getGardenId()
+  //     .then((res) => {
+  //       setGardenId(res.data[0].id);
+  //       setGardenName(res.data[0].name);
+  //       getEvents(res.data[0].id);
+  //     })
+  //     .catch((err) => console.error(err));
+  // }, []);
+  //
+  //   useEffect(() => {
+  //       console.log(group, month, year, day)
+  //       gardenId && API.eventsList
+  //           .getEventsList(gardenId, {
+  //               clsId: group || null,
+  //               childId: null,
+  //               from: qwe(year, month, day > 10 ? day : "0" + day),
+  //               to: null,
+  //               text: null,
+  //               generalTagIds: [],
+  //               staffId: null,
+  //               limit: 20,
+  //               offset: 0,
+  //               isApproved: null,
+  //           })
+  //           .then((res) => setEventsListData(res.data))
+  //           .catch((err) => console.error(err));
+  //
+  //   }, [group, month, year, day]);
 
-    useEffect(() => {
-        console.log(group, month, year, day)
-        gardenId && API.eventsList
-            .getEventsList(gardenId, {
-                clsId: group || null,
-                childId: null,
-                from: qwe(year, month, day > 10 ? day : "0" + day),
-                to: null,
-                text: null,
-                generalTagIds: [],
-                staffId: null,
-                limit: 20,
-                offset: 0,
-                isApproved: null,
-            })
-            .then((res) => setEventsListData(res.data))
-            .catch((err) => console.error(err));
-
-    }, [group, month, year, day]);
-
-  // useEffect(()=>{
-  //     setGardenName("日本標準こども園");
-  //     setEventsListData(EventsMock);
-  //     console.log("Root Page", EventsMock);
-  // },[])
+  useEffect(()=>{
+      setGardenName("日本標準こども園");
+      setEventsListData(EventsMock);
+      console.log("Root Page", EventsMock);
+  },[])
 
   return (
     <>
