@@ -7,6 +7,14 @@ export function dateToYMD(date, separator) {
     return [year, trailingZero(month), trailingZero(day)].join(separator)
 }
 
+export function dateTodayYMD(date, separator) {
+    const year = date.getFullYear()
+    const month = date.getMonth() + 1
+    const day = date.getDate()
+
+    return [year, trailingZero(month), trailingZero(day)].join(separator)
+}
+
 export function dateToD(date) {
     const day = date?.getDate()
     return day

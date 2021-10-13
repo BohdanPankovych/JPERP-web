@@ -6,8 +6,7 @@ import EditScreenPageContainer from "../editScreenPage/containers/EditScreenPage
 import PreviewScreenPageContainer from "../previewScreenPage/containers/PreviewScreenPageContainer";
 import API from "../../data/api/Api";
 import SharedScreenDialogContainer from "../sharedScreenDialog/containers/SharedScreenDialogContainer";
-import {dateToYMD, qwe} from '../../data/helpers/timeHelper'
-import EventsMock from "../../data/mock/EventsMock";
+import {dateTodayYMD, dateToYMD, qwe} from '../../data/helpers/timeHelper'
 
 const Root = ({
   setEventsListData,
@@ -27,7 +26,7 @@ const Root = ({
         clsId: null,
         childId: null,
         from: dateToYMD(new Date(), "-"),
-        to: dateToYMD(new Date(), "-"),
+        to: dateTodayYMD(new Date(), "-"),
         text: null,
         generalTagIds: [],
         staffId: null,
@@ -56,7 +55,7 @@ const Root = ({
             .getEventsList(gardenId, {
                 clsId: group || null,
                 childId: null,
-                from: qwe(year, month, day > 10 ? day : "0" + day),
+                from: qwe(year, month, day > 9 ? day : "0" + day),
                 to: null,
                 text: null,
                 generalTagIds: [],
