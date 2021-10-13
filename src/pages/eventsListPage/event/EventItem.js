@@ -55,6 +55,8 @@ const useStyles = makeStyles(() => ({
     },
     tagList: {
         display: 'flex',
+        flexWrap: 'wrap',
+        width: '80%',
     },
     tag: {
         height: '20px',
