@@ -173,7 +173,16 @@ const SharedScreenDialog = ({
         var formData = new FormData();
 
         formData.append("json", new Blob([data], {type: "application/json"}));
-        formData.append("file", new Blob([convertImgFile(image)], { type: 'image/jpeg' }), "file.jpeg", "image/jpeg"); // число 123456 немедленно преобразуется в строку "123456"
+
+        // let reader = new window.FileReader();
+        // reader.(res.data);
+        // reader.onload = function () {
+        //   let imageDataUrl = reader.result;
+        //   //console.log(imageDataUrl);
+        //   setProfileImage(imageDataUrl);
+        //   setLoading(false);
+        // };
+        formData.append("file", new File([convertImgFile(image)], "blob"));
         console.log({formData});
         // var utf8 = unescape(encodeURIComponent(data));
         // var arr = [];

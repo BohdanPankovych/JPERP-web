@@ -54,7 +54,7 @@ const PreviewScreenPage = ({
   const classes = useStyles();
 
   const handleClickOpen = () => {
-    setShareReportsImage(stageRef.current.toDataURL({ pixelRatio: 1.5 }));
+    setShareReportsImage(stageRef.current.toDataURL({ pixelRatio: 1.5, mimeType: 'image/jpeg' }));
     showTagsDialog(true);
   };
 
