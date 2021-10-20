@@ -1,12 +1,14 @@
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import React, {memo, useCallback} from "react";
+import React, {memo} from "react";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogActions from "@material-ui/core/DialogActions";
 import Button from "@material-ui/core/Button";
 import Api from '../../../data/api/Api'
+import {connect} from "react-redux";
+import {deleteEvent} from "../../../data/redux/eventsList/eventsListActions";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     dialog: {
         // width: '600px',
         // height: '189px',
@@ -30,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const ModalDelete = ({open, setOpen, event_id, garden_id, eventsList, deleteEvent}) => {
+const ModalDelete = ({open, setOpen, event_id, garden_id, deleteEvent}) => {
     const classes = useStyles();
 
     const handleClose = () => {
@@ -39,7 +41,7 @@ const ModalDelete = ({open, setOpen, event_id, garden_id, eventsList, deleteEven
 
 
     const deleteItem = () => {
-        Api.eventsList.deleteEvent(garden_id, event_id).then((res)=>{
+        Api.eventsList.deleteEvent(garden_id, event_id).then(()=>{
             deleteEvent(event_id)
             setOpen(false);
         }).catch((err)=>console.error(err))
@@ -66,4 +68,4 @@ const ModalDelete = ({open, setOpen, event_id, garden_id, eventsList, deleteEven
     );
 }
 
-export default memo(ModalDelete);
+export default connect(() => ({}), {deleteEvent})(memo(ModalDelete));

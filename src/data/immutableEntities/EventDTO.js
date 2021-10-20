@@ -15,7 +15,7 @@ const EventDTO = new Immutable.Record({
       lastModified: "",
       lastModifiedUsrId: "",
       approved: false,
-        image: ""
+      image: ""
     },
     maybeAdminTag: [],
     maybeAppliTag: [],

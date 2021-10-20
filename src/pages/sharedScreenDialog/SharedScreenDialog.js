@@ -22,6 +22,7 @@ import FrontendRoutes from "../../data/constants/FrontendRoutes";
 import { required } from "../../data/helpers/validators";
 import ModalDialog from "./sharedScreenComponents/ModalDialog";
 import API from '../../data/api/Api';
+import {showTagsDialog} from "../../data/redux/common/commonActions";
 
 const useStyles = makeStyles(() => ({
   appBar: {
@@ -121,7 +122,7 @@ const SharedScreenDialog = ({
   open,
   newEvent,
   destination,
-  handleClose,
+  showTagsDialog,
   approve,
   description,
   image,
@@ -152,9 +153,17 @@ const SharedScreenDialog = ({
     }
   };
 
-  function convertImgFile(img){
-    return img?.indexOf("base64") != -1 ? img.replace(img.substring(0, img.indexOf(";base64,") + 8), "") : img;
+  const convertImgFile = (img) => {
+    return img?.indexOf("base64") !== -1 ? img.replace(img.substring(0, img.indexOf(";base64,") + 8), "") : img;
   }
+
+  const toByteArray = str => {
+      var arr=[];
+      for(var i=0; i<str.length; i++) {
+        arr.push(str.charCodeAt(i))
+      }
+      return new Uint8Array(arr);
+    }
 
   const onSave = () => {
     if (description) {
@@ -173,26 +182,13 @@ const SharedScreenDialog = ({
         var formData = new FormData();
 
         formData.append("json", new Blob([data], {type: "application/json"}));
+        formData.append("file", new Blob([toByteArray(window.atob(convertImgFile(image)))], {type: "image/jpeg"}));
 
-        // let reader = new window.FileReader();
-        // reader.(res.data);
-        // reader.onload = function () {
-        //   let imageDataUrl = reader.result;
-        //   //console.log(imageDataUrl);
-        //   setProfileImage(imageDataUrl);
-        //   setLoading(false);
-        // };
-        formData.append("file", new File([convertImgFile(image)], "blob"));
-        console.log({formData});
-        // var utf8 = unescape(encodeURIComponent(data));
-        // var arr = [];
-        // for (var i = 0; i < utf8.length; i++) {
-        //   arr.push(utf8.charCodeAt(i));
-        // }
-        API.sharedDialog.sendReport(gardenId, formData).then((res)=>{
-          addEvent(newEvent);
+        API.sharedDialog.sendReport(gardenId, formData).then(()=>{
+          addEvent({...newEvent, image});
           resetSelectedData();
           setDestination(null);
+          handleClose();
           history.push(FrontendRoutes.EVENTS_LIST_PAGE);
         }).catch((err) => console.error(err))
       } else {
@@ -201,6 +197,10 @@ const SharedScreenDialog = ({
     } else {
       setShowError(true);
     }
+  };
+
+  const handleClose = () => {
+    showTagsDialog(false);
   };
 
   return (

@@ -4,6 +4,9 @@ import deleteIcon from "../../../assets/icons/deleteBtnIcon.jpg"
 import ModalDelete from "../modalDelete/ModalDelete";
 import Api from "../../../data/api/Api";
 import EventItemImg from "./EventItemImg";
+import {connect} from "react-redux";
+import {addSelectedEvent, removeSelectedEvent} from "../../../data/redux/selectedEvents/selectedEventsActions";
+import {setEventImage} from "../../../data/redux/eventsList/eventsListActions";
 
 
 const useStyles = makeStyles(() => ({
@@ -69,7 +72,16 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-const EventItem = ({gardenId, deleteEvent, item, disable, handleChange, selectedCheckbox, eventsList, setEventImage}) => {
+const EventItem = ({
+                       gardenId,
+                       item,
+                       disable,
+                       selectedCheckbox,
+                       setEventImage,
+                       removeSelectedEvent,
+                       addSelectedEvent,
+                       key
+                   }) => {
     const classes = useStyles();
 
     const [open, setOpen] = useState(false);
@@ -77,6 +89,23 @@ const EventItem = ({gardenId, deleteEvent, item, disable, handleChange, selected
     const deleteModal = useCallback(() => {
         setOpen(true);
     }, [])
+
+    const handleChange = (obj) => {
+        let exist = false;
+        for (let i = 0; i < selectedCheckbox?.length; i++) {
+            if (selectedCheckbox[i].docRec.id === obj.docRec.id) {
+                exist = true;
+                break;
+            }
+        }
+
+        if (exist) {
+            removeSelectedEvent(obj.docRec.id);
+        } else {
+            console.log(obj)
+            addSelectedEvent(obj);
+        }
+    };
 
     const isChecked = (id, checkName) => {
         let check = false;
@@ -95,21 +124,23 @@ const EventItem = ({gardenId, deleteEvent, item, disable, handleChange, selected
     }, [selectedCheckbox, disable])
 
     useEffect(() => {
-        Api.eventsList.getImg(gardenId, item.docRec.id)
-            .then(((res) => {
-                let reader = new window.FileReader();
-                reader.readAsDataURL(res.data);
-                reader.onload = function () {
-                    let imageDataUrl = reader.result;
-                    setEventImage(item.docRec.id, imageDataUrl);
-                };
-            }))
-            .catch((err) => console.error(err))
-    }, [gardenId, item])
+        console.log("LOAD ", item?.docRec?.id)
+        if (gardenId && item?.docRec && !item?.docRec?.image) {
+            Api.eventsList.getImg(gardenId, item.docRec.id)
+                .then(((res) => {
+                    let reader = new window.FileReader();
+                    reader.readAsDataURL(res.data);
+                    reader.onload = function () {
+                        let imageDataUrl = reader.result;
+                        setEventImage(item.docRec.id, imageDataUrl);
+                    };
+                }))
+                .catch((err) => console.error(err))
+        }
+    }, [gardenId, item.docRec.id, item.docRec.image])
 
-    return <>
-        <ModalDelete open={open} setOpen={setOpen} garden_id={gardenId} event_id={item.docRec.id}
-                     deleteEvent={deleteEvent} eventsList={eventsList}/>
+    return <React.Fragment key={key}>
+        <ModalDelete open={open} setOpen={setOpen} garden_id={gardenId} event_id={item.docRec.id}/>
         <div className={classes.event}>
             <div className={classes.image}>
                 <EventItemImg image={item?.docRec?.image} styles={classes.imgMain}/>
@@ -117,12 +148,12 @@ const EventItem = ({gardenId, deleteEvent, item, disable, handleChange, selected
             <div className={classes.imgDescriptionBlock}>
                 {/*<p className={classes.imgTitle}>{event.title}</p>*/}
                 <div className={classes.tagList}>
-                    {item?.tags?.map(t => (
-                        <div className={classes.tag}>{t?.value}</div>))}
-                    {item?.clsTags?.map(t => (
-                        <div className={classes.tag}>{t?.value}</div>))}
-                    {item?.childTags?.map(t => (
-                        <div className={classes.tag}>{t?.value}</div>))}
+                    {item?.tags?.map((t, id) => (
+                        <div key={"tags" + id} className={classes.tag}>{t?.value}</div>))}
+                    {item?.clsTags?.map((t, id) => (
+                        <div key={"clsTags" + id} className={classes.tag}>{t?.value}</div>))}
+                    {item?.childTags?.map((t, id) => (
+                        <div key={"childTags" + id} className={classes.tag}>{t?.value}</div>))}
                 </div>
 
                 <p className={classes.imgDescr}>{item.docRec.comment}</p>
@@ -138,7 +169,12 @@ const EventItem = ({gardenId, deleteEvent, item, disable, handleChange, selected
             </div>
         </div>
         <div className={classes.line}/>
-    </>
+    </React.Fragment>
 }
 
-export default memo(EventItem);
+export default connect(state => ({
+        gardenId: state.common.get("gardenId"),
+        selectedCheckbox: state.selectedEvents.get('selects')?.toJS(),
+    }
+), {addSelectedEvent, removeSelectedEvent, setEventImage})(
+memo(EventItem));

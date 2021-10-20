@@ -10,8 +10,6 @@ import {dateTodayYMD, dateToYMD, qwe} from '../../data/helpers/timeHelper'
 
 const Root = ({
   setEventsListData,
-  isTagDialogShown,
-  showTagsDialog,
   setGardenId,
   setGardenName,
   gardenId,
@@ -88,10 +86,7 @@ const Root = ({
           <PreviewScreenPageContainer />
         </Route>
       </Switch>
-      <SharedScreenDialogContainer
-        open={isTagDialogShown}
-        handleClose={() => showTagsDialog(false)}
-      />
+      <SharedScreenDialogContainer/>
     </>
   );
 };

@@ -4,8 +4,10 @@ import { shareReportsActions } from "../../../data/redux/shareReports/shareRepor
 import SharedScreenDialog from "../SharedScreenDialog";
 import { addEvent } from "../../../data/redux/eventsList/eventsListActions";
 import { setSelectedEvents,resetSelectedData  } from "../../../data/redux/selectedEvents/selectedEventsActions";
+import {showTagsDialog} from "../../../data/redux/common/commonActions";
 
 const mapStateToProps = (state) => ({
+  open: state.common.get('isTagDialogShown'),
   description: state.shareReports.get("description"),
   image: state.shareReports.get("image"),
   approve: state.shareReports.get("approve"),
@@ -49,6 +51,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   ...shareReportsActions,
+  showTagsDialog,
   setSelectedEvents,
   resetSelectedData,
   addEvent,

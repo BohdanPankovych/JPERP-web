@@ -7,7 +7,7 @@ import LocalisedDatePicker from "../editScreenPage/editScreenPageComponents/Loca
 import Button from "@material-ui/core/Button";
 import {Link} from "react-router-dom";
 import FrontendRoutes from "../../data/constants/FrontendRoutes";
-import {dateToD, qwe} from "../../data/helpers/timeHelper";
+import {dateToD} from "../../data/helpers/timeHelper";
 import Api from '../../data/api/Api'
 import years from "../../data/constants/Year";
 import jpMonths from "../../data/constants/JpMonths";
@@ -61,7 +61,7 @@ const useStyles = makeStyles(() => ({
 
 }));
 
-const EventsListPage = ({ setGroup, setMonth, setYear, setDay, group, month, year, day, gardenId, selectedEvents, gardenGroups, setGardenGroups, eventsList, deleteEvent, addSelectedEvent, removeSelectedEvent, setEventImage}) => {
+const EventsListPage = ({ setGroup, setMonth, setYear, setDay, group, month, year, gardenId, selectedEvents, gardenGroups, setGardenGroups, eventsList}) => {
     const classes = useStyles();
     const [daySelect, setDaySelect] = useState('');
     const [disable, setDisable] = useState(false);
@@ -84,24 +84,7 @@ const EventsListPage = ({ setGroup, setMonth, setYear, setDay, group, month, yea
         }
     }, [gardenId]);
 
-    const handleChange = (obj) => {
-        let exist = false;
-        for (let i = 0; i < selectedEvents?.length; i++) {
-            if (selectedEvents[i].docRec.id === obj.docRec.id) {
-                exist = true;
-                break;
-            }
-        }
-
-        if (exist) {
-            removeSelectedEvent(obj.docRec.id);
-        } else {
-            console.log(obj)
-            addSelectedEvent(obj);
-        }
-    };
-
-    useEffect(()=>{
+     useEffect(()=>{
         if (selectedEvents.length > 0 && selectedEvents.length < 4) {
             setDisable(false)
             setDisableBtn(false)
@@ -127,11 +110,6 @@ const EventsListPage = ({ setGroup, setMonth, setYear, setDay, group, month, yea
         }
     }, [year, month, daySelect])
     console.log('eventsList', eventsList)
-
-    useEffect(() => {
-        let test = qwe(year, month, day)
-        console.log('test', test)
-    },[year, month, day])
 
     return (
         <>
@@ -163,7 +141,7 @@ const EventsListPage = ({ setGroup, setMonth, setYear, setDay, group, month, yea
                                     disabled={disableBtn} variant="contained" color="primary">
                                 簡単レポートを編集
                             </Button>
-                            {disableBtn ? (<p className={classes.fourReports}>※一度に選べるレポートは4点までです。</p>) : (null)}
+                            {disableBtn ? (<p className={classes.fourReports}>※一度に選べるレポートは4点までです。</p>) : null}
 
                         </div>
 
@@ -171,12 +149,7 @@ const EventsListPage = ({ setGroup, setMonth, setYear, setDay, group, month, yea
                 </div>
             </div>
 
-            <Event gardenId={gardenId} eventsList={eventsList} group={group} monthSelect={month} parsedDay={day}
-                   deleteEvent={deleteEvent}
-                   yearSelect={year} handleChange={handleChange} selectedCheckbox={selectedEvents}
-                   disable={disable} setDisable={setDisable}
-                   setEventImage={setEventImage}
-            />
+            <Event eventsList={eventsList} disable={disable} />
         </>
     );
 }

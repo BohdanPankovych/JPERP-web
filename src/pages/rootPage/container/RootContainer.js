@@ -7,7 +7,6 @@ import {CommonActions} from "../../../data/redux/common/commonActions";
 const mapStateToProps = state => ({
     eventsList: state.eventsList.get("events")?.toJS(),
     gardenId: state.common.get('gardenId'),
-    isTagDialogShown: state.common.get('isTagDialogShown'),
     group: state.common.get("group"),
     month: state.common.get("month"),
     year: state.common.get("year"),
