@@ -19,34 +19,6 @@ const mapStateToProps = (state) => ({
   textTags: state.selectedEvents.get("textTags")?.toJS(),
   clsIds: state.selectedEvents.get("clsIds")?.toJS(),
   childIds: state.selectedEvents.get("childIds")?.toJS(),
-
-  newEvent: {
-    //DELETE IT IN FURURE
-    docRec: {
-      id: "",
-      gardenId: state.common.get("gardenId"),
-      dateTime: state.common.get("timeFilter"),
-      comment: state.shareReports.get("description"),
-      mediaSha256: state.shareReports.get("image"),
-      mediaType: state.shareReports.get("image"),
-      remarks: "",
-      effectiveFrom: null,
-      effectiveUntil: null,
-      createdUsrId: null, //creatorId
-      lastModified: null,
-      lastModifiedUsrId: null,
-      approved: state.shareReports.get("approve"),
-    },
-    maybeAdminTag: [],
-    maybeAppliTag: [],
-    tags: state.selectedEvents.get("tagIds")?.toJS(),
-    textTags: state.selectedEvents.get("textTags")?.toJS(),
-    clsTags: state.selectedEvents.get("clsIds")?.toJS(),
-    childTags: state.selectedEvents.get("childIds")?.toJS(),
-    staffId: null,
-    staffName: "",
-    purchased: "",
-  },
 });
 
 const mapDispatchToProps = {

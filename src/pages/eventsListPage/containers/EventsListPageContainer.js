@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import {setGardenGroups} from "../../../data/redux/eventsList/eventsListActions";
 import EventsListPage from "../EventsListPage";
 import {selectedEventsActions} from "../../../data/redux/selectedEvents/selectedEventsActions";
-import {setDay, setGroup, setMonth, setYear} from "../../../data/redux/common/commonActions";
+import {setDay, setGroup, setIncrementOffset, setMonth, setYear} from "../../../data/redux/common/commonActions";
 
 const mapStateToProps = state => ({
     eventsList: state.eventsList.get("events")?.toJS(),
@@ -22,6 +22,7 @@ const mapDispatchToProps = {
     setMonth,
     setYear,
     setDay,
+    setIncrementOffset
 };
 
 const EventsListPageContainer = props => <EventsListPage {...props} />;

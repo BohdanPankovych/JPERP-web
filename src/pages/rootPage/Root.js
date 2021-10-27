@@ -7,6 +7,26 @@ import PreviewScreenPageContainer from "../previewScreenPage/containers/PreviewS
 import API from "../../data/api/Api";
 import SharedScreenDialogContainer from "../sharedScreenDialog/containers/SharedScreenDialogContainer";
 import {dateTodayYMD, dateToYMD, qwe} from '../../data/helpers/timeHelper'
+import HomeButton from "../../reusableComponents/button/HomeButton";
+import EventsMock from "../../data/mock/EventsMock";
+
+export const fetchEvents = (gardenId, setEventsListData, group, from, to, offset) => {
+    API.eventsList
+        .getEventsList(gardenId, {
+            clsId: group || null,
+            childId: null,
+            from: from,
+            to: to || null,
+            text: null,
+            generalTagIds: [],
+            staffId: null,
+            limit: 20,
+            offset: offset || 0 ,
+            isApproved: null,
+        })
+        .then((res) => setEventsListData(res.data))
+        .catch((err) => console.error(err));
+};
 
 const Root = ({
   setEventsListData,
@@ -16,25 +36,13 @@ const Root = ({
     group,
     month,
     year,
-    day
+    day,
+    offset
 }) => {
   const getEvents = (gardenId) => {
-    API.eventsList
-      .getEventsList(gardenId, {
-        clsId: null,
-        childId: null,
-        from: dateToYMD(new Date(), "-"),
-        to: dateTodayYMD(new Date(), "-"),
-        text: null,
-        generalTagIds: [],
-        staffId: null,
-        limit: 20,
-        offset: 0,
-        isApproved: null,
-      })
-      .then((res) => setEventsListData(res.data))
-      .catch((err) => console.error(err));
-  };
+      fetchEvents(gardenId, setEventsListData, null,
+          dateToYMD(new Date(), "-"), dateTodayYMD(new Date(), "-"), 0)
+  }
 
   useEffect(() => {
     API.garden
@@ -48,25 +56,18 @@ const Root = ({
   }, []);
 
     useEffect(() => {
-        console.log(group, month, year, day)
-        gardenId && API.eventsList
-            .getEventsList(gardenId, {
-                clsId: group || null,
-                childId: null,
-                from: qwe(year, month, day > 9 ? day : "0" + day),
-                to: null,
-                text: null,
-                generalTagIds: [],
-                staffId: null,
-                limit: 20,
-                offset: 0,
-                isApproved: null,
-            })
-            .then((res) => setEventsListData(res.data))
-            .catch((err) => console.error(err));
+        gardenId && fetchEvents(gardenId, setEventsListData, group,
+            qwe(year, month ? month : "01", month ? day > 9 ? day : "0" + day : "01"),
+            qwe(year, month ? month : "12", month? day > 9 ? day : "0" + day : "31"),
+            0)
+    }, [group, month, year, day, offset]);
 
-    }, [group, month, year, day]);
-
+    // const updateEvents = () => {
+    //     fetchEvents(gardenId, setEventsListData, group,
+    //         qwe(year, month, day > 9 ? day : "0" + day),
+    //         qwe(year, month, day > 9 ? day : "0" + day),
+    //         0);
+    // }
   // useEffect(()=>{
   //     setGardenName("日本標準こども園");
   //     setEventsListData(EventsMock);
@@ -75,6 +76,7 @@ const Root = ({
 
   return (
     <>
+      <HomeButton/>
       <Switch>
         <Route exact path={FrontendRoutes.EVENTS_LIST_PAGE}>
           <EventsListPageContainer />
@@ -86,7 +88,7 @@ const Root = ({
           <PreviewScreenPageContainer />
         </Route>
       </Switch>
-      <SharedScreenDialogContainer/>
+      <SharedScreenDialogContainer updateEvents={getEvents}/>
     </>
   );
 };

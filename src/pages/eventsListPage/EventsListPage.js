@@ -13,24 +13,30 @@ import years from "../../data/constants/Year";
 import jpMonths from "../../data/constants/JpMonths";
 
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
     underHeaderBlock: {
-        marginLeft: 30,
-        marginRight: 60,
+        marginLeft: 15,
+        marginRight: 20,
+        [theme.breakpoints.up("sm")]: {
+            marginRight: 30,
+        },
+        [theme.breakpoints.up("md")]: {
+            marginLeft: 30,
+            marginRight: 60,
+        },
     },
     selects: {
+        display: "flex",
+        [theme.breakpoints.up("md")]: {
+            flexDirection: "row"
+        },
+        flexDirection: "column",
         marginTop: 20,
-        "& .MuiOutlinedInput-root": {
-            height: '23px',
-            width: '116px',
-        }
     },
     fourReports: {
         color: '#FF0000',
         fontSize: '12px',
-        position: 'absolute',
-        top: 20,
-        left: 18,
+        padding: "5px 14px "
     },
     flex: {
         display: 'flex',
@@ -50,8 +56,12 @@ const useStyles = makeStyles(() => ({
         height: '30px',
     },
     reportBlock: {
-        position: 'relative',
-        marginTop: '25px',
+        marginTop: '40px',
+        width: "165px",
+        [theme.breakpoints.up("md")]: {
+            marginTop: '20px',
+            display: "block",
+        },
     },
     selectTitle: {
         fontSize: 12,
@@ -61,7 +71,20 @@ const useStyles = makeStyles(() => ({
 
 }));
 
-const EventsListPage = ({ setGroup, setMonth, setYear, setDay, group, month, year, gardenId, selectedEvents, gardenGroups, setGardenGroups, eventsList}) => {
+const EventsListPage = ({
+                            setGroup,
+                            setMonth,
+                            setYear,
+                            setDay,
+                            group,
+                            month,
+                            year,
+                            gardenId,
+                            selectedEvents,
+                            gardenGroups,
+                            setGardenGroups,
+                            eventsList
+                        }) => {
     const classes = useStyles();
     const [daySelect, setDaySelect] = useState('');
     const [disable, setDisable] = useState(false);
@@ -70,21 +93,21 @@ const EventsListPage = ({ setGroup, setMonth, setYear, setDay, group, month, yea
 
     useEffect(() => {
         if (gardenId) {
-            Api.eventsList.getClasses(gardenId).then((res)=>{
+            Api.eventsList.getClasses(gardenId).then((res) => {
                 let groups = [];
                 groups.push({id: null, name: null})
-                res.data?.map(val=>{
+                res.data?.map(val => {
                     groups.push({
                         id: val.id,
-                        name:val.name
+                        name: val.name
                     });
                 });
                 setGardenGroups(groups);
-            }).catch((err)=>console.log(err))
+            }).catch((err) => console.log(err))
         }
     }, [gardenId]);
 
-     useEffect(()=>{
+    useEffect(() => {
         if (selectedEvents.length > 0 && selectedEvents.length < 4) {
             setDisable(false)
             setDisableBtn(false)
@@ -97,7 +120,7 @@ const EventsListPage = ({ setGroup, setMonth, setYear, setDay, group, month, yea
             setDisable(false)
             setDisableBtn(true)
         }
-    },[selectedEvents])
+    }, [selectedEvents])
 
     useEffect(() => {
         if (daySelect) {
@@ -109,7 +132,6 @@ const EventsListPage = ({ setGroup, setMonth, setYear, setDay, group, month, yea
             setDisableDay(true)
         }
     }, [year, month, daySelect])
-    console.log('eventsList', eventsList)
 
     return (
         <>
@@ -121,35 +143,29 @@ const EventsListPage = ({ setGroup, setMonth, setYear, setDay, group, month, yea
                         <EasyReportPageSelect title={'年'} options={years} value={year} setValue={setYear}/>
                         <EasyReportPageSelect title={'月'} options={jpMonths} value={month}
                                               setValue={setMonth}/>
-                        {/*<MonthSelect title={'月'} setValue={setMonth}*/}
-                        {/*             value={month}/>*/}
 
-                        <LocalisedDatePicker
-                            disable={disableDay}
-                            format={'dd'}
-                            value={daySelect ? daySelect : month && year ? `${year}/${month}` : null}
-                            onChange={setDaySelect}
-                        />
-                        <span className={classes.selectTitle}>日</span>
-                        {/*<EasyReportPageSelect title={'日'}/>*/}
+                        <div>
+                            <LocalisedDatePicker
+                                disable={disableDay}
+                                format={'dd'}
+                                value={daySelect ? daySelect : month && year ? `${year}/${month}` : null}
+                                onChange={setDaySelect}
+                            />
+                            <span className={classes.selectTitle}>日</span>
+                        </div>
                     </div>
                     <div className={classes.reportBlock}>
                         {/*<p className={classes.fourReports}>※一度に選べるレポートは4点までです。</p>*/}
-
-                        <div className={classes.btns}>
-                            <Button component={Link} to={FrontendRoutes.EDIT_REPORTS} className={classes.editReportBtn}
-                                    disabled={disableBtn} variant="contained" color="primary">
-                                簡単レポートを編集
-                            </Button>
-                            {disableBtn ? (<p className={classes.fourReports}>※一度に選べるレポートは4点までです。</p>) : null}
-
-                        </div>
-
+                        <Button component={Link} to={FrontendRoutes.EDIT_REPORTS} className={classes.editReportBtn}
+                                disabled={disableBtn} variant="contained" color="primary">
+                            簡単レポートを編集
+                        </Button>
+                        {disableBtn ? (<div className={classes.fourReports}>※一度に選べるレポートは4点までです。</div>) : null}
                     </div>
                 </div>
             </div>
 
-            <Event eventsList={eventsList} disable={disable} />
+            <Event eventsList={eventsList} disable={disable}/>
         </>
     );
 }

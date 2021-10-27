@@ -1,4 +1,4 @@
-import React, {memo, useCallback, useState} from "react";
+import React, {memo, useCallback} from "react";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import {MenuItem, TextField} from "@material-ui/core";
 
@@ -19,11 +19,17 @@ const useStyles = makeStyles((theme) => ({
         "& .MuiOutlinedInput-input": {
             padding: "5px",
         },
-        width: "116px",
+        width: "85px",
+        [theme.breakpoints.up("sm")]: {
+            width: "116px",
+        }
     },
     test: {
         height: '30px'
     },
+    eventSelector: {
+        paddingBottom: 15
+    }
 }));
 const EventsListPageSelects = ({title, value, setValue, options}) => {
     const classes = useStyles();
@@ -33,7 +39,7 @@ const EventsListPageSelects = ({title, value, setValue, options}) => {
         setValue(e.target.value)
     },[])
 
-    return <>
+    return <div className={classes.eventSelector}>
         <TextField
             select
             className={classes.selectInput}
@@ -53,7 +59,7 @@ const EventsListPageSelects = ({title, value, setValue, options}) => {
         {/*    ))}*/}
         {/*</select>*/}
         <span className={classes.selectTitle}>{title}</span>
-    </>
+    </div>
 }
 
 export default memo(EventsListPageSelects)

@@ -12,11 +12,14 @@ const CanvasPostcard = ({
   date,
   selectCreator,
   schoolName,
+                          scale,
+  fullheigh,
+    fullwidth,
   reference,
 }) => {
   return (
-    <Stage width={width} height={height} ref={reference}>
-      <Layer>
+    <Stage width={fullwidth} height={fullheigh} scaleX={scale} scaleY={scale} ref={reference}>
+      <Layer >
         <Rect
           x={0}
           y={0}

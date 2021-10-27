@@ -35,10 +35,10 @@ const useStyles = makeStyles((theme) => ({
       fontSize: "10px"
      },
     padding: "10px",
-    width: "45vw",
-    [theme.breakpoints.down('sm')]: {
-      width: "80vw",
-     },
+    width: "80vw",
+    [theme.breakpoints.up("md")]: {
+      width: "calc(50vw - 100px)",
+    },
   },
   title: {
     margin: 0,

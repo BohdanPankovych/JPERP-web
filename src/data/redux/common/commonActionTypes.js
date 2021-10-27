@@ -8,6 +8,8 @@ const CommonActionTypes = {
     SET_MONTH: 'SET_MONTH',
     SET_YEAR: 'SET_YEAR',
     SET_DAY: 'SET_DAY',
+    SET_OFFSET: 'SET_OFFSET',
+    SET_INCREMENT_OFFSET: 'SET_INCREMENT_OFFSET'
 };
 
 export default CommonActionTypes

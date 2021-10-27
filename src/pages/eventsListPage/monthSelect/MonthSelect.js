@@ -2,7 +2,7 @@ import React, {memo, useCallback} from "react";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import {MenuItem, TextField} from "@material-ui/core";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     select: {
         width: 116,
         height: 23,
@@ -31,7 +31,6 @@ const MonthSelect = ({disable, title, value, setValue}) => {
 
     const handleChange = useCallback((e) => {
         setValue(e.target.value)
-        // console.log('monthSelect', value)
     }, [])
     return <>
         <TextField

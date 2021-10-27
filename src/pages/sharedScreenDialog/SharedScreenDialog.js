@@ -22,7 +22,7 @@ import FrontendRoutes from "../../data/constants/FrontendRoutes";
 import { required } from "../../data/helpers/validators";
 import ModalDialog from "./sharedScreenComponents/ModalDialog";
 import API from '../../data/api/Api';
-import {showTagsDialog} from "../../data/redux/common/commonActions";
+
 
 const useStyles = makeStyles(() => ({
   appBar: {
@@ -120,24 +120,22 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const SharedScreenDialog = ({
   open,
-  newEvent,
   destination,
   showTagsDialog,
   approve,
   description,
   image,
-  addEvent,
   setShareReportsImage,
   setShareReportsApprove,
   setShareReportsDescription,
   setDestination,
   gardenId,
   resetSelectedData,
-
   clsIds,
   childIds,
   textTags,
   tagIds,
+  updateEvents
 }) => {
   const classes = useStyles();
   const history = useHistory();
@@ -169,7 +167,7 @@ const SharedScreenDialog = ({
     if (description) {
       if (destination) {
         setShowError(false);
-        const data = JSON.stringify({
+        const data = {
           docRecId: null,
           comment: description,
           tagIds,
@@ -178,14 +176,14 @@ const SharedScreenDialog = ({
           textTags,
           tagKind: destination,
           approved: false
-      });
+      };
         var formData = new FormData();
 
-        formData.append("json", new Blob([data], {type: "application/json"}));
+        formData.append("json", new Blob([JSON.stringify(data)], {type: "application/json"}));
         formData.append("file", new Blob([toByteArray(window.atob(convertImgFile(image)))], {type: "image/jpeg"}));
 
         API.sharedDialog.sendReport(gardenId, formData).then(()=>{
-          addEvent({...newEvent, image});
+          updateEvents(gardenId);
           resetSelectedData();
           setDestination(null);
           handleClose();

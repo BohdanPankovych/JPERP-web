@@ -8,14 +8,25 @@ import {connect} from "react-redux";
 import {addSelectedEvent, removeSelectedEvent} from "../../../data/redux/selectedEvents/selectedEventsActions";
 import {setEventImage} from "../../../data/redux/eventsList/eventsListActions";
 
-
-const useStyles = makeStyles(() => ({
-
+const useStyles = makeStyles((theme) => ({
     event: {
-        marginTop: 62,
-        marginLeft: 67,
+        marginLeft: 10,
+        marginRight: 15,
+        marginTop: 30,
         display: 'flex',
-        position: 'relative',
+        [theme.breakpoints.up("sm")]: {
+            marginLeft: 20,
+            marginRight: 35,
+        },
+        [theme.breakpoints.up("md")]: {
+            marginLeft: 35,
+            marginRight: 60,
+        },
+        [theme.breakpoints.up("lg")]: {
+            marginTop: 60,
+            marginLeft: 65,
+            marginRight: 120,
+        },
     },
     image: {
         maxWidth: 87,
@@ -29,46 +40,67 @@ const useStyles = makeStyles(() => ({
         maxHeight: '100px',
         display: 'block',
     },
-    imgDescriptionBlock: {
-        marginLeft: '37px',
+    contentBlock: {
+        width: "100%",
+        display: "flex",
+        justifyContent: "space-between"
+    },
+    content: {
+        marginLeft: '15x',
+        [theme.breakpoints.up("xs")]: {
+            marginLeft: '20px',
+        },
+        [theme.breakpoints.up("md")]: {
+            marginLeft: '35px',
+        },
+        width: '70vw',
     },
     imgTitle: {
         fontSize: 14,
     },
     imgDescr: {
         fontSize: 12,
-        marginTop: 20,
-        width: '70vw',
+        marginTop: 16,
     },
     checkbox: {
         width: '60px',
-        position: 'absolute',
-        top: 27,
-        right: 125,
+        marginTop: 27,
+        // position: 'absolute',
         display: 'flex',
         justifyContent: 'space-between',
     },
     line: {
         width: '93vw',
         border: '1px solid #E2E2E2',
-        marginLeft: '60px',
         marginTop: '22px',
+        marginLeft: 20,
+        [theme.breakpoints.up("sm")]: {
+            marginLeft: 30,
+        },
+        [theme.breakpoints.up("md")]: {
+            marginLeft: 60,
+        },
     },
     delete: {
-        cursor: 'pointer'
+        cursor: 'pointer',
+        height: "fit-content"
     },
     tagList: {
         display: 'flex',
         flexWrap: 'wrap',
-        width: '80%',
     },
     tag: {
         height: '20px',
         marginRight: 10,
+        marginBottom: 4,
         color: '#00AE00',
         border: '1px solid #00AE00',
         borderRadius: '24px',
         padding: '4px 10px'
+    },
+    topContentBlock: {
+        display: "flex",
+        justifyContent: "space-between"
     }
 }));
 
@@ -102,7 +134,6 @@ const EventItem = ({
         if (exist) {
             removeSelectedEvent(obj.docRec.id);
         } else {
-            console.log(obj)
             addSelectedEvent(obj);
         }
     };
@@ -124,7 +155,6 @@ const EventItem = ({
     }, [selectedCheckbox, disable])
 
     useEffect(() => {
-        console.log("LOAD ", item?.docRec?.id)
         if (gardenId && item?.docRec && !item?.docRec?.image) {
             Api.eventsList.getImg(gardenId, item.docRec.id)
                 .then(((res) => {
@@ -145,27 +175,27 @@ const EventItem = ({
             <div className={classes.image}>
                 <EventItemImg image={item?.docRec?.image} styles={classes.imgMain}/>
             </div>
-            <div className={classes.imgDescriptionBlock}>
-                {/*<p className={classes.imgTitle}>{event.title}</p>*/}
-                <div className={classes.tagList}>
-                    {item?.tags?.map((t, id) => (
-                        <div key={"tags" + id} className={classes.tag}>{t?.value}</div>))}
-                    {item?.clsTags?.map((t, id) => (
-                        <div key={"clsTags" + id} className={classes.tag}>{t?.value}</div>))}
-                    {item?.childTags?.map((t, id) => (
-                        <div key={"childTags" + id} className={classes.tag}>{t?.value}</div>))}
+            <div className={classes.contentBlock}>
+                <div className={classes.content}>
+                    {/*<p className={classes.imgTitle}>{event.title}</p>*/}
+                    <div className={classes.tagList}>
+                        {item?.tags?.map((t, id) => (
+                            <div key={"tags" + id} className={classes.tag}>{t?.value}</div>))}
+                        {item?.clsTags?.map((t, id) => (
+                            <div key={"clsTags" + id} className={classes.tag}>{t?.value}</div>))}
+                        {item?.childTags?.map((t, id) => (
+                            <div key={"childTags" + id} className={classes.tag}>{t?.value}</div>))}
+                    </div>
+                    <p className={classes.imgDescr}>{item.docRec.comment}</p>
                 </div>
-
-                <p className={classes.imgDescr}>{item.docRec.comment}</p>
-            </div>
-            <div className={classes.checkbox}>
-                {/*{console.log(item.id, checked, checked ? false : disable)}*/}
-                <input onChange={() => handleChange(item)}
-                       checked={isChecked(item.docRec.id)} type="checkbox"
-                       disabled={isChecked(item.docRec.id) ? false : disable}
-                    // disabled={selectedCheckbox.includes(e.id) && disable ? true: false}
-                />
-                <img onClick={deleteModal} className={classes.delete} src={deleteIcon} alt=""/>
+                <div className={classes.checkbox}>
+                    <input onChange={() => handleChange(item)}
+                           checked={isChecked(item.docRec.id)} type="checkbox"
+                           disabled={isChecked(item.docRec.id) ? false : disable}
+                        // disabled={selectedCheckbox.includes(e.id) && disable ? true: false}
+                    />
+                    <img onClick={deleteModal} className={classes.delete} src={deleteIcon} alt=""/>
+                </div>
             </div>
         </div>
         <div className={classes.line}/>
@@ -177,4 +207,4 @@ export default connect(state => ({
         selectedCheckbox: state.selectedEvents.get('selects')?.toJS(),
     }
 ), {addSelectedEvent, removeSelectedEvent, setEventImage})(
-memo(EventItem));
+    memo(EventItem));

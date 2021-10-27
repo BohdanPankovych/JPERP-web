@@ -1,7 +1,7 @@
 import Immutable from 'immutable';
 import TimeFilter from "../../immutableEntities/DateFilter";
 import CommonActionTypes from "./commonActionTypes";
-import {dateToYMD} from "../../helpers/timeHelper";
+import {dateToYMD, trailingZero} from "../../helpers/timeHelper";
 
 const defaultState = new Immutable.OrderedMap({
     timeFilter: new TimeFilter(),
@@ -9,9 +9,10 @@ const defaultState = new Immutable.OrderedMap({
     gardenName: '',
     isTagDialogShown: false,
     group: '',
-    month: '01',
-    year: '2021',
+    month: trailingZero(new Date().getMonth() + 1),
+    year: new Date().getFullYear() + "",
     day: 1,
+    offset: 0,
 });
 
 const commonReducer = (state = defaultState, action) => {
@@ -39,6 +40,12 @@ const commonReducer = (state = defaultState, action) => {
 
         case CommonActionTypes.SET_DAY:
             return state.set("day", action.payload.day);
+
+        case CommonActionTypes.SET_OFFSET:
+            return state.set("offset", action.payload.offset);
+
+        case CommonActionTypes.SET_INCREMENT_OFFSET:
+            return state.set("offset", state.get("offset") + 1);
 
         default:
             return state;

@@ -1,4 +1,4 @@
-import React, { memo, useRef } from "react";
+import React, {memo, useEffect, useMemo, useRef, useState} from "react";
 import { Button, Container, Box, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import CanvasPostcard from "../../reusableComponents/canvasPostcard/CanvasPostcard";
@@ -6,12 +6,13 @@ import { jsPDF } from "jspdf";
 import { Link, useHistory } from "react-router-dom";
 import FrontendRoutes from "../../data/constants/FrontendRoutes";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     display: "flex",
     margin: "10px",
   },
   content: {
+    padding: "20px 30px 0",
     width: "100%",
     display: "flex",
     justifyContent: "center",
@@ -36,6 +37,33 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// Hook
+function useWindowSize() {
+  // Initialize state with undefined width/height so server and client renders match
+  // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
+  const [windowSize, setWindowSize] = useState({
+    width: undefined,
+    height: undefined,
+  });
+  useEffect(() => {
+    // Handler to call on window resize
+    function handleResize() {
+      // Set window width/height to state
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
+    // Add event listener
+    window.addEventListener("resize", handleResize);
+    // Call handler right away so state gets updated with initial window size
+    handleResize();
+    // Remove event listener on cleanup
+    return () => window.removeEventListener("resize", handleResize);
+  }, []); // Empty array ensures that effect is only run on mount
+  return windowSize;
+}
+
 const PreviewScreenPage = ({
   selectCreator,
   showTagsDialog,
@@ -45,13 +73,15 @@ const PreviewScreenPage = ({
   bgColor,
   description,
   selectedEvents,
-  addEvent,
   setShareReportsImage,
   resetSelectedData
 }) => {
   const stageRef = useRef(null);
   const history = useHistory();
   const classes = useStyles();
+  const size = useWindowSize();
+  const canvasWidth = useMemo(() => size?.width > 550 ? 530 : size?.width - 20, [size]);
+  const scale = canvasWidth / 530
 
   const handleClickOpen = () => {
     setShareReportsImage(stageRef.current.toDataURL({ pixelRatio: 1.5, mimeType: 'image/jpeg' }));
@@ -60,6 +90,7 @@ const PreviewScreenPage = ({
 
   const onSave = () => {
     var pdf = new jsPDF();
+    stageRef.current.setAttrs({width: 530, height:750, scaleY: 1, scaleX: 1 })
     pdf.addImage(stageRef.current.toDataURL({ pixelRatio: 1.5 }), 0, 0);
     pdf.save(`${title}_report.pdf`);
   };
@@ -83,11 +114,14 @@ const PreviewScreenPage = ({
       </Button>
 
       <Container className={classes.content}>
-        <CanvasPostcard
+        {size.width &&<CanvasPostcard
           reference={stageRef}
           className={classes.canvas}
-          width={530}
+          fullheigh={750 * scale}
+          fullwidth={530 * scale}
           height={750}
+          width={530}
+          scale={scale}
           backgroundColor={bgColor}
           title={title}
           date={timeFilter?.day}
@@ -95,7 +129,7 @@ const PreviewScreenPage = ({
           selectCreator={selectCreator}
           selectedEvents={selectedEvents}
           schoolName={gardenName}
-        />
+        />}
       </Container>
 
       <Container className={classes.bottom}>

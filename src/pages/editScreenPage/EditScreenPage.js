@@ -5,7 +5,6 @@ import {MenuItem, Button} from "@material-ui/core";
 import colors from "../../data/constants/Colors";
 import EditScreenPageListItem from "./editScreenPageComponents/EditScreenPageListItem";
 import ColorSelectItem from "./editScreenPageComponents/ColorSelectItem";
-import mock from "../../data/mock/mockData";
 import TextInput from "../../reusableComponents/textInput/TextInput";
 import LocalisedDatePicker from "./editScreenPageComponents/LocalisedDatePicker";
 import FrontendRoutes from "../../data/constants/FrontendRoutes";
@@ -14,7 +13,7 @@ import API from "../../data/api/Api";
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        padding: "10px",
+        padding: "18px",
     },
     optionText: {
         margin: 0,
@@ -60,20 +59,20 @@ const useStyles = makeStyles((theme) => ({
     },
     commentTitle: {
         marginTop: 0,
-    },
-    commentContent: {
-        paddingTop: "25px",
+        marginLeft: 10
     },
     commentText: {
-        width: "45vw",
-        [theme.breakpoints.down("sm")]: {
-            width: "80vw",
+        width: "80vw",
+        [theme.breakpoints.up("md")]: {
+            width: "calc(50vw - 100px)",
         },
-    },
+      },
     header: {
         display: "flex",
-        [theme.breakpoints.down("sm")]: {
-            flexDirection: "column",
+        flexDirection: "column",
+
+        [theme.breakpoints.up("md")]: {
+            flexDirection: "row",
         },
         justifyContent: "space-between",
     },
@@ -84,7 +83,7 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: "column",
         marginTop: "70px",
         [theme.breakpoints.down("sm")]: {
-            marginTop: "20px",
+            marginTop: "0px",
             width: "100%",
             alignItems: "center",
         },
@@ -105,7 +104,7 @@ const useStyles = makeStyles((theme) => ({
         display: "flex",
         flexDirection: "column",
         alignItems: "flex-end",
-        padding: "5px 0",
+        padding: "30px 0 0",
         [theme.breakpoints.down("sm")]: {
             alignItems: "center",
         },
@@ -126,8 +125,6 @@ const EditScreenPage = ({
                             bgColor,
                             description,
                             setTimeFilter,
-                            setEditReportsCreators,
-                            setEditReportsData,
                             setEditReportsTitle,
                             setEditReportsColor,
                             setEditReportsComment,
@@ -214,6 +211,7 @@ const EditScreenPage = ({
                             format={"yyyy/MM/dd"}
                             value={timeFilter.day}
                             onChange={setTimeFilter}
+                            fullwidth
                         />
                     </div>
 
@@ -237,14 +235,16 @@ const EditScreenPage = ({
                     </div>
 
                     <p>レポートの背景色を選択：</p>
-                    {colors.map((val) => (
-                        <ColorSelectItem
-                            key={val}
-                            color={val}
-                            selectedColor={bgColor}
-                            setColor={setEditReportsColor}
-                        ></ColorSelectItem>
-                    ))}
+                    <div>
+                        {colors.map((val) => (
+                            <ColorSelectItem
+                                key={val}
+                                color={val}
+                                selectedColor={bgColor}
+                                setColor={setEditReportsColor}
+                            />
+                        ))}
+                    </div>
                 </div>
 
                 <div className={classes.headerButton}>

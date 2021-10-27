@@ -41,7 +41,14 @@ export const setDay = day => ({
     payload: {day},
 });
 
+export const setOffset = offset => ({
+    type: CommonActionTypes.SET_OFFSET,
+    payload: {offset},
+});
 
+export const setIncrementOffset = () => ({
+    type: CommonActionTypes.SET_INCREMENT_OFFSET,
+});
 
 export const CommonActions = {
     setTimeFilter,
