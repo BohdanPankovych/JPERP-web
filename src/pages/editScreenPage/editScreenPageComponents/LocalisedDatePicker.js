@@ -9,10 +9,11 @@ const useStyles = makeStyles((theme) => ({
         "& .MuiOutlinedInput-input": {
             padding: "4px",
             paddingLeft: "5px",
-            fontSize: "16px",
+            fontSize: "14px",
             width: props => props.fullwidth ? "156px" : "76px",
             [theme.breakpoints.up("sm")]: {
-                width: "107px",
+                width: props => props.fullwidth ? "156px" : "107px",
+                fontSize: "16px",
             }
         },
     },

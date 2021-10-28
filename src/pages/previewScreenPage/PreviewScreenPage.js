@@ -84,6 +84,7 @@ const PreviewScreenPage = ({
   const scale = canvasWidth / 530
 
   const handleClickOpen = () => {
+    stageRef.current.setAttrs({width: 530, height:750, scaleY: 1, scaleX: 1 })
     setShareReportsImage(stageRef.current.toDataURL({ pixelRatio: 1.5, mimeType: 'image/jpeg' }));
     showTagsDialog(true);
   };

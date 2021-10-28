@@ -35,8 +35,12 @@ const useStyles = makeStyles((theme) => ({
     },
     fourReports: {
         color: '#FF0000',
-        fontSize: '12px',
-        padding: "5px 14px "
+        fontSize: '10px',
+        padding: "5px 14px ",
+        [theme.breakpoints.up("sm")]: {
+            marginRight: '12px',
+            padding: "5px 10px ",
+        },
     },
     flex: {
         display: 'flex',
@@ -53,7 +57,12 @@ const useStyles = makeStyles((theme) => ({
     },
     editReportBtn: {
         width: '146',
-        height: '30px',
+        height: '25px',
+        fontSize: '0.75rem',
+        [theme.breakpoints.up("sm")]: {
+            height: '30px',
+            fontSize: '0.875rem',
+        },
     },
     reportBlock: {
         marginTop: '40px',
@@ -64,9 +73,12 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     selectTitle: {
-        fontSize: 12,
+        fontSize: 14,
         marginLeft: 10,
-        marginRight: 20,
+        marginRight: 10,
+        [theme.breakpoints.up("md")]: {
+            marginRight: 20,
+        },
     },
 
 }));

@@ -47,13 +47,18 @@ const useStyles = makeStyles((theme) => ({
     },
     content: {
         marginLeft: '15x',
+        width: '45vw',
         [theme.breakpoints.up("xs")]: {
             marginLeft: '20px',
         },
+        [theme.breakpoints.up("sm")]: {
+            width: '65vw',
+        },
         [theme.breakpoints.up("md")]: {
             marginLeft: '35px',
+            width: '70vw',
+
         },
-        width: '70vw',
     },
     imgTitle: {
         fontSize: 14,
@@ -63,7 +68,10 @@ const useStyles = makeStyles((theme) => ({
         marginTop: 16,
     },
     checkbox: {
-        width: '60px',
+        width: '50px',
+        [theme.breakpoints.up("sm")]: {
+            width: '60px',
+        },
         marginTop: 27,
         // position: 'absolute',
         display: 'flex',

@@ -8,18 +8,25 @@ const useStyles = makeStyles((theme) => ({
         height: 23,
     },
     selectTitle: {
-        fontSize: 12,
+        fontSize: 14,
         marginLeft: 10,
-        marginRight: 20,
+        marginRight: 10,
+        [theme.breakpoints.up("sm")]: {
+            marginRight: 20,
+        }
     },
     selectInput: {
         "& .MuiOutlinedInput-root": {
-          height: '23px'
+          height: '23px',
+          fontSize: 14,
+            [theme.breakpoints.up("sm")]: {
+                fontSize: 16,
+            }
         },
         "& .MuiOutlinedInput-input": {
             padding: "5px",
         },
-        width: "85px",
+        width: "80px",
         [theme.breakpoints.up("sm")]: {
             width: "116px",
         }
