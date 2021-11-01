@@ -14,6 +14,8 @@ const eventsListReducer = (state = defaultState, action) => {
     switch (action.type) {
         case EventsListActionTypes.SET_EVENTS:
             return state.set("events", toImmList(EventDTO)(action.payload.events));
+        case EventsListActionTypes.UPDATE_EVENTS:
+            return state.update("events", events => toImmList(EventDTO)(events.concat(action.payload.events)));
         case EventsListActionTypes.ADD_EVENT:
             const prevState =  state.get("events").unshift(action.payload.event)
             return state.set("events", toImmList(EventDTO)(prevState));

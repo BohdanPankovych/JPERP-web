@@ -1,6 +1,8 @@
 import React, {memo, useCallback} from "react";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import {MenuItem, TextField} from "@material-ui/core";
+import {setOffset} from "../../data/redux/common/commonActions";
+import {connect} from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
     select: {
@@ -38,11 +40,11 @@ const useStyles = makeStyles((theme) => ({
         paddingBottom: 15
     }
 }));
-const EventsListPageSelects = ({title, value, setValue, options}) => {
+const EventsListPageSelects = ({title, value, setValue, options, setOffset}) => {
     const classes = useStyles();
-    // const [val, setSelectedValue] = useState("");
 
     const handleChange = useCallback((e) => {
+        setOffset(0);
         setValue(e.target.value)
     },[])
 
@@ -55,7 +57,7 @@ const EventsListPageSelects = ({title, value, setValue, options}) => {
             onChange={handleChange}
         >
             {options?.map((option) => (
-                <MenuItem className={classes.test} key={option} value={option.id}>
+                <MenuItem className={classes.test} key={option.id} value={option.id}>
                     {option.name}
                 </MenuItem>
             ))}
@@ -69,4 +71,4 @@ const EventsListPageSelects = ({title, value, setValue, options}) => {
     </div>
 }
 
-export default memo(EventsListPageSelects)
+export default connect(()=>({}),{setOffset})(memo(EventsListPageSelects))

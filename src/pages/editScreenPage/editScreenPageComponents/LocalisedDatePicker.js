@@ -16,11 +16,14 @@ const useStyles = makeStyles((theme) => ({
                 fontSize: "16px",
             }
         },
-    },
+        "& .MuiInputBase-root": {
+            color: props => props.unselected && "white",
+        },
+    }
 }));
 
 const LocalisedDatePicker = ({ disable, format, value, onChange, fullwidth}) => {
-    const classes = useStyles({fullwidth});
+    const classes = useStyles({fullwidth, unselected: /^[0-9]{4}\/[0-9]{2}$/.test(value)});
 
     return (
         <MuiPickersUtilsProvider utils={DateFnsUtils} locale={jaLocale}>

@@ -16,19 +16,17 @@ export function dateTodayYMD(date, separator) {
 }
 
 export function dateToD(date) {
-    const day = date?.getDate()
-    return day
+    return date?.getDate()
 }
 
 export function dateToM(date) {
-    const month = date.getMonth() + 1
-    return month
+  return date.getMonth() + 1
 }
 
 export function dateToY(date) {
-    const year = date.getFullYear()
-    return year
+   return date.getFullYear()
 }
+
 export function testDate(date) {
     const year = date.getFullYear()
     const month = date.getMonth() + 1
@@ -44,3 +42,6 @@ export function trailingZero(date) {
     return `${date < 10 ? '0' : ''}${date}`
 }
 
+export function daysInMonth (month, year) {
+    return new Date(year, month, 0).getDate();
+}

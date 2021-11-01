@@ -50,9 +50,19 @@ export const setIncrementOffset = () => ({
     type: CommonActionTypes.SET_INCREMENT_OFFSET,
 });
 
+export const setDefaultFilterProps = () => ({
+    type: CommonActionTypes.SET_DEFAULT_FILTER_PROPS,
+});
+
+export const updateFilterProps = filterProps => ({
+    type: CommonActionTypes.UPDATE_FILTER_PROPS,
+    payload: {filterProps}
+});
+
 export const CommonActions = {
     setTimeFilter,
     setGardenId,
     setGardenName,
-    showTagsDialog
+    showTagsDialog,
+    setDefaultFilterProps
 }

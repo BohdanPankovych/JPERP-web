@@ -5,6 +5,11 @@ export const setEventsListData = events => ({
     payload: { events },
 });
 
+export const updateEventsListData = events => ({
+    type: EventsListActionTypes.UPDATE_EVENTS,
+    payload: { events },
+});
+
 export const addEvent = event => ({
     type: EventsListActionTypes.ADD_EVENT,
     payload: { event },
