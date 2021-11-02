@@ -41,7 +41,7 @@ const ReportButtonSection = ({disableBtn}) => {
       {/*<p className={classes.fourReports}>※一度に選べるレポートは4点までです。</p>*/}
       <Button component={Link} to={FrontendRoutes.EDIT_REPORTS} className={classes.editReportBtn}
               disabled={disableBtn} variant="contained" color="primary">
-        簡単レポートを編集
+        作成
       </Button>
       {disableBtn ? (<div className={classes.fourReports}>※一度に選べるレポートは4点までです。</div>) : null}
     </div>

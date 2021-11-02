@@ -1,6 +1,6 @@
 import React, {memo, useEffect, useState} from "react";
 import {makeStyles} from "@material-ui/core/styles";
-import {required, notLong} from "../../data/helpers/validators";
+import {required, notLong, notLong200} from "../../data/helpers/validators";
 import {MenuItem, Button} from "@material-ui/core";
 import colors from "../../data/constants/Colors";
 import EditScreenPageListItem from "./editScreenPageComponents/EditScreenPageListItem";
@@ -157,7 +157,7 @@ const EditScreenPage = ({
 
     const checkValidation = (items) =>
         items.every(
-            (val) => val.docRec.comment.length > 0 && val.docRec.comment.length <= 200
+            (val) => val.docRec.comment.length > 0 && val.docRec.comment.length <= 100
         );
 
     useEffect(() => {
@@ -255,7 +255,7 @@ const EditScreenPage = ({
                         color="primary"
                         onClick={onButtonClick}
                     >
-                        プレビューを確認
+                        確認
                     </Button>
                     {disable && (
                         <p className={classes.notification}>
@@ -289,7 +289,7 @@ const EditScreenPage = ({
                         variant="outlined"
                         value={description}
                         onValueChange={setEditReportsComment}
-                        validators={[required, notLong]}
+                        validators={[required, notLong200]}
                     />
                 </div>
             </div>

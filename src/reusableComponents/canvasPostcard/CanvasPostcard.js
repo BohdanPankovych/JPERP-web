@@ -17,6 +17,12 @@ const CanvasPostcard = ({
     fullwidth,
   reference,
 }) => {
+
+  const dateFormater = (date) => {
+    const YYMMDD = date.split(',');
+    return YYMMDD[0]+"年"+Number(YYMMDD[1])+"月"+Number(YYMMDD[2])+"日";
+  }
+
   return (
     <Stage width={fullwidth} height={fullheigh} scaleX={scale} scaleY={scale} ref={reference}>
       <Layer >
@@ -44,7 +50,7 @@ const CanvasPostcard = ({
           fill="white"
           fontStyle="bold"
         />
-        <Text x={width - 150} y={15} text={date} fontSize={15} />
+        <Text x={width - 150} y={10} text={dateFormater(date)} fontSize={15} />
         <Text x={width - 130} y={60} text={selectCreator} fontSize={12} />
         <Text x={50} y={15} text={schoolName} fontSize={16} />
 
@@ -59,14 +65,14 @@ const CanvasPostcard = ({
           text={selectedEvents[0]?.docRec.comment}
         />
         <CanvasEventItem
-          x={70}
-          y={360}
+          x={290}
+          y={90}
           img={selectedEvents[1]?.docRec.image}
           text={selectedEvents[1]?.docRec.comment}
         />
         <CanvasEventItem
-          x={290}
-          y={90}
+          x={70}
+          y={360}
           img={selectedEvents[2]?.docRec.image}
           text={selectedEvents[2]?.docRec.comment}
         />

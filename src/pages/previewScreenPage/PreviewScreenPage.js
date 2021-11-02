@@ -149,7 +149,7 @@ const PreviewScreenPage = ({
             variant="outlined"
             color="primary"
           >
-            PDFで保存
+            保存
           </Button>
           <Button
             className={classes.button}

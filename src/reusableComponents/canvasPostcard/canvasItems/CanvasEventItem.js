@@ -5,11 +5,11 @@ import {ResizeImg} from '../../../data/helpers/resizeImg'
 
 const CanvasEventItem = ({img, x, y, text, ...props})=>{
   const [image] = useImage(img);
-  const {adaptedWidth, adaptedHeight} = ResizeImg(image?.naturalWidth, image?.naturalHeight, 150, 140);
+  const {adaptedWidth, adaptedHeight} = ResizeImg(image?.naturalWidth, image?.naturalHeight, 190, 190);
 
   return <>
   <Image image={image} width={adaptedWidth} height={adaptedHeight} x={x} y={y} stroke="white" strokeWidth={10} cornerRadius={10} {...props}/>
-  <Text x={x} y={y+adaptedHeight+15} width={200} text={text} fontSize={8.5} />
+  <Text x={x} y={y+adaptedHeight+12} width={190} text={text} fontSize={9.5} />
   </>
 }
 
