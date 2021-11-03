@@ -142,7 +142,11 @@ const EditScreenPage = ({
     const history = useHistory();
 
     useEffect(() => {
-        setEditReportsTitle(gardenGroups[group].name ? `今日${gardenGroups[group].name}のぐみ`: gardenName);
+        const groupName = gardenGroups?.find(g => g?.id === group)?.name;
+        setEditReportsTitle(groupName ? `今日${groupName}のぐみ`: gardenName);
+    }, [group, gardenGroups, gardenName]);
+
+    useEffect(() => {
         //Try to get all creators Name
         if(gardenId) {
             API.editPage.getCreatorsId(gardenId)
