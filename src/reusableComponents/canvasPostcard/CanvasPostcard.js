@@ -51,7 +51,7 @@ const CanvasPostcard = ({
           fontStyle="bold"
         />
         <Text x={width - 150} y={10} text={dateFormater(date)} fontSize={15} />
-        <Text x={width - 130} y={60} text={selectCreator} fontSize={12} />
+        <Text x={width - 80} y={60} text={selectCreator} fontSize={12} />
         <Text x={50} y={15} text={schoolName} fontSize={16} />
 
         {selectedEvents.length === 1 ?

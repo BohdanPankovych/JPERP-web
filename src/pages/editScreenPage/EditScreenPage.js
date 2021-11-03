@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
         height: "100%",
         marginLeft: "7px",
         [theme.breakpoints.down("sm")]: {
-            width: "150px",
+            minWidth: "150px",
         },
     },
     selectInput: {
