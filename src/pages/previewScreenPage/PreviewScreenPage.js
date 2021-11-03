@@ -93,7 +93,7 @@ const PreviewScreenPage = ({
     var pdf = new jsPDF();
     stageRef.current.setAttrs({width: 530, height:750, scaleY: 1, scaleX: 1 })
     pdf.addImage(stageRef.current.toDataURL({ pixelRatio: 1.5 }), 0, 0);
-    pdf.save(`${title}_report.pdf`);
+    pdf.save(`${title}組_レポート_${timeFilter?.day.replaceAll(",","")}.pdf`);
   };
 
   const onTempSave = () => {

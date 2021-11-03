@@ -131,6 +131,9 @@ const EditScreenPage = ({
                             setSelectCreator,
                             editSelectedEvents,
                             addCreator,
+                            gardenGroups,
+                            gardenName,
+                            group
                         }) => {
     const classes = useStyles();
     const [showError, setShowError] = React.useState(false);
@@ -139,6 +142,7 @@ const EditScreenPage = ({
     const history = useHistory();
 
     useEffect(() => {
+        setEditReportsTitle(gardenGroups[group].name ? `今日${gardenGroups[group].name}のぐみ`: gardenName);
         //Try to get all creators Name
         if(gardenId) {
             API.editPage.getCreatorsId(gardenId)

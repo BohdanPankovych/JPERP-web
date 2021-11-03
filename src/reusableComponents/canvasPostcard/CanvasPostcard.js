@@ -1,6 +1,6 @@
 import React from "react";
 import CanvasEventItem from "./canvasItems/CanvasEventItem";
-import { Stage, Layer, Rect, Text, Circle } from "react-konva";
+import { Stage, Layer, Rect, Text } from "react-konva";
 
 const CanvasPostcard = ({
   backgroundColor,
@@ -54,34 +54,56 @@ const CanvasPostcard = ({
         <Text x={width - 130} y={60} text={selectCreator} fontSize={12} />
         <Text x={50} y={15} text={schoolName} fontSize={16} />
 
-        <Circle x={150} y={230} radius={60} fill="white" />
-        <Circle x={150} y={530} radius={60} fill="white" />
-        <Circle x={350} y={200} radius={60} fill="white" />
-
-        <CanvasEventItem
-          x={70}
-          y={90}
-          img={selectedEvents[0]?.docRec.image}
-          text={selectedEvents[0]?.docRec.comment}
-        />
-        <CanvasEventItem
-          x={290}
-          y={90}
-          img={selectedEvents[1]?.docRec.image}
-          text={selectedEvents[1]?.docRec.comment}
-        />
-        <CanvasEventItem
-          x={70}
-          y={360}
-          img={selectedEvents[2]?.docRec.image}
-          text={selectedEvents[2]?.docRec.comment}
-        />
-        <CanvasEventItem
-          x={290}
-          y={360}
-          img={selectedEvents[3]?.docRec.image}
-          text={selectedEvents[3]?.docRec.comment}
-        />
+        {selectedEvents.length === 1 ?
+          <CanvasEventItem
+            x={190}
+            y={200}
+            img={selectedEvents[0]?.docRec.image}
+            text={selectedEvents[0]?.docRec.comment}
+            maxSize={220}
+          />
+        : selectedEvents.length === 2 ?
+        <>
+          <CanvasEventItem
+            x={70}
+            y={220}
+            img={selectedEvents[0]?.docRec.image}
+            text={selectedEvents[0]?.docRec.comment}
+          />
+          <CanvasEventItem
+            x={290}
+            y={220}
+            img={selectedEvents[1]?.docRec.image}
+            text={selectedEvents[1]?.docRec.comment}
+          />
+        </>
+        : <>
+          <CanvasEventItem
+            x={70}
+            y={90}
+            img={selectedEvents[0]?.docRec.image}
+            text={selectedEvents[0]?.docRec.comment}
+          />
+          <CanvasEventItem
+            x={290}
+            y={90}
+            img={selectedEvents[1]?.docRec.image}
+            text={selectedEvents[1]?.docRec.comment}
+          />
+          <CanvasEventItem
+            x={70}
+            y={360}
+            img={selectedEvents[2]?.docRec.image}
+            text={selectedEvents[2]?.docRec.comment}
+          />
+          <CanvasEventItem
+            x={290}
+            y={360}
+            img={selectedEvents[3]?.docRec.image}
+            text={selectedEvents[3]?.docRec.comment}
+          />
+        </>
+        }
 
         <Rect
           x={35}

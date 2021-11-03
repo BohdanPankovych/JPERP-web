@@ -19,6 +19,10 @@ const mapStateToProps = (state) => ({
   bgColor: state.selectedEvents.get("bgColor"),
   description: state.selectedEvents.get("description"),
   selectCreator: state.selectedEvents.get("selectCreator"),
+
+  gardenGroups: state.eventsList.get("groups"),
+  group: state.common.getIn(["filterProps", "group"]),
+  gardenName: state.common.get("gardenName"),
 });
 
 const mapDispatchToProps = {
