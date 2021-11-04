@@ -143,7 +143,7 @@ const EditScreenPage = ({
 
     useEffect(() => {
         const groupName = gardenGroups?.find(g => g?.id === group)?.name;
-        setEditReportsTitle(groupName ? `今日${groupName}のぐみ`: gardenName);
+        setEditReportsTitle(groupName ? `今日の${groupName}ぐみ`: gardenName);
     }, [group, gardenGroups, gardenName]);
 
     useEffect(() => {
