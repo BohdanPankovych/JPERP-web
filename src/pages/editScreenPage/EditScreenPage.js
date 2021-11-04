@@ -21,9 +21,6 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
         fontSize: "18px",
-        [theme.breakpoints.down("sm")]: {
-            fontSize: "12px",
-        },
     },
     titleWrapper: {
         display: "flex",
@@ -39,9 +36,8 @@ const useStyles = makeStyles((theme) => ({
         },
         height: "100%",
         marginLeft: "7px",
-        [theme.breakpoints.down("sm")]: {
-            minWidth: "150px",
-        },
+        minWidth: "165px",
+        width: "min-content"
     },
     selectInput: {
         "& .MuiOutlinedInput-input": {

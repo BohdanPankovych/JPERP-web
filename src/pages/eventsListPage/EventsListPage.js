@@ -144,7 +144,7 @@ const EventsListPage = ({
         hasMore={countStatus}
         loader={<div className={classes.loader}><CircularProgress/></div>}
       >
-        {eventsList?.length ? eventsList.map((e) => (
+        {eventsList?.filter(e => e.docRec?.id)?.length ? eventsList.map((e) => (
             <EventItem key={e.docRec.id} item={e} disable={disable}/>
           ))
           : <div className={classes.loader}>レコードが見つかりません</div>
